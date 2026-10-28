@@ -9,8 +9,8 @@ synthetic.
 Backend:
 
 ```bash
-python3 -m pip install -r requirements.txt
-LLM_BACKEND=replay python3 -m uvicorn app.api.main:app --reload
+python -m pip install -r requirements.txt
+LLM_BACKEND=replay python -m uvicorn app.api.main:app --reload
 ```
 
 Frontend, in another terminal:
@@ -21,7 +21,8 @@ npm install
 VITE_API_BASE_URL=http://localhost:8000 npm run dev
 ```
 
-Open `http://localhost:5173`, upload the five PDFs from `pdfs/DEMO-02/`, and wait for processing.
+Open the URL printed by Vite (the Lovable configuration currently uses `http://localhost:8080`),
+upload the five PDFs from `pdfs/DEMO-02/`, and wait for processing.
 The expected result is `exceptions`: R03 detects 12,400,000 RON in the PDF versus 8,100,000 RON
 in the simulated registry, R13 reports the simulated enforcement case, and supporting PDF pages
 can be opened from the findings.

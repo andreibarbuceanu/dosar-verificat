@@ -20,6 +20,18 @@ def test_health():
     assert client.get("/health").json()["api"] == "ok"
 
 
+def test_lovable_dev_origin_is_allowed_by_cors():
+    response = client.options(
+        "/cases",
+        headers={
+            "Origin": "http://localhost:8080",
+            "Access-Control-Request-Method": "GET",
+        },
+    )
+    assert response.status_code == 200
+    assert response.headers["access-control-allow-origin"] == "http://localhost:8080"
+
+
 def test_queue_contains_demo02_with_counts():
     rows = {r["id"]: r for r in client.get("/cases").json()}
     assert rows["DEMO-02"]["status"] == "exceptions"

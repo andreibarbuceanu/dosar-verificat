@@ -67,8 +67,8 @@ React/TanStack UI
 ```
 
 The frontend uses `VITE_API_BASE_URL` (default `http://localhost:8000`). FastAPI allows the local
-Vite origins `http://localhost:5173` and `http://127.0.0.1:5173`. AI extraction uses the project's
-deterministic replay backend for the demo.
+Vite/Lovable origins on ports 5173 and 8080 for both `localhost` and `127.0.0.1`. AI extraction
+uses the project's deterministic replay backend for the demo.
 
 ## API endpoints
 
@@ -137,8 +137,8 @@ Full stack:
 Backend from the repository root:
 
 ```bash
-python3 -m pip install -r requirements.txt
-LLM_BACKEND=replay python3 -m uvicorn app.api.main:app --reload
+python -m pip install -r requirements.txt
+LLM_BACKEND=replay python -m uvicorn app.api.main:app --reload
 ```
 
 Frontend in another terminal:
