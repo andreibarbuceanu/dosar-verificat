@@ -28,15 +28,23 @@ function CasePage() {
   const [sel, setSel] = useState(0);
   useEffect(() => {
     setC(null);
-    api.getCase(id).then((r) => { setC(r.data); setSource(r.source); });
+    setSel(0);
+    api.getCase(id).then((r) => {
+      setC(r.data);
+      setSource(r.source);
+    });
   }, [id]);
   if (!c) {
     return (
       <div className="min-h-screen">
         <AppHeader />
         <main className="mx-auto max-w-6xl space-y-4 px-6 py-8">
-          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Toate dosarele</Link>
-          <p className="text-muted-foreground">{c === null ? "Se încarcă dosarul…" : "Dosarul nu a fost găsit."}</p>
+          <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">
+            ← Toate dosarele
+          </Link>
+          <p className="text-muted-foreground">
+            {c === null ? "Se încarcă dosarul…" : "Dosarul nu a fost găsit."}
+          </p>
         </main>
       </div>
     );
@@ -48,16 +56,28 @@ function CasePage() {
     <div className="min-h-screen">
       <AppHeader />
       <main className="mx-auto max-w-6xl space-y-6 px-6 py-8">
-        <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">← Toate dosarele</Link>
+        <Link to="/" className="text-sm text-muted-foreground hover:text-foreground">
+          ← Toate dosarele
+        </Link>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold tracking-tight">{c.name}</h1>
-            <p className="text-sm text-muted-foreground">CUI {c.cui}{c.regCom && ` · ${c.regCom}`}{c.city && ` · ${c.city}`}</p>
-            <p className="text-xs text-muted-foreground">{source === "backend" ? "Date preluate din backend" : "Backend indisponibil · sunt afișate date demonstrative"}</p>
+            <p className="text-sm text-muted-foreground">
+              CUI {c.cui}
+              {c.regCom && ` · ${c.regCom}`}
+              {c.city && ` · ${c.city}`}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {source === "backend"
+                ? "Date preluate din backend"
+                : "Backend indisponibil · sunt afișate date demonstrative"}
+            </p>
           </div>
           <div className="flex items-center gap-3">
             {c.litigationScore !== undefined && (
-              <span className="text-sm">Scor litigii <b>{c.litigationScore}</b>/100</span>
+              <span className="text-sm">
+                Scor litigii <b>{c.litigationScore}</b>/100
+              </span>
             )}
           </div>
         </div>
@@ -65,16 +85,24 @@ function CasePage() {
         <section className="rounded-md border border-border bg-card">
           <div className="border-b border-border px-5 py-3 font-semibold">Verificări</div>
           {fails.length === 0 ? (
-            <p className={`px-5 py-4 text-sm font-medium ${c.status === "green" ? "text-success" : "text-muted-foreground"}`}>
-              {c.status === "green" ? "Toate verificările disponibile au trecut. Dosarul este finalizat." : "Nu există încă verificări eșuate disponibile. Aceasta nu înseamnă că dosarul a trecut verificarea."}
+            <p
+              className={`px-5 py-4 text-sm font-medium ${c.status === "green" ? "text-success" : "text-muted-foreground"}`}
+            >
+              {c.status === "green"
+                ? "Toate verificările disponibile au trecut. Dosarul este finalizat."
+                : "Nu există încă verificări eșuate disponibile. Aceasta nu înseamnă că dosarul a trecut verificarea."}
             </p>
           ) : (
             <ul className="divide-y divide-border">
               {fails.map((f) => (
                 <li key={f.id} className="flex gap-3 px-5 py-3 text-sm">
-                  <span className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${f.severity === "red" ? "bg-destructive" : "bg-warning"}`} />
+                  <span
+                    className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${f.severity === "red" ? "bg-destructive" : "bg-warning"}`}
+                  />
                   <div>
-                    <div className="font-semibold"><span className="font-mono">{f.rule_id}</span> · {RULE_LABELS[f.rule_id]}</div>
+                    <div className="font-semibold">
+                      <span className="font-mono">{f.rule_id}</span> · {RULE_LABELS[f.rule_id]}
+                    </div>
                     <div className="text-muted-foreground">{f.explanation}</div>
                   </div>
                 </li>
@@ -92,13 +120,25 @@ function CasePage() {
                 className={`w-full rounded-md border px-4 py-3 text-left transition-colors ${i === sel ? "border-ring bg-accent" : "border-border bg-card hover:bg-muted"}`}
               >
                 <div className="flex items-center gap-2 text-sm font-semibold">
-                  <span className="flex h-5 w-5 items-center justify-center rounded-sm bg-primary font-mono text-[11px] text-primary-foreground">{i + 1}</span>
+                  <span className="flex h-5 w-5 items-center justify-center rounded-sm bg-primary font-mono text-[11px] text-primary-foreground">
+                    {i + 1}
+                  </span>
                   {DOC_LABELS[d.doc_type]}
                 </div>
-                <div className="text-xs text-muted-foreground">{d.pages} {d.pages === 1 ? "pagină" : "pagini"}</div>
+                <div className="text-xs text-muted-foreground">
+                  {d.pages} {d.pages === 1 ? "pagină" : "pagini"}
+                </div>
                 <div className="mt-1 flex flex-wrap gap-1">
-                  {d.unreadable_pages.length > 0 && <span className="rounded-sm bg-warning px-1.5 text-[10px] font-semibold text-warning-foreground">SCANAT</span>}
-                  {d.has_hidden_instruction && <span className="rounded-sm bg-destructive px-1.5 text-[10px] font-semibold text-destructive-foreground">INSTRUCȚIUNE ASCUNSĂ</span>}
+                  {d.unreadable_pages.length > 0 && (
+                    <span className="rounded-sm bg-warning px-1.5 text-[10px] font-semibold text-warning-foreground">
+                      SCANAT
+                    </span>
+                  )}
+                  {d.has_hidden_instruction && (
+                    <span className="rounded-sm bg-destructive px-1.5 text-[10px] font-semibold text-destructive-foreground">
+                      INSTRUCȚIUNE ASCUNSĂ
+                    </span>
+                  )}
                 </div>
               </button>
             ))}
@@ -108,7 +148,8 @@ function CasePage() {
             <div className="space-y-4">
               {doc.has_hidden_instruction && (
                 <div className="rounded-sm bg-destructive/10 px-3 py-2 text-sm text-destructive">
-                  A fost detectat text ascuns care încearcă să dea instrucțiuni sistemului. Acesta a fost marcat și ignorat.
+                  A fost detectat text ascuns care încearcă să dea instrucțiuni sistemului. Acesta a
+                  fost marcat și ignorat.
                 </div>
               )}
               <div className="overflow-hidden rounded-md border border-border bg-card">
@@ -120,7 +161,12 @@ function CasePage() {
                     className="mx-auto max-h-[720px] w-auto"
                   />
                 ) : (
-                  <iframe key={doc.file} src={pdfUrl(doc.file)} title={doc.file} className="h-[640px] w-full" />
+                  <iframe
+                    key={doc.file}
+                    src={pdfUrl(doc.file)}
+                    title={doc.file}
+                    className="h-[640px] w-full"
+                  />
                 )}
               </div>
             </div>
@@ -130,4 +176,3 @@ function CasePage() {
     </div>
   );
 }
-

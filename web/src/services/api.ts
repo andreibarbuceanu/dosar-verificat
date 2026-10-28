@@ -15,22 +15,54 @@ export function setApiUrl(url: string) {
 export type Source = "backend" | "mixed" | "mock";
 export type WithSource<T> = { data: T; source: Source };
 
-export type ApiQueueItem = { id: string; company_name: string; status: string; red: number; amber: number };
+export type ApiQueueItem = {
+  id: string;
+  company_name: string;
+  status: string;
+  red: number;
+  amber: number;
+};
 export type ApiFinding = {
-  id: string; rule_id: string; severity: "red" | "amber" | "info";
-  result: "pass" | "fail" | "unknown"; evidence: string[]; explanation: string; checker?: string;
+  id: string;
+  rule_id: string;
+  severity: "red" | "amber" | "info";
+  result: "pass" | "fail" | "unknown";
+  evidence: string[];
+  explanation: string;
+  checker?: string;
 };
 export type ApiCase = {
-  id: string; company_name: string; cui: string; status: string;
+  id: string;
+  company_name: string;
+  cui: string;
+  status: string;
   documents: { id: string; type: string; file: string; pages: number; readable: boolean }[];
-  fields: { id: string; name: string; value: unknown; doc_id: string; page: number; quote: string; verified: boolean }[];
+  fields: {
+    id: string;
+    name: string;
+    value: unknown;
+    doc_id: string;
+    page: number;
+    quote: string;
+    verified: boolean;
+  }[];
   tool_results: { id: string; tool: string; status: string; data: unknown; source?: string }[];
   outcome: { result: string; litigation_score: number; findings: ApiFinding[] } | null;
 };
 export type ApiVerification = {
-  case_id: string; status: string; stages: Record<string, string>;
-  errors: unknown[]; doubles: string[]; not_checked: ApiFinding[];
-  rule_catalog: { rule_id: string; description: string; severity: string; implemented: boolean; mandatory: boolean }[];
+  case_id: string;
+  status: string;
+  stages: Record<string, string>;
+  errors: unknown[];
+  doubles: string[];
+  not_checked: ApiFinding[];
+  rule_catalog: {
+    rule_id: string;
+    description: string;
+    severity: string;
+    implemented: boolean;
+    mandatory: boolean;
+  }[];
   litigation_score_status: string;
 };
 
@@ -50,8 +82,13 @@ async function req<T>(path: string, init?: RequestInit, timeoutMs = 4000): Promi
  * bundled documents are only used for old seeded cases that expose no documents. */
 function toSummary(c: ApiCase | ApiQueueItem): CaseSummary {
   const full = "cui" in c ? c : undefined;
-  const mock = mockCases().find((m) => (full?.cui && m.cui === full.cui) || m.name === c.company_name);
+  const mock = mockCases().find(
+    (m) => (full?.cui && m.cui === full.cui) || m.name === c.company_name,
+  );
   const result = full?.outcome?.result ?? c.status;
+  // C-* cases are real user uploads. Seeded DEMO/EVAL API records contain
+  // metadata only; their viewable PDFs live in the frontend bundle.
+  const hasUploadedDocuments = Boolean(full?.id.startsWith("C-") && full.documents.length);
   return {
     id: c.id,
     set: mock?.set ?? "backend",
@@ -60,20 +97,24 @@ function toSummary(c: ApiCase | ApiQueueItem): CaseSummary {
     regCom: mock?.regCom ?? "",
     city: mock?.city ?? "",
     status: result === "green" ? "green" : "exceptions",
-    documents: full?.documents.length ? full.documents.map((document) => ({
-      document_id: document.id,
-      source: "backend" as const,
-      company_id: full.id,
-      file: document.file,
-      doc_type: document.type as CaseSummary["documents"][number]["doc_type"],
-      pages: document.pages,
-      unreadable_pages: document.readable ? [] : [1],
-      has_hidden_instruction: false,
-      planted_errors: [],
-      fields: {},
-      fields_on_unreadable_pages: {},
-    })) : mock?.documents ?? [],
-    findings: full?.outcome ? full.outcome.findings.filter((f) => f.result === "fail") : mock?.findings ?? [],
+    documents: hasUploadedDocuments
+      ? full!.documents.map((document) => ({
+          document_id: document.id,
+          source: "backend" as const,
+          company_id: full.id,
+          file: document.file,
+          doc_type: document.type as CaseSummary["documents"][number]["doc_type"],
+          pages: document.pages,
+          unreadable_pages: document.readable ? [] : [1],
+          has_hidden_instruction: false,
+          planted_errors: [],
+          fields: {},
+          fields_on_unreadable_pages: {},
+        }))
+      : (mock?.documents ?? []),
+    findings: full?.outcome
+      ? full.outcome.findings.filter((f) => f.result === "fail")
+      : (mock?.findings ?? []),
     // Sprint 2: backend score is "not_computed" — never shown.
     litigationScore: undefined,
   };
@@ -120,11 +161,18 @@ export const api = {
     req(`/findings/${findingId}/decision`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ decision, note }),
+      body: JSON.stringify({
+        action: decision === "accept" ? "confirm" : "clear",
+        reason_code: note || (decision === "accept" ? "CONFIRMED" : "CLEARED"),
+        user: "analist-demo",
+      }),
     }),
   /** Still 501 in Sprint 2. */
   liveCheck: (body: unknown) =>
-    req("/live-check", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }),
+    req("/live-check", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }),
   pageUrl: (docId: string, n: number) => `${getApiUrl()}/documents/${docId}/pages/${n}`,
 };
-

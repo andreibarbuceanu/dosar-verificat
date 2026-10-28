@@ -7,7 +7,10 @@ export function AppHeader() {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-3">
           <img src={mark.url} alt="" aria-hidden="true" className="h-9 w-auto" />
-          <span className="flex items-center gap-3" style={{ fontFamily: "'Source Sans 3', sans-serif" }}>
+          <span
+            className="flex items-center gap-3"
+            style={{ fontFamily: "'Source Sans 3', sans-serif" }}
+          >
             <span className="text-2xl font-bold tracking-tight">Raiffeisen Bank</span>
             <span className="h-6 w-px bg-primary-foreground/60" aria-hidden="true" />
             <span className="text-lg font-semibold">Make it happen</span>
@@ -29,4 +32,3 @@ export function StatusPill({ status }: { status: "green" | "exceptions" }) {
     </span>
   );
 }
-

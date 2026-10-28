@@ -58,7 +58,12 @@ export type Finding = {
 type Company = {
   id: string;
   set: string;
-  company: { name: string; cui: string; reg_com: string; address: { city: string; county: string } };
+  company: {
+    name: string;
+    cui: string;
+    reg_com: string;
+    address: { city: string; county: string };
+  };
   credit_request?: { amount?: number; requested_amount?: number; purpose?: string };
   planted_errors: { rule_id: string; note?: string; document?: string }[];
   expected: { outcome: "green" | "exceptions"; rules_failing?: string[] };
@@ -66,6 +71,9 @@ type Company = {
 
 const companies = companiesRaw as unknown as Company[];
 const truth = truthRaw as unknown as TruthDoc[];
+const demo02 = demo02Raw as unknown as {
+  outcome: { findings: Finding[]; litigation_score: number };
+};
 
 export type CaseSummary = {
   id: string;
@@ -81,18 +89,25 @@ export type CaseSummary = {
 };
 
 const SEVERITY: Record<string, "red" | "amber"> = {
-  R05: "amber", R07: "amber", R08: "amber", R14: "amber",
+  R05: "amber",
+  R07: "amber",
+  R08: "amber",
+  R14: "amber",
 };
 
 function buildFindings(c: Company): Finding[] {
-  if (c.id === "DEMO-02") return (demo02Raw as any).outcome.findings as Finding[];
-  const failing = new Set([...(c.expected.rules_failing ?? []), ...c.planted_errors.map((p) => p.rule_id)]);
+  if (c.id === "DEMO-02") return demo02.outcome.findings;
+  const failing = new Set([
+    ...(c.expected.rules_failing ?? []),
+    ...c.planted_errors.map((p) => p.rule_id),
+  ]);
   return [...failing].sort().map((rid) => ({
     id: `${c.id}-${rid}`,
     rule_id: rid,
     severity: SEVERITY[rid] ?? "red",
     result: "fail",
-    explanation: c.planted_errors.find((p) => p.rule_id === rid)?.note ?? "The rule failed verification.",
+    explanation:
+      c.planted_errors.find((p) => p.rule_id === rid)?.note ?? "Regula nu a trecut verificarea.",
   }));
 }
 
@@ -107,7 +122,7 @@ export function getCases(): CaseSummary[] {
     status: c.expected.outcome,
     documents: truth.filter((t) => t.company_id === c.id),
     findings: buildFindings(c),
-    litigationScore: c.id === "DEMO-02" ? (demo02Raw as any).outcome.litigation_score : undefined,
+    litigationScore: c.id === "DEMO-02" ? demo02.outcome.litigation_score : undefined,
   }));
 }
 
@@ -119,14 +134,17 @@ export const pdfUrl = (file: string) => `/${file}`;
 
 export function formatValue(v: unknown): string {
   if (v === null || v === undefined) return "—";
-  if (typeof v === "number") return v >= 1900 && v <= 2100 && Number.isInteger(v) ? String(v) : v.toLocaleString("ro-RO");
+  if (typeof v === "number")
+    return v >= 1900 && v <= 2100 && Number.isInteger(v) ? String(v) : v.toLocaleString("ro-RO");
   if (typeof v === "boolean") return v ? "da" : "nu";
   if (typeof v === "string") return v;
   if (Array.isArray(v))
     return v
       .map((x) =>
         typeof x === "object" && x
-          ? Object.values(x as Record<string, unknown>).filter((y) => typeof y !== "boolean").join(" · ")
+          ? Object.values(x as Record<string, unknown>)
+              .filter((y) => typeof y !== "boolean")
+              .join(" · ")
           : String(x),
       )
       .join("; ");
@@ -149,7 +167,11 @@ export function normalizeText(t: string) {
     .trim();
 }
 
-export function classifyText(text: string): { type: DocType; confidence: number; matches: string[] } {
+export function classifyText(text: string): {
+  type: DocType;
+  confidence: number;
+  matches: string[];
+} {
   const norm = normalizeText(text);
   if (!norm) return { type: "unknown", confidence: 0, matches: [] };
   const padded = ` ${norm} `;
@@ -169,17 +191,26 @@ export function classifyText(text: string): { type: DocType; confidence: number;
   const best = ranking[0]!;
   const second = ranking[1]!;
   if (best.score < MIN_SCORE || best.matched.length < MIN_DISTINCT)
-    return { type: "unknown", confidence: Math.round(Math.min(0.49, best.score / 15) * 100) / 100, matches: best.matched };
+    return {
+      type: "unknown",
+      confidence: Math.round(Math.min(0.49, best.score / 15) * 100) / 100,
+      matches: best.matched,
+    };
   if (second.score >= MIN_SCORE && second.score / best.score >= AMBIGUITY)
     return { type: "unknown", confidence: 0.5, matches: best.matched };
   const evidence = Math.min(best.score / 15, 1);
   const separation = Math.max(0, (best.score - second.score) / best.score);
   const diversity = Math.min(best.matched.length / 4, 1);
   const conf = Math.min(0.99, 0.45 + 0.3 * evidence + 0.15 * separation + 0.1 * diversity);
-  return { type: best.cat as DocType, confidence: Math.round(conf * 100) / 100, matches: best.matched };
+  return {
+    type: best.cat as DocType,
+    confidence: Math.round(conf * 100) / 100,
+    matches: best.matched,
+  };
 }
 
-const INJECTION = /(ignore (all )?(previous|prior) (rules|instructions)|system note|approve this file|mark every check|ignor[ăa] (toate )?(regulile|instruc))/i;
+const INJECTION =
+  /(ignore (all )?(previous|prior) (rules|instructions)|system note|approve this file|mark every check|ignor[ăa] (toate )?(regulile|instruc))/i;
 export const hasHiddenInstruction = (text: string) => INJECTION.test(text);
 
 // ---------- PDF text extraction (browser only) ----------
@@ -195,9 +226,16 @@ export async function extractPages(file: File | ArrayBuffer): Promise<PageText[]
   for (let i = 1; i <= doc.numPages; i++) {
     const page = await doc.getPage(i);
     const tc = await page.getTextContent();
-    const text = tc.items.map((it: any) => ("str" in it ? it.str : "")).join(" ").replace(/\s+/g, " ").trim();
+    const text = tc.items
+      .map((item: unknown) =>
+        typeof item === "object" && item !== null && "str" in item
+          ? String((item as { str: unknown }).str)
+          : "",
+      )
+      .join(" ")
+      .replace(/\s+/g, " ")
+      .trim();
     out.push({ page: i, text, readable: text.length > 0 });
   }
   return out;
 }
-
