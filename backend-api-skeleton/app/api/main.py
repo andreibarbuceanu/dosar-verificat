@@ -29,7 +29,8 @@ from app.models import AuditLine, Case, CaseSummary, Decision, Document
 
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = ROOT / "fixtures" / "api"
-UPLOADS = ROOT / "data" / "cases"
+# Runtime storage for uploaded PDFs, not test data and not in git (data/ belongs to the data team).
+UPLOADS = ROOT / "storage" / "uploads"
 
 app = FastAPI(title="Dosar Verificat API", version="0.1.0")
 
@@ -87,14 +88,17 @@ def list_cases() -> list[CaseSummary]:
 @app.post("/cases", response_model=Case, status_code=201)
 async def create_case(files: list[UploadFile] = File(...)) -> Case:
     """Upload a credit file's PDFs. Saves them; classification happens on /run."""
+    # Validate every file first, so a rejected upload leaves nothing on disk.
+    for f in files:
+        if not (f.filename or "").lower().endswith(".pdf"):
+            raise HTTPException(400, f"{f.filename}: only PDF files are accepted")
+
     case_id = f"C-{uuid.uuid4().hex[:8]}"
     folder = UPLOADS / case_id
     folder.mkdir(parents=True, exist_ok=True)
 
     docs = []
     for i, f in enumerate(files, start=1):
-        if not (f.filename or "").lower().endswith(".pdf"):
-            raise HTTPException(400, f"{f.filename}: only PDF files are accepted")
         (folder / f.filename).write_bytes(await f.read())
         # type/pages are placeholders until PDF Processing and Classification run.
         docs.append(Document(id=f"{case_id}-d{i}", type="unknown", file=f.filename, pages=0))

@@ -1,9 +1,17 @@
 """Smoke tests for the API stubs. Run: pytest -q"""
+import pytest
 from fastapi.testclient import TestClient
 
+import app.api.main as api
 from app.api.main import app
 
 client = TestClient(app)
+
+
+@pytest.fixture(autouse=True)
+def uploads_in_tmp(tmp_path, monkeypatch):
+    """Point uploads at a temp folder so tests never write into the repo."""
+    monkeypatch.setattr(api, "UPLOADS", tmp_path / "uploads")
 
 
 def test_health():
@@ -32,6 +40,13 @@ def test_upload_creates_new_case():
 def test_upload_rejects_non_pdf():
     files = [("files", ("notes.txt", b"hello", "text/plain"))]
     assert client.post("/cases", files=files).status_code == 400
+
+
+def test_rejected_upload_writes_nothing():
+    files = [("files", ("bilant.pdf", b"%PDF-1.4 fake", "application/pdf")),
+             ("files", ("notes.txt", b"hello", "text/plain"))]
+    assert client.post("/cases", files=files).status_code == 400
+    assert not api.UPLOADS.exists()
 
 
 def test_red_finding_needs_second_approver():

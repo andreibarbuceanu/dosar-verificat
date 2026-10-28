@@ -3,6 +3,6 @@ __pycache__/
 .venv/
 .env
 .pytest_cache/
-data/cases/
+storage/
 node_modules/
 web/dist/

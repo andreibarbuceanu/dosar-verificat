@@ -49,7 +49,7 @@ for replay. Nobody else imports `anthropic` or calls `claude`.
 | feat/pdf-processing | `app/intake/pdf.py` | `extract_pages(path) -> list[Page]` (text per page, readable flag) |
 | feat/ai-classification | `app/intake/classify.py` | `classify(pages: list[str]) -> DocType` |
 | feat/ai-extraction | `app/intake/extract.py` | `extract(doc_type, pages) -> list[Field]` (quotes verified in code) |
-| feat/backend-api (lead) | `app/models.py`, `app/llm/`, `app/pipeline/`, `app/api/`, `docs/` | the API above |
+| feat/backend-api (lead) | `app/models.py`, `app/llm/`, `app/pipeline/`, `app/api/`, `docs/`, `storage/` (runtime, not in git) | the API above |
 | feat/frontend | `web/` | — |
 | data & testing | `data/synthetic/`, `fixtures/registry/`, `eval/` | `companies.json`, demo PDFs |
 
