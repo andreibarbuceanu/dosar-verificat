@@ -100,15 +100,15 @@ def test_verification_endpoint_returns_stage_details(monkeypatch):
     assert body["litigation_score_status"] == "not_computed"
 
 
-def test_default_doubles_are_visible_to_the_frontend():
-    # Holds with or without app.rules merged: registries are doubles either way.
+def test_default_wiring_exposes_real_integrated_results():
     case_id = upload()
-    assert client.post(f"/cases/{case_id}/run").json()["status"] != "green"
+    assert client.post(f"/cases/{case_id}/run").json()["status"] == "exceptions"
     body = client.get(f"/cases/{case_id}/verification").json()
-    assert body["status"] == "not_available"
-    assert body["doubles"][:2] == ["registry_tools", "comparison_engine"]
-    assert {t["status"] for t in body["tool_results"]} == {"unavailable"}
-    assert {t["source"] for t in body["tool_results"]} == {"unknown"}
+    assert body["status"] == "completed"
+    assert body["doubles"] == []
+    assert {t["status"] for t in body["tool_results"]} == {"ok"}
+    assert {t["source"] for t in body["tool_results"]} == {"fixture"}
+    assert next(f for f in body["findings"] if f["rule_id"] == "R03")["result"] == "fail"
 
 
 @pytest.mark.parametrize("raw_ref, source", [

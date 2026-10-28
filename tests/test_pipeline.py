@@ -29,7 +29,9 @@ def test_demo02_real_pdfs_run_end_to_end(monkeypatch: pytest.MonkeyPatch) -> Non
     turnover = next(field for field in bilant.fields if field["name"] == "turnover")
     assert turnover["value"] == 12_400_000
     assert "12.400.000" in turnover["quote"]
-    assert result.validation["status"] == "not_available"
+    assert result.validation["status"] == "completed"
+    assert result.validation["result"] == "exceptions"
+    assert result.validation["doubles"] == []
     json.dumps(result.to_dict(), ensure_ascii=False)
 
 

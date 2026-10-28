@@ -63,13 +63,14 @@ def test_demo02_turnover_mismatch_gives_runtime_r03_exception():
     json.dumps(result.to_dict(), ensure_ascii=False)
 
 
-def test_default_wiring_uses_doubles_reports_not_available_and_escalates():
-    # Holds with or without app.rules merged: registries are doubles either way.
+def test_default_wiring_runs_all_integrated_modules():
     result = run_pipeline("DEMO-02", [(p.stem, p) for p in PDFS])
-    assert result.validation["status"] == "not_available"
-    assert result.validation["doubles"][:2] == ["registry_tools", "comparison_engine"]
-    assert result.verification.outcome.result != "green"
-    assert {t.status for t in result.verification.tool_results} == {"unavailable"}
+    assert result.validation["status"] == "completed"
+    assert result.validation["doubles"] == []
+    assert result.verification.outcome.result == "exceptions"
+    assert {t.status for t in result.verification.tool_results} == {"ok"}
+    r03 = next(f for f in result.verification.findings if f.rule_id == "R03")
+    assert r03.result == "fail"
     assert any(f.name == "turnover" for f in result.fields)
 
 

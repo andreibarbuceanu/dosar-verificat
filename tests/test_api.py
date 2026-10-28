@@ -79,7 +79,10 @@ def test_uploaded_demo02_runs_real_pipeline(monkeypatch):
 
     report = client.get(f"/cases/{case_id}/pipeline")
     assert report.status_code == 200
-    assert report.json()["validation"]["status"] == "not_available"
+    validation = report.json()["validation"]
+    assert validation["status"] == "completed"
+    assert validation["result"] == "exceptions"
+    assert validation["doubles"] == []
 
     bilant_id = payload["documents"][2]["id"]
     page = client.get(f"/documents/{bilant_id}/pages/2")

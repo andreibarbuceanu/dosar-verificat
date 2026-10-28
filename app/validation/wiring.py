@@ -4,6 +4,7 @@ entry point into the verification stage.
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 from typing import Any
 
 from app.models import Case, Document, Field
@@ -11,6 +12,62 @@ from app.validation.doubles import NoComparisons, NoRules, UnavailableRegistryTo
 from app.validation.orchestrator import RulesEngine, VerificationOrchestrator, VerificationResult
 
 log = logging.getLogger(__name__)
+
+
+@dataclass(frozen=True)
+class _VerificationAdapter:
+    """Adapt Role 3's flat result model to the shared comparison contract."""
+
+    verification: Any
+
+    @staticmethod
+    def _contract_result(result: Any) -> dict[str, Any]:
+        refs = list(result.evidence_refs)
+        left_ref = next((ref for ref in refs if ref.startswith("field:")), None)
+        right_ref = next((ref for ref in refs if ref.startswith("tool:")), None)
+        left_evidence = [left_ref] if left_ref else []
+        right_evidence = [right_ref] if right_ref else []
+        return {
+            "check_id": result.check_id,
+            "rule_id": result.rule_id,
+            "status": result.status,
+            "left": {"value": result.left_value, "evidence": left_evidence},
+            "right": {"value": result.right_value, "evidence": right_evidence},
+            "difference": abs(result.difference) if result.difference is not None else None,
+            "explanation": result.explanation,
+            "year": result.year,
+            "currency": result.currency,
+        }
+
+    def compare(self, fields: list[Field], tool_results: list[Any],
+                *, fiscal_year: int) -> list[dict[str, Any]]:
+        comparisons = [self.verification.compare_pdf_turnover_to_registry(
+            fields, tool_results, year=fiscal_year,
+        )]
+        # R04 is supported by the same deterministic annual-value comparator.
+        comparisons.append(self.verification.compare_pdf_financial_to_registry(
+            fields, tool_results, field_name="net_profit", year=fiscal_year,
+            rule_id="R04", currency="RON",
+        ))
+        return [self._contract_result(result) for result in comparisons]
+
+
+def _registry_tools() -> Any | None:
+    try:
+        import app.tools as tools
+    except ImportError as exc:
+        log.warning("app.tools not importable (%s)", exc)
+        return None
+    return tools
+
+
+def _comparison_engine() -> Any | None:
+    try:
+        import app.verification as verification
+    except ImportError as exc:
+        log.warning("app.verification not importable (%s)", exc)
+        return None
+    return _VerificationAdapter(verification)
 
 
 def _rules_engine() -> RulesEngine | None:
@@ -24,17 +81,24 @@ def _rules_engine() -> RulesEngine | None:
 
 
 def build_orchestrator() -> VerificationOrchestrator:
-    """Swap each double for the real module as it merges:
-    app.tools (Role 2), app.verification (Role 3). app.rules (Role 4) is used
-    automatically once it is importable."""
-    doubles = ["registry_tools", "comparison_engine"]
+    """Use every merged Sprint 2 module and fall back conservatively if absent."""
+    doubles = []
+    tools = _registry_tools()
+    if tools is None:
+        tools = UnavailableRegistryTools()
+        doubles.append("registry_tools")
+    comparisons = _comparison_engine()
+    if comparisons is None:
+        comparisons = NoComparisons()
+        doubles.append("comparison_engine")
     rules = _rules_engine()
     if rules is None:
         rules = NoRules()
         doubles.append("rules_engine")
-    log.warning("using test doubles for: %s", ", ".join(doubles))
+    if doubles:
+        log.warning("using test doubles for: %s", ", ".join(doubles))
     return VerificationOrchestrator(
-        UnavailableRegistryTools(), NoComparisons(), rules, doubles=tuple(doubles),
+        tools, comparisons, rules, doubles=tuple(doubles),
     )
 
 

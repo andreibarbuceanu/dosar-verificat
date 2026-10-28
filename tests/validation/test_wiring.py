@@ -21,6 +21,8 @@ FIELDS = [Field(id="bil-f1", name="cui", value="41738203", doc_id="bil", page=1,
 
 
 def test_build_orchestrator_warns_about_every_double(caplog, monkeypatch):
+    monkeypatch.setattr(wiring, "_registry_tools", lambda: None)
+    monkeypatch.setattr(wiring, "_comparison_engine", lambda: None)
     monkeypatch.setattr(wiring, "_rules_engine", lambda: None)      # app.rules not merged
     with caplog.at_level(logging.WARNING, logger="app.validation.wiring"):
         orch = build_orchestrator()
@@ -31,12 +33,21 @@ def test_build_orchestrator_warns_about_every_double(caplog, monkeypatch):
 
 def test_build_orchestrator_uses_real_rules_once_importable(caplog, monkeypatch):
     real = FakeRulesEngine()                                          # stands in for app.rules
+    monkeypatch.setattr(wiring, "_registry_tools", lambda: None)
+    monkeypatch.setattr(wiring, "_comparison_engine", lambda: None)
     monkeypatch.setattr(wiring, "_rules_engine", lambda: real)
     with caplog.at_level(logging.WARNING, logger="app.validation.wiring"):
         orch = build_orchestrator()
     assert "using test doubles for: registry_tools, comparison_engine" in caplog.text
     assert "rules_engine" not in caplog.text
     assert orch.rules is real and orch.doubles == ("registry_tools", "comparison_engine")
+
+
+def test_build_orchestrator_uses_all_merged_modules():
+    orch = build_orchestrator()
+    assert orch.doubles == ()
+    assert orch.tools is wiring._registry_tools()
+    assert isinstance(orch.comparisons, wiring._VerificationAdapter)
 
 
 def test_doubles_invent_nothing_and_never_give_green():
