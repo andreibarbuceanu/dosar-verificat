@@ -22,6 +22,15 @@ class ClassifierTests(unittest.TestCase):
             "application",
         )
 
+    def test_financing_application_with_company_registry_fields(self) -> None:
+        self.assert_type(
+            """CERERE DE FINANȚARE - PERSOANE JURIDICE. Date solicitant:
+            sediu social, cod CAEN și Registrul Comerțului. Finanțarea
+            solicitată: suma solicitată 1.500.000 RON. Scopul finanțării:
+            achiziție autocamioane. Garanții propuse: gaj pe vehicule.""",
+            "application",
+        )
+
     def test_balance_sheet(self) -> None:
         self.assert_type(
             """SITUAȚII FINANCIARE ANUALE. BILANȚ. Active imobilizate 900.000 lei,

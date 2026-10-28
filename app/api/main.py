@@ -1,11 +1,9 @@
-"""
-app/api/main.py — the HTTP API from docs/CONTRACT.md.
+"""HTTP API from ``docs/CONTRACT.md``.
 
-Sprint 1 state: STUBS. The endpoints have their final paths and shapes, but
-they serve the JSON in fixtures/api/ instead of running the pipeline. That lets
-the frontend switch from reading files to calling the API today. As intake
-lands, we replace the body of each endpoint; the path and shape stay the same,
-so the frontend never notices.
+Uploaded cases run the integrated PDF -> classification -> extraction flow.
+Seeded fixture cases remain available for frontend development. Runtime
+validation is explicitly reported as unavailable until that module exposes a
+per-case interface.
 
 Run:  uvicorn app.api.main:app --reload      ->  http://localhost:8000/docs
 
@@ -23,9 +21,12 @@ from typing import Literal
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from pydantic import BaseModel
 
-from app.models import AuditLine, Case, CaseSummary, Decision, Document
+from app.models import AuditLine, Case, CaseSummary, Decision, Document, Field as EvidenceField
+from app.pdf_processing import render_page_to_png
+from app.pipeline import PipelineError, run_pipeline
 
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = ROOT / "fixtures" / "api"
@@ -45,6 +46,7 @@ app.add_middleware(
 # ---------- in-memory store (enough for a hackathon; a DB is not scored) ----------
 CASES: dict[str, Case] = {}
 DECISIONS: list[Decision] = []
+PIPELINE_RESULTS: dict[str, dict] = {}
 
 
 def _load_fixtures() -> None:
@@ -67,7 +69,7 @@ def _get_case(case_id: str) -> Case:
 # ---------- endpoints ----------
 @app.get("/health")
 def health() -> dict:
-    # Stub: P3/P4 will report which registries answer right now.
+    # Registry connectivity is outside Sprint 1.
     return {"api": "ok", "registries": {"anaf": "unknown", "sanctions": "unknown", "court": "unknown"}}
 
 
@@ -99,9 +101,12 @@ async def create_case(files: list[UploadFile] = File(...)) -> Case:
 
     docs = []
     for i, f in enumerate(files, start=1):
-        (folder / f.filename).write_bytes(await f.read())
+        safe_name = Path(f.filename or "").name
+        if not safe_name:
+            raise HTTPException(400, "Every upload must have a file name")
+        (folder / safe_name).write_bytes(await f.read())
         # type/pages are placeholders until PDF Processing and Classification run.
-        docs.append(Document(id=f"{case_id}-d{i}", type="unknown", file=f.filename, pages=0))
+        docs.append(Document(id=f"{case_id}-d{i}", type="unknown", file=safe_name, pages=0))
 
     case = Case(id=case_id, company_name="", cui="", status="new", documents=docs)
     CASES[case_id] = case
@@ -111,12 +116,52 @@ async def create_case(files: list[UploadFile] = File(...)) -> Case:
 @app.post("/cases/{case_id}/run", response_model=Case)
 def run_case(case_id: str) -> Case:
     case = _get_case(case_id)
-    # Stub: fixture cases already have their outcome. Real pipeline call goes here:
-    #   from app.pipeline import run_intake
-    #   case = run_intake(case)
-    if case.outcome is None:
-        case.status = "running"
+    if case.outcome is not None:
+        return case
+
+    sources = [(doc.id, UPLOADS / case_id / doc.file) for doc in case.documents]
+    try:
+        result = run_pipeline(case_id, sources)
+    except PipelineError as exc:
+        raise HTTPException(503, str(exc)) from exc
+
+    broken = [doc for doc in result.documents if doc.error]
+    if broken:
+        details = "; ".join(f"{doc.file}: {doc.error}" for doc in broken)
+        raise HTTPException(422, f"One or more PDFs could not be processed: {details}")
+
+    case.documents = [
+        Document(
+            id=doc.document_id,
+            type=doc.document_type,
+            file=doc.file,
+            pages=doc.pages,
+            readable=doc.readable,
+        )
+        for doc in result.documents
+    ]
+    case.fields = [
+        EvidenceField(id=f"{doc.document_id}-f{index}", **field)
+        for doc in result.documents
+        for index, field in enumerate(doc.fields, start=1)
+    ]
+    company = next((f.value for f in case.fields if f.name == "company_name"), None)
+    cui = next((f.value for f in case.fields if f.name == "cui"), None)
+    if isinstance(company, str):
+        case.company_name = company
+    if isinstance(cui, str):
+        case.cui = cui
+    case.status = "running"  # validation has no runtime implementation in Sprint 1
+    PIPELINE_RESULTS[case_id] = result.to_dict()
     return case
+
+
+@app.get("/cases/{case_id}/pipeline")
+def get_pipeline_result(case_id: str) -> dict:
+    _get_case(case_id)
+    if case_id not in PIPELINE_RESULTS:
+        raise HTTPException(404, f"Pipeline has not run for case {case_id}")
+    return PIPELINE_RESULTS[case_id]
 
 
 @app.get("/cases/{case_id}", response_model=Case)
@@ -135,9 +180,24 @@ def get_audit(case_id: str) -> list[AuditLine]:
 
 
 @app.get("/documents/{doc_id}/pages/{n}")
-def get_page(doc_id: str, n: int):
-    # Stub: will render page n of the PDF to PNG with PyMuPDF for the evidence view.
-    raise HTTPException(501, "Page rendering lands with PDF Processing")
+def get_page(doc_id: str, n: int) -> Response:
+    match = next(
+        ((case.id, doc) for case in CASES.values() for doc in case.documents if doc.id == doc_id),
+        None,
+    )
+    if match is None:
+        raise HTTPException(404, f"Document {doc_id} not found")
+    case_id, document = match
+    path = UPLOADS / case_id / document.file
+    if not path.exists():
+        raise HTTPException(404, f"PDF content for document {doc_id} is not available")
+    try:
+        content = render_page_to_png(path, page_number=n)
+    except (IndexError, ValueError) as exc:
+        raise HTTPException(422, str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(500, f"Could not render PDF page: {exc}") from exc
+    return Response(content=content, media_type="image/png")
 
 
 class DecisionIn(BaseModel):

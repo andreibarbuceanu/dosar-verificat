@@ -18,7 +18,9 @@ def _load_optional_module(module_name: str) -> Any:
         return None
 
 
-fitz = _load_optional_module("fitz")
+# PyMuPDF 2 exposes the preferred ``pymupdf`` name; older releases use
+# ``fitz``.  Supporting both keeps the declared >=1.24 dependency compatible.
+fitz = _load_optional_module("pymupdf") or _load_optional_module("fitz")
 _pypdf_mod = _load_optional_module("pypdf")
 PdfReader = getattr(_pypdf_mod, "PdfReader", None) if _pypdf_mod is not None else None
 

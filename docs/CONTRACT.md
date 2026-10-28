@@ -26,11 +26,12 @@ Additions to the team plan: `Outcome.deductions` (the UI shows them) and
 | Endpoint | What it does | Sprint 1 |
 |---|---|---|
 | `POST /cases` | Upload PDFs (multipart, field `files`); returns the Case | real |
-| `POST /cases/{id}/run` | Start the pipeline | stub |
+| `POST /cases/{id}/run` | Run PDF processing, classification and extraction | real |
 | `GET /cases` | Queue with status and red/amber counts | real |
 | `GET /cases/{id}` | Case with Documents, Fields, ToolResults, Outcome | real |
+| `GET /cases/{id}/pipeline` | Per-document stage details and validation availability | real |
 | `GET /cases/{id}/audit` | Audit lines; UI polls every second | fixtures |
-| `GET /documents/{id}/pages/{n}` | One PDF page as PNG | 501 |
+| `GET /documents/{id}/pages/{n}` | One uploaded PDF page as PNG | real |
 | `POST /findings/{id}/decision` | Confirm/clear; red needs a different second approver | real |
 | `POST /live-check` | `{name}` or `{cui}`: run tools live | 501 |
 | `GET /health` | Which registries answer | stub |

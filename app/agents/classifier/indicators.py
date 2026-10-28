@@ -9,10 +9,13 @@ WeightedIndicator = Tuple[str, float]
 INDICATORS: Dict[str, Tuple[WeightedIndicator, ...]] = {
     "application": (
         ("cerere de credit", 5.0),
+        ("cerere de finantare", 5.0),
+        ("finantarea solicitata", 4.0),
         ("solicit acordarea", 3.5),
         ("suma solicitata", 3.0),
         ("valoarea creditului", 2.5),
         ("destinatia creditului", 2.5),
+        ("scopul finantarii", 2.5),
         ("perioada de creditare", 2.5),
         ("rambursare", 1.5),
         ("garantii propuse", 2.0),
