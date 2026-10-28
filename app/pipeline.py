@@ -12,6 +12,8 @@ from typing import Any, BinaryIO, Callable
 
 from app.agents.classifier import classify_document
 from app.extraction import extract_document
+from app.extraction.fallback import deterministic_payload
+from app.llm import LLMError
 from app.models import Document, Field as EvidenceField
 from app.pdf_processing import process_pdf_model
 from app.validation import VerificationOrchestrator, VerificationResult
@@ -95,6 +97,19 @@ def process_document(
             classification.document_type,
             processed.page_strings,
             complete=complete,
+        )
+    except LLMError as exc:
+        if "No recorded answer for this prompt" not in str(exc):
+            raise PipelineError(
+                f"Extraction failed for {processed.file} ({document_id}): {exc}"
+            ) from exc
+        extraction = extract_document(
+            document_id,
+            classification.document_type,
+            processed.page_strings,
+            complete=lambda _prompt, _schema: deterministic_payload(
+                classification.document_type, processed.page_strings
+            ),
         )
     except Exception as exc:
         raise PipelineError(
