@@ -73,15 +73,13 @@ def _build_error_tool_result(
     status: str,
     error_message: str,
 ) -> ToolResult:
+    _ = error_message
     return ToolResult(
         id=tool_id,
         tool=tool_name,
         args=args,
         status=status,  # type: ignore[arg-type]
-        data={
-            "error": error_message,
-            "source_mode": "simulated_fixture",
-        },
+        data=None,
         raw_ref=resp.raw_ref if resp else None,
         fetched_at=resp.fetched_at if resp else DEFAULT_SIMULATED_TIMESTAMP,
     )

@@ -434,6 +434,7 @@ def normalize_onrc_payload(raw: dict[str, Any], requested_cui: str) -> dict[str,
         "caen": merged.get("caen"),
         "address": address_raw if isinstance(address_raw, dict) else address_str,
         "address_text": address_str,
+        "status": onrc_status,
         "onrc_status": onrc_status,
         "share_capital_lei": _coerce_number(
             merged.get("share_capital_lei", merged.get("share_capital"))

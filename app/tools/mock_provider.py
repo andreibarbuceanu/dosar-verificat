@@ -373,6 +373,7 @@ class FixtureRegistryProvider(RegistryProvider):
                     value.get("path")
                     or value.get("dir")
                     or value.get("folder")
+                    or self._folder_from_paths_dict(value.get("paths"))
                     or value.get("case_id")
                     or value.get("id")
                 )
@@ -386,10 +387,25 @@ class FixtureRegistryProvider(RegistryProvider):
         if isinstance(value, dict) and value.get("cui"):
             try:
                 norm_cui = normalize_cui(value["cui"])
-                target = value.get("path") or value.get("dir") or value.get("folder") or key
+                target = (
+                    value.get("path")
+                    or value.get("dir")
+                    or value.get("folder")
+                    or self._folder_from_paths_dict(value.get("paths"))
+                    or key
+                )
                 mapping[norm_cui] = self._resolve_folder_ref(str(target))
             except ValueError:
                 pass
+
+    @staticmethod
+    def _folder_from_paths_dict(paths_obj: Any) -> str | None:
+        if not isinstance(paths_obj, dict) or not paths_obj:
+            return None
+        first_val = next(iter(paths_obj.values()), None)
+        if isinstance(first_val, str) and "/" in first_val.replace("\\", "/"):
+            return str(Path(first_val).parent)
+        return None
 
     def _resolve_folder_ref(self, ref: str) -> Path:
         ref_path = Path(ref)

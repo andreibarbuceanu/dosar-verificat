@@ -79,6 +79,7 @@ def test_demo_02_builtin_substitutes() -> None:
     assert onrc.status == "ok"
     assert onrc.data is not None
     assert onrc.data["reg_com"] == "J12/1834/2019"
+    assert onrc.data["status"] == "funcțiune"
     assert onrc.data["onrc_status"] == "funcțiune"
     assert len(onrc.data["directors"]) == 1
     assert onrc.data["directors"][0]["name"] == "Andrei Mureșan"
@@ -108,7 +109,12 @@ def test_role1_disk_fixtures_and_manifest(tmp_path: Path) -> None:
         "cases": {
             "DEMO-02": {
                 "cui": "41738203",
-                "path": "DEMO-02",
+                "paths": {
+                    "anaf_company": "DEMO-02/anaf_company.json",
+                    "anaf_financials": "DEMO-02/anaf_financials.json",
+                    "onrc_company": "DEMO-02/onrc.json",
+                    "court_cases": "DEMO-02/court_cases.json",
+                },
             }
         }
     }
@@ -181,11 +187,10 @@ def test_role1_disk_fixtures_and_manifest(tmp_path: Path) -> None:
     assert fin.data["turnover"] == 8100000
     assert fin.raw_ref == "fixtures/registry/DEMO-02/anaf_financials.json"
 
-    # An fiscal inexistent în fixture -> not_found
+    # An fiscal inexistent în fixture -> not_found (data=None conform SPRINT2_CONTRACT.md)
     fin_2019 = get_anaf_financials("41738203", 2019, provider=provider)
     assert fin_2019.status == "not_found"
-    assert fin_2019.data is not None
-    assert "error" in fin_2019.data
+    assert fin_2019.data is None
 
 
 def test_missing_unavailable_and_malformed_responses(tmp_path: Path) -> None:
@@ -221,27 +226,30 @@ def test_missing_unavailable_and_malformed_responses(tmp_path: Path) -> None:
 
     res_comp = get_anaf_company("55667788", provider=provider)
     assert res_comp.status == "unavailable"
-    assert res_comp.data is not None and "error" in res_comp.data
+    assert res_comp.data is None
 
     res_fin = get_anaf_financials("55667788", 2024, provider=provider)
     assert res_fin.status == "unavailable"
-    assert res_fin.data is not None and "turnover" in res_fin.data["error"]
+    assert res_fin.data is None
 
     res_onrc = get_onrc_company("55667788", provider=provider)
     assert res_onrc.status == "unavailable"
-    assert res_onrc.data is not None and "ONRC service timeout" in res_onrc.data["error"]
+    assert res_onrc.data is None
 
     res_court = get_court_cases("55667788", provider=provider)
     assert res_court.status == "unavailable"
+    assert res_court.data is None
     assert res_court.raw_ref == "fixtures/registry/BROKEN-01/court_cases.json"
 
     # 5. CUI care nu există în manifest/fixturi -> not_found
     res_missing = get_anaf_company("12345678", provider=provider)
     assert res_missing.status == "not_found"
+    assert res_missing.data is None
 
     # 6. CUI cu format invalid -> not_found
     res_invalid = get_anaf_company("NOT-A-CUI", provider=provider)
     assert res_invalid.status == "not_found"
+    assert res_invalid.data is None
 
 
 def test_no_ground_truth_access_in_tools_module() -> None:
