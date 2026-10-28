@@ -55,6 +55,14 @@ class ClassifierTests(unittest.TestCase):
             "caf",
         )
 
+    def test_beneficial_owner_declaration(self) -> None:
+        self.assert_type(
+            """DECLARAȚIE PRIVIND BENEFICIARUL REAL conform Legii 129/2019
+            pentru prevenirea și combaterea spălării banilor. Beneficiari reali:
+            nume și prenume, cetățenie, deținere și modalitate directă.""",
+            "ubo",
+        )
+
     def test_unrelated_document(self) -> None:
         self.assert_type(
             "Proces-verbal de recepție pentru livrarea a zece calculatoare și monitoare.",

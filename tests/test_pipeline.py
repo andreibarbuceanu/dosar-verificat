@@ -22,7 +22,7 @@ def test_demo02_real_pdfs_run_end_to_end(monkeypatch: pytest.MonkeyPatch) -> Non
     result = run_pipeline("DEMO-02", [(path.stem, path) for path in pdfs])
 
     assert [document.document_type for document in result.documents] == [
-        "unknown", "application", "bilant", "caf", "onrc"
+        "ubo", "application", "bilant", "caf", "onrc"
     ]
     assert all(document.error is None for document in result.documents)
     bilant = next(document for document in result.documents if document.document_type == "bilant")

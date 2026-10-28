@@ -72,7 +72,7 @@ def test_uploaded_demo02_runs_real_pipeline(monkeypatch):
     assert run.status_code == 200
     payload = run.json()
     assert [document["type"] for document in payload["documents"]] == [
-        "unknown", "application", "bilant", "caf", "onrc"
+        "ubo", "application", "bilant", "caf", "onrc"
     ]
     turnover = next(field for field in payload["fields"] if field["name"] == "turnover")
     assert turnover["value"] == 12_400_000

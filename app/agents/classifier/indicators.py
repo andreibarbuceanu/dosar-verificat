@@ -59,4 +59,12 @@ INDICATORS: Dict[str, Tuple[WeightedIndicator, ...]] = {
         ("valabilitate", 1.0),
         ("eliberat la cererea", 1.5),
     ),
+    "ubo": (
+        ("declaratie privind beneficiarul real", 6.0),
+        ("beneficiarul real", 4.0),
+        ("beneficiari reali", 4.0),
+        ("prevenirea si combaterea spalarii banilor", 3.0),
+        ("detinere", 1.5),
+        ("modalitate", 1.0),
+    ),
 }

@@ -97,7 +97,7 @@ def test_pipeline_keeps_extraction_when_verification_crashes(monkeypatch):
     monkeypatch.setattr(wiring, "build_orchestrator", broken)
     result = run_pipeline("DEMO-02", [(p.stem, p) for p in pdfs])
 
-    assert [d.document_type for d in result.documents] == ["unknown", "application", "bilant", "caf", "onrc"]
+    assert [d.document_type for d in result.documents] == ["ubo", "application", "bilant", "caf", "onrc"]
     assert next(f for f in result.fields if f.name == "turnover").value == 12_400_000
     assert result.validation["status"] == "failed"
     assert result.verification.outcome.result == "escalated"

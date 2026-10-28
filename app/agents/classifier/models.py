@@ -6,7 +6,7 @@ from dataclasses import asdict, dataclass
 from typing import Dict, Literal, Union
 
 
-DocumentType = Literal["application", "bilant", "onrc", "caf", "unknown"]
+DocumentType = Literal["application", "bilant", "onrc", "caf", "ubo", "unknown"]
 
 
 @dataclass(frozen=True)

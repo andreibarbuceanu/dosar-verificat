@@ -19,6 +19,7 @@ _REASONS = {
     "bilant": "Documentul conține indicatori specifici bilanțului și situațiilor financiare anuale.",
     "onrc": "Documentul conține elemente specifice unui certificat constatator emis de Registrul Comerțului.",
     "caf": "Documentul conține elemente specifice unui certificat de atestare fiscală și obligațiilor fiscale.",
+    "ubo": "Documentul conține elemente specifice unei declarații privind beneficiarii reali.",
 }
 
 
