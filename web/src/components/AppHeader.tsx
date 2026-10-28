@@ -21,11 +21,11 @@ export function AppHeader() {
 export function StatusPill({ status }: { status: "green" | "exceptions" }) {
   return status === "green" ? (
     <span className="inline-flex items-center gap-1.5 rounded-full bg-success/15 px-2.5 py-0.5 text-xs font-semibold text-success">
-      <span className="h-1.5 w-1.5 rounded-full bg-success" /> Completed
+      <span className="h-1.5 w-1.5 rounded-full bg-success" /> Finalizat
     </span>
   ) : (
     <span className="inline-flex items-center gap-1.5 rounded-full bg-destructive/10 px-2.5 py-0.5 text-xs font-semibold text-destructive">
-      <span className="h-1.5 w-1.5 rounded-full bg-destructive" /> Pending
+      <span className="h-1.5 w-1.5 rounded-full bg-destructive" /> În așteptare
     </span>
   );
 }

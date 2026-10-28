@@ -51,18 +51,18 @@ function Index() {
       <AppHeader />
       <main className="mx-auto max-w-6xl space-y-6 px-6 py-10">
         <div className="flex flex-wrap items-start justify-between gap-4">
-          <div><h1 className="text-3xl font-bold tracking-tight">Credit files</h1>
+          <div><h1 className="text-3xl font-bold tracking-tight">Dosare de credit</h1>
           <p className="mt-1 text-muted-foreground">
-            {cases.length} files · {green} Completed · {cases.length - green} Pending
+            {cases.length} dosare · {green} finalizate · {cases.length - green} în așteptare
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
             {source === "loading"
-              ? "Connecting to backend…"
+              ? "Se conectează la backend…"
               : source === "backend"
-                ? "Live data from backend"
+                ? "Date preluate din backend"
                 : source === "mixed"
-                  ? "Live backend cases plus bundled demo files"
-                  : "Backend offline · showing sample data"}
+                  ? "Dosare din backend și exemple demonstrative"
+                  : "Backend indisponibil · sunt afișate date demonstrative"}
           </p>
           </div>
           <button
@@ -70,7 +70,7 @@ function Index() {
             onClick={() => setShowUpload((visible) => !visible)}
             className="rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90"
           >
-            {showUpload ? "Close upload" : "+ Add documents"}
+            {showUpload ? "Închide încărcarea" : "+ Adaugă documente"}
           </button>
         </div>
 
@@ -83,31 +83,31 @@ function Index() {
 
         <div className="flex flex-wrap items-center gap-3">
           <select className={sel} value={status} onChange={(e) => setStatus(e.target.value)} aria-label="Status">
-            <option value="all">All statuses</option>
-            <option value="green">Completed</option>
-            <option value="exceptions">Pending</option>
+            <option value="all">Toate statusurile</option>
+            <option value="green">Finalizate</option>
+            <option value="exceptions">În așteptare</option>
           </select>
           <select className={sel} value={county} onChange={(e) => setCounty(e.target.value)} aria-label="County">
-            <option value="all">All counties</option>
+            <option value="all">Toate județele</option>
             {COUNTIES.map((x) => <option key={x} value={x}>{x}</option>)}
           </select>
           <select className={sel} value={sort} onChange={(e) => setSort(e.target.value)} aria-label="Sort">
-            <option value="name-asc">Company A–Z</option>
-            <option value="name-desc">Company Z–A</option>
+            <option value="name-asc">Companie A–Z</option>
+            <option value="name-desc">Companie Z–A</option>
           </select>
-          <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search company or CUI…" className={`${sel} ml-auto w-full sm:w-72`} />
+          <input type="search" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Caută compania sau CUI…" className={`${sel} ml-auto w-full sm:w-72`} />
         </div>
         <div>
           <section className="overflow-hidden rounded-md border border-border bg-card">
             <table className="w-full text-sm">
               <thead className="bg-secondary text-left text-xs uppercase tracking-wide text-secondary-foreground">
                 <tr>
-                                    <th className="px-4 py-3">Company</th>
+                                    <th className="px-4 py-3">Companie</th>
                                     <th className="px-4 py-3">Status</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
-                {rows.length === 0 && (<tr><td colSpan={2} className="px-4 py-8 text-center text-muted-foreground">No files match.</td></tr>)}
+                {rows.length === 0 && (<tr><td colSpan={2} className="px-4 py-8 text-center text-muted-foreground">Nu există dosare care corespund filtrelor.</td></tr>)}
                 {rows.map((c) => {
                   return (
                     <tr key={c.id} className="transition-colors hover:bg-accent">

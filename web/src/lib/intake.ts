@@ -6,30 +6,30 @@ import indicatorsRaw from "@/data/ind.json";
 export type DocType = "application" | "bilant" | "caf" | "onrc" | "ubo" | "unknown";
 
 export const DOC_LABELS: Record<DocType, string> = {
-  application: "Financing application",
-  bilant: "Balance sheet",
-  caf: "Tax clearance certificate",
-  onrc: "ONRC registration certificate",
-  ubo: "Beneficial owner declaration",
-  unknown: "Unknown",
+  application: "Cerere de finanțare",
+  bilant: "Bilanț contabil",
+  caf: "Certificat de atestare fiscală",
+  onrc: "Certificat constatator ONRC",
+  ubo: "Declarație privind beneficiarul real",
+  unknown: "Document necunoscut",
 };
 
 export const RULE_LABELS: Record<string, string> = {
-  R01: "CUI check digit",
-  R02: "Consistent identity across documents",
-  R03: "Turnover vs. ANAF",
-  R04: "Net profit vs. ANAF",
-  R05: "Balance sheet equilibrium",
-  R06: "Company active at ANAF",
-  R07: "VAT history",
-  R08: "Tax certificate age",
-  R09: "Tax debts",
-  R10: "Authorised signatory",
-  R11: "Complete beneficial owners",
-  R12: "EU/UN sanctions screening",
-  R13: "Litigation and enforcement",
-  R14: "Scanned, unreadable page",
-  R15: "Hidden instruction in document",
+  R01: "Verificarea cifrei de control CUI",
+  R02: "Identitate consecventă în toate documentele",
+  R03: "Cifra de afaceri comparată cu ANAF",
+  R04: "Profitul net comparat cu ANAF",
+  R05: "Echilibrul bilanțului contabil",
+  R06: "Societate activă la ANAF",
+  R07: "Istoricul TVA",
+  R08: "Vechimea certificatului fiscal",
+  R09: "Datorii fiscale",
+  R10: "Semnatar autorizat",
+  R11: "Beneficiari reali declarați complet",
+  R12: "Verificare sancțiuni UE/ONU",
+  R13: "Litigii și executări silite",
+  R14: "Pagină scanată, fără text lizibil",
+  R15: "Instrucțiune ascunsă în document",
 };
 
 export type TruthField = { value: unknown; printed: unknown; page: number };
@@ -120,7 +120,7 @@ export const pdfUrl = (file: string) => `/${file}`;
 export function formatValue(v: unknown): string {
   if (v === null || v === undefined) return "—";
   if (typeof v === "number") return v >= 1900 && v <= 2100 && Number.isInteger(v) ? String(v) : v.toLocaleString("ro-RO");
-  if (typeof v === "boolean") return v ? "yes" : "no";
+  if (typeof v === "boolean") return v ? "da" : "nu";
   if (typeof v === "string") return v;
   if (Array.isArray(v))
     return v

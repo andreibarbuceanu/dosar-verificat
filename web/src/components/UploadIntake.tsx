@@ -26,7 +26,7 @@ export function UploadIntake({ onComplete }: { onComplete?: (caseId: string) => 
     const selected = Array.from(files);
     const invalid = selected.find((file) => !file.name.toLowerCase().endsWith(".pdf"));
     if (invalid) {
-      setError(`${invalid.name}: only PDF files are accepted.`);
+      setError(`${invalid.name}: sunt acceptate doar fișiere PDF.`);
       setBusy(false);
       return;
     }
@@ -44,7 +44,7 @@ export function UploadIntake({ onComplete }: { onComplete?: (caseId: string) => 
           hidden: hasHiddenInstruction(text),
         });
       } catch {
-        out.push({ name: f.name, pages: 0, unreadable: [], type: "unknown", confidence: 0, hidden: false, error: "Invalid PDF" });
+        out.push({ name: f.name, pages: 0, unreadable: [], type: "unknown", confidence: 0, hidden: false, error: "PDF nevalid" });
       }
     }
     setResults(out);
@@ -53,7 +53,7 @@ export function UploadIntake({ onComplete }: { onComplete?: (caseId: string) => 
       await api.runCase(created.id);
       await onComplete?.(created.id);
     } catch (cause) {
-      setError(cause instanceof Error ? cause.message : "The documents could not be uploaded and processed.");
+      setError(cause instanceof Error ? cause.message : "Documentele nu au putut fi încărcate și procesate.");
     } finally {
       setBusy(false);
     }
@@ -61,9 +61,9 @@ export function UploadIntake({ onComplete }: { onComplete?: (caseId: string) => 
 
   return (
     <section className="rounded-md border border-border bg-card p-6">
-      <h2 className="text-lg font-semibold">Upload documents</h2>
+      <h2 className="text-lg font-semibold">Încarcă documente</h2>
       <p className="mt-1 text-sm text-muted-foreground">
-        Select the PDFs for one credit file. They will be uploaded to the backend, classified and verified.
+        Selectează PDF-urile unui dosar de credit. Acestea vor fi încărcate, clasificate și verificate.
       </p>
       <label
         onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
@@ -73,8 +73,8 @@ export function UploadIntake({ onComplete }: { onComplete?: (caseId: string) => 
       >
         <input type="file" accept="application/pdf,.pdf" multiple disabled={busy} className="sr-only" onChange={(e) => void handle(e.target.files)} />
         <span className="grid h-12 w-12 place-items-center rounded-full bg-primary text-xl font-bold text-primary-foreground">↑</span>
-        <span className="mt-3 font-medium">{busy ? "Processing…" : "Drop PDFs here or choose files"}</span>
-        <span className="text-xs text-muted-foreground">Application, balance sheet, tax certificate, ONRC, UBO</span>
+        <span className="mt-3 font-medium">{busy ? "Se procesează…" : "Trage PDF-urile aici sau alege fișierele"}</span>
+        <span className="text-xs text-muted-foreground">Cerere, bilanț, certificat fiscal, ONRC, beneficiar real</span>
       </label>
 
       {error && <p role="alert" className="mt-4 rounded-md bg-destructive/10 px-4 py-3 text-sm text-destructive">{error}</p>}
@@ -86,13 +86,13 @@ export function UploadIntake({ onComplete }: { onComplete?: (caseId: string) => 
               <div>
                 <div className="font-medium">{r.name}</div>
                 <div className="text-xs text-muted-foreground">
-                  {r.error ?? `${r.pages} pages${r.unreadable.length ? ` · page(s) ${r.unreadable.join(", ")} unreadable` : ""}`}
+                  {r.error ?? `${r.pages} ${r.pages === 1 ? "pagină" : "pagini"}${r.unreadable.length ? ` · pagini ilizibile: ${r.unreadable.join(", ")}` : ""}`}
                 </div>
               </div>
               <div className="flex items-center gap-2">
                 {r.hidden && (
                   <span className="rounded-sm bg-destructive px-2 py-0.5 text-xs font-semibold text-destructive-foreground">
-                    Hidden instruction
+                    Instrucțiune ascunsă
                   </span>
                 )}
                 <span className={`rounded-sm px-2 py-0.5 text-xs font-semibold ${r.type === "unknown" ? "bg-muted text-muted-foreground" : "bg-primary text-primary-foreground"}`}>
