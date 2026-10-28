@@ -1,11 +1,11 @@
 """Tester for Sprint 1 intake: PDF Processing, Classification, Extraction.
 
-    python dataset/check_intake.py pdf      results.json
-    python dataset/check_intake.py classify results.json
-    python dataset/check_intake.py extract  results.json
+    python check_intake.py pdf      results.json
+    python check_intake.py classify results.json
+    python check_intake.py extract  results.json
 
 Compares a results file with expected/intake_truth.json, prints the score and every
-mistake, and writes dataset/results/<mode>-<time>.md. Last line: PASS or FAIL.
+mistake, and writes results/<mode>-<time>.md (git-ignored). Last line: PASS or FAIL.
 PASS needs a score of 100% by default; use --min-score 0.9 to accept less.
 Formats: see INTAKE_OUTPUT.md. Standard library only.
 """
@@ -144,9 +144,16 @@ def check_pdf(truth, results, rep):
         if r is None:
             rep.miss(key, "result", "present", "missing")
             continue
-        pages = {p.get("page"): p for p in r.get("pages", []) if isinstance(p, dict)}
+        got_pages = [p for p in r.get("pages", []) if isinstance(p, dict)]
+        pages = {p.get("page"): p for p in got_pages}
+        numbers = [p.get("page") for p in got_pages]
         if len(r.get("pages", [])) != t["pages"]:
             rep.miss(key, "page count", t["pages"], len(r.get("pages", [])))
+        elif sorted(n for n in numbers if type(n) is int) != list(range(1, t["pages"] + 1)):
+            # e.g. 0-based or repeated numbers: the per-page checks would compare the wrong pages
+            rep.miss(key, "page numbers", f"1..{t['pages']}", numbers)
+            bad_pages += t["pages"]
+            pages = {}
         printed_by_page = defaultdict(list)
         for f in t["fields"].values():
             if isinstance(f["printed"], str):
@@ -170,7 +177,7 @@ def check_pdf(truth, results, rep):
                     continue
             ok_pages += 1
         if t["has_hidden_instruction"]:
-            alltext = " ".join((p.get("text") or "") for p in pages.values())
+            alltext = " ".join((p.get("text") or "") for p in got_pages)
             if HIDDEN_PHRASE not in plain(alltext):
                 rep.miss(key, "hidden instruction text", f'"{HIDDEN_PHRASE}..." in the text', "not in the text")
     total = ok_pages + bad_pages
@@ -188,10 +195,15 @@ def check_classify(truth, results, rep):
     right = 0
     for key, t in truth.items():
         r = results.get(key)
-        got = (r or {}).get("doc_type", "missing")
+        if r is None:
+            # reported as "result", like pdf/extract, so it stays a hard failure below 100%
+            rep.miss(key, "result", "present", "missing")
+            conf[(t["doc_type"], "missing")] += 1
+            continue
+        got = r.get("doc_type", "missing")
         got = got if got in DOC_TYPES else f"{got} (invalid)"
-        c = (r or {}).get("confidence")
-        if r is not None and not (isinstance(c, (int, float)) and not isinstance(c, bool) and 0 <= c <= 1):
+        c = r.get("confidence")
+        if not (isinstance(c, (int, float)) and not isinstance(c, bool) and 0 <= c <= 1):
             rep.miss(key, "confidence", "number 0-1", c)
         conf[(t["doc_type"], got)] += 1
         if got == t["doc_type"]:
@@ -318,6 +330,11 @@ def run(mode, results_path, min_score=1.0, write_report=True):
     path = None
     if write_report:
         os.makedirs(OUT_DIR, exist_ok=True)
+        # results/ ignores itself, so reports never get committed (no change to the shared .gitignore)
+        ignore = os.path.join(OUT_DIR, ".gitignore")
+        if not os.path.exists(ignore):
+            with open(ignore, "w", encoding="utf-8") as f:
+                f.write("# Local test reports from check_intake.py: never commit them.\n*\n")
         path = os.path.join(OUT_DIR, f"{mode}-{datetime.now():%Y%m%d-%H%M%S}.md")
         with open(path, "w", encoding="utf-8") as f:
             f.write(text)

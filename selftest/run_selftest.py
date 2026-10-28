@@ -3,8 +3,9 @@
 Builds, from the truth, a perfect results file and a broken one (5 deliberate mistakes)
 for each mode, runs the tester on them and checks:
   perfect -> PASS at 100%      broken -> FAIL, with exactly those 5 mistakes
+Then two inputs that must never pass: a missing file below 100%, and 0-based page numbers.
 
-    python dataset/selftest/run_selftest.py
+    python selftest/run_selftest.py
 """
 import copy
 import json
@@ -148,6 +149,22 @@ def main():
     rep, _, _ = ci.run("extract", write("perfect-extract-tolerant.json", perfect_extract(tolerant=True)), write_report=False)
     print("  " + rep.verdict)
     expect("tolerant file: PASS", rep.passed)
+
+    print("== classify, one file missing, --min-score 0.9 (a missing file is a safety failure)")
+    missing = [r for r in perfect_classify() if ci.key_of(r["file"]) != "DEMO-04/document_5.pdf"]
+    rep, _, _ = ci.run("classify", write("missing-classify.json", missing), min_score=0.9, write_report=False)
+    print("  " + rep.verdict)
+    expect("missing file below 100%: FAIL", not rep.passed)
+
+    print("== pdf, pages numbered from 0 instead of 1")
+    zero = perfect_pdf()
+    for r in zero:
+        for p in r["pages"]:
+            p["page"] -= 1
+    rep, _, _ = ci.run("pdf", write("zero-based-pdf.json", zero), write_report=False)
+    print("  " + rep.verdict)
+    expect("0-based pages: FAIL", not rep.passed)
+    expect("0-based pages: every file reported", sorted(m[0] for m in rep.mistakes if m[1] == "page numbers") == sorted(TRUTH))
 
     print()
     print("SELFTEST " + ("FAILED: " + "; ".join(failures) if failures else "PASSED: perfect files PASS, broken files FAIL with exactly their 5 mistakes"))
