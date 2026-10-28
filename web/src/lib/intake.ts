@@ -34,6 +34,8 @@ export const RULE_LABELS: Record<string, string> = {
 
 export type TruthField = { value: unknown; printed: unknown; page: number };
 export type TruthDoc = {
+  document_id?: string;
+  source?: "backend";
   company_id: string;
   file: string;
   doc_type: DocType;

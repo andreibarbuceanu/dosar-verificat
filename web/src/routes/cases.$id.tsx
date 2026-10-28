@@ -65,7 +65,9 @@ function CasePage() {
         <section className="rounded-md border border-border bg-card">
           <div className="border-b border-border px-5 py-3 font-semibold">Checks</div>
           {fails.length === 0 ? (
-            <p className="px-5 py-4 text-sm text-success font-medium">All checks passed. This file is Completed.</p>
+            <p className={`px-5 py-4 text-sm font-medium ${c.status === "green" ? "text-success" : "text-muted-foreground"}`}>
+              {c.status === "green" ? "All available checks passed. This file is Completed." : "No failed checks are available yet. This does not mean verification passed."}
+            </p>
           ) : (
             <ul className="divide-y divide-border">
               {fails.map((f) => (
@@ -110,7 +112,16 @@ function CasePage() {
                 </div>
               )}
               <div className="overflow-hidden rounded-md border border-border bg-card">
-                <iframe key={doc.file} src={pdfUrl(doc.file)} title={doc.file} className="h-[640px] w-full" />
+                {doc.source === "backend" && doc.document_id ? (
+                  <img
+                    key={doc.document_id}
+                    src={api.pageUrl(doc.document_id, 1)}
+                    alt={`Page 1 of ${doc.file}`}
+                    className="mx-auto max-h-[720px] w-auto"
+                  />
+                ) : (
+                  <iframe key={doc.file} src={pdfUrl(doc.file)} title={doc.file} className="h-[640px] w-full" />
+                )}
               </div>
             </div>
           )}

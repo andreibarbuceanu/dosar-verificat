@@ -28,6 +28,27 @@ describe("api fallback", () => {
     expect(r.data.filter((c) => c.id === "DEMO-02")).toHaveLength(1);
   });
 
+  it("keeps documents returned for a completely new backend case", async () => {
+    const dynamicCase = {
+      id: "C-new",
+      company_name: "COMPANIE NOUĂ SRL",
+      cui: "12345678",
+      status: "escalated",
+      documents: [{ id: "C-new-d1", type: "application", file: "cerere.pdf", pages: 1, readable: true }],
+      fields: [],
+      tool_results: [],
+      outcome: null,
+    };
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response(JSON.stringify(dynamicCase), { status: 200 })));
+
+    const r = await api.getCase("C-new");
+
+    expect(r.source).toBe("backend");
+    expect(r.data?.documents).toEqual([
+      expect.objectContaining({ document_id: "C-new-d1", source: "backend", file: "cerere.pdf" }),
+    ]);
+  });
+
   it("returns the 10 bundled companies when the backend is offline", async () => {
     vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new Error("offline")));
     const r = await api.listCases();
