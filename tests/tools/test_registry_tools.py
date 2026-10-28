@@ -50,7 +50,11 @@ def test_cui_and_name_normalization() -> None:
 
 def test_demo_02_builtin_substitutes() -> None:
     """Verifică scenariul DEMO-02 (AGRO NORD TRANS SRL, CUI 41738203) și contractul ToolResult."""
-    fin = get_anaf_financials("RO41738203", 2024)
+    missing_dir = Path(tempfile.mkdtemp(prefix="registry_builtin_")) / "missing"
+    provider = FixtureRegistryProvider(
+        fixtures_dir=missing_dir, allow_builtin_fallback=True
+    )
+    fin = get_anaf_financials("RO41738203", 2024, provider=provider)
     assert isinstance(fin, ToolResult)
     assert fin.id == "tool-demo02-financials"
     assert fin.tool == "anaf_financials"
@@ -64,7 +68,7 @@ def test_demo_02_builtin_substitutes() -> None:
     assert fin.data["source_mode"] == "simulated_fixture"
     assert fin.raw_ref == "fixtures/registry/DEMO-02/anaf_financials.json"
 
-    comp = get_anaf_company("41738203")
+    comp = get_anaf_company("41738203", provider=provider)
     assert isinstance(comp, ToolResult)
     assert comp.status == "ok"
     assert comp.data is not None
@@ -74,7 +78,7 @@ def test_demo_02_builtin_substitutes() -> None:
     assert comp.data["vat_registered"] is True
     assert comp.data["e_factura"] is True
 
-    onrc = get_onrc_company("41738203")
+    onrc = get_onrc_company("41738203", provider=provider)
     assert isinstance(onrc, ToolResult)
     assert onrc.status == "ok"
     assert onrc.data is not None
@@ -85,7 +89,7 @@ def test_demo_02_builtin_substitutes() -> None:
     assert onrc.data["directors"][0]["name"] == "Andrei Mureșan"
     assert len(onrc.data["shareholders"]) == 2
 
-    court = get_court_cases("41738203")
+    court = get_court_cases("41738203", provider=provider)
     assert isinstance(court, ToolResult)
     assert court.status == "ok"
     assert court.data is not None
@@ -94,7 +98,7 @@ def test_demo_02_builtin_substitutes() -> None:
     assert court.data["cases"][0]["number"] == "2318/117/2025"
     assert court.data["cases"][0]["category"] == "enforcement"
 
-    all_results = query_all_registries("41738203", 2024)
+    all_results = query_all_registries("41738203", 2024, provider=provider)
     assert len(all_results) == 4
     assert all(r.status == "ok" for r in all_results)
 

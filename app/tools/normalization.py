@@ -251,18 +251,35 @@ def normalize_anaf_company_payload(raw: dict[str, Any], requested_cui: str) -> d
 
 
 def normalize_anaf_financials_payload(
-    raw: dict[str, Any], requested_cui: str, requested_year: int
+    raw: Any, requested_cui: str, requested_year: int
 ) -> dict[str, Any] | None:
     """Extrage și normalizează situațiile financiare ANAF pentru `requested_year`.
 
     Returnează `None` dacă anul cerut nu se regăsește în fixture (pentru status `not_found`).
     Ridică `ValueError` dacă structura sau valorile numerice sunt malformate.
     """
-    if not isinstance(raw, dict):
-        raise ValueError("Răspunsul anaf_financials trebuie să fie un obiect JSON (dict).")
-
     year_int = int(requested_year)
     year_str = str(year_int)
+
+    # Role 1 stores the canonical fixture as a list with one object per year.
+    # Convert only the requested row to the existing single-year shape.
+    if isinstance(raw, list):
+        matches = [
+            item for item in raw
+            if isinstance(item, dict)
+            and int(item.get("year") or item.get("an") or 0) == year_int
+        ]
+        if not matches:
+            return None
+        if len(matches) != 1:
+            raise ValueError(f"Mai multe înregistrări financiare pentru anul {year_int}.")
+        raw = matches[0]
+
+    if not isinstance(raw, dict):
+        raise ValueError(
+            "Răspunsul anaf_financials trebuie să fie un obiect sau o listă JSON."
+        )
+
     norm_cui = normalize_cui(requested_cui or raw.get("cui"))
 
     year_payload: dict[str, Any] | None = None
