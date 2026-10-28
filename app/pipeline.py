@@ -12,7 +12,10 @@ from typing import Any, BinaryIO, Callable
 
 from app.agents.classifier import classify_document
 from app.extraction import extract_document
+from app.models import Document, Field as EvidenceField
 from app.pdf_processing import process_pdf_model
+from app.validation import VerificationOrchestrator, VerificationResult
+from app.validation.wiring import run_verification, verification_report
 
 
 PdfSource = str | Path | bytes | BinaryIO
@@ -48,9 +51,19 @@ class PipelineResult:
     case_id: str
     documents: list[PipelineDocumentResult]
     validation: dict[str, Any]
+    fields: list[EvidenceField] = field(default_factory=list)   # ids cited by Finding.evidence
+    verification: VerificationResult | None = None
 
     def to_dict(self) -> dict[str, Any]:
-        return asdict(self)
+        v = self.verification
+        return {
+            "case_id": self.case_id,
+            "documents": [document.to_dict() for document in self.documents],
+            "validation": self.validation,
+            "fields": [f.model_dump(mode="json") for f in self.fields],
+            "tool_results": [t.model_dump(mode="json") for t in v.tool_results] if v else [],
+            "outcome": v.outcome.model_dump(mode="json") if v else None,
+        }
 
 
 def process_document(
@@ -113,22 +126,30 @@ def run_pipeline(
     documents: list[tuple[str, PdfSource]],
     *,
     complete: Complete | None = None,
+    orchestrator: VerificationOrchestrator | None = None,
 ) -> PipelineResult:
-    """Process all documents in a case without consulting ground-truth data."""
+    """Process all documents in a case without consulting ground-truth data,
+    then run the Sprint 2 verification stage (which never raises)."""
 
     results = [
         process_document(source, document_id, complete=complete)
         for document_id, source in documents
     ]
+    fields = [
+        EvidenceField(id=f"{doc.document_id}-f{index}", **raw)
+        for doc in results
+        for index, raw in enumerate(doc.fields, start=1)
+    ]
+    case_documents = [
+        Document(id=doc.document_id, type=doc.document_type, file=doc.file,
+                 pages=doc.pages, readable=doc.readable)
+        for doc in results
+    ]
+    verification = run_verification(case_id, case_documents, fields, orchestrator)
     return PipelineResult(
         case_id=case_id,
         documents=results,
-        validation={
-            "status": "not_available",
-            "findings": [],
-            "reason": (
-                "Ramura de validare furnizează evaluatorul offline check_intake.py, "
-                "nu un validator runtime pentru un singur dosar. Nu au fost inventate reguli."
-            ),
-        },
+        validation=verification_report(verification),
+        fields=fields,
+        verification=verification,
     )

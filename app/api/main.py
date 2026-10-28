@@ -1,9 +1,10 @@
 """HTTP API from ``docs/CONTRACT.md``.
 
-Uploaded cases run the integrated PDF -> classification -> extraction flow.
-Seeded fixture cases remain available for frontend development. Runtime
-validation is explicitly reported as unavailable until that module exposes a
-per-case interface.
+Uploaded cases run the integrated PDF -> classification -> extraction flow,
+then the Sprint 2 verification stage (simulated registries, comparisons, rules,
+outcome). Seeded fixture cases remain available for frontend development.
+While that stage runs on test doubles, validation is reported as not available
+and the case escalates; nothing is invented.
 
 Run:  uvicorn app.api.main:app --reload      ->  http://localhost:8000/docs
 
@@ -17,16 +18,18 @@ import json
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Literal
+from typing import Any, Literal
 
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 from pydantic import BaseModel
 
-from app.models import AuditLine, Case, CaseSummary, Decision, Document, Field as EvidenceField
+from app.models import AuditLine, Case, CaseSummary, Decision, Document, Finding, Outcome, ToolResult
 from app.pdf_processing import render_page_to_png
 from app.pipeline import PipelineError, run_pipeline
+from app.validation import VerificationResult
+from app.validation.wiring import verification_report
 
 ROOT = Path(__file__).resolve().parents[2]
 FIXTURES = ROOT / "fixtures" / "api"
@@ -47,6 +50,7 @@ app.add_middleware(
 CASES: dict[str, Case] = {}
 DECISIONS: list[Decision] = []
 PIPELINE_RESULTS: dict[str, dict] = {}
+VERIFICATIONS: dict[str, VerificationResult] = {}
 
 
 def _load_fixtures() -> None:
@@ -121,6 +125,7 @@ def run_case(case_id: str) -> Case:
 
     sources = [(doc.id, UPLOADS / case_id / doc.file) for doc in case.documents]
     try:
+        # Sprint 2 dependencies are chosen in app.validation.wiring.build_orchestrator().
         result = run_pipeline(case_id, sources)
     except PipelineError as exc:
         raise HTTPException(503, str(exc)) from exc
@@ -140,19 +145,17 @@ def run_case(case_id: str) -> Case:
         )
         for doc in result.documents
     ]
-    case.fields = [
-        EvidenceField(id=f"{doc.document_id}-f{index}", **field)
-        for doc in result.documents
-        for index, field in enumerate(doc.fields, start=1)
-    ]
+    case.fields = result.fields
     company = next((f.value for f in case.fields if f.name == "company_name"), None)
     cui = next((f.value for f in case.fields if f.name == "cui"), None)
     if isinstance(company, str):
         case.company_name = company
     if isinstance(cui, str):
         case.cui = cui
-    case.status = "running"  # validation has no runtime implementation in Sprint 1
+    case = result.verification.apply_to(case)   # replaces tool_results/outcome/status
+    CASES[case_id] = case
     PIPELINE_RESULTS[case_id] = result.to_dict()
+    VERIFICATIONS[case_id] = result.verification
     return case
 
 
@@ -162,6 +165,66 @@ def get_pipeline_result(case_id: str) -> dict:
     if case_id not in PIPELINE_RESULTS:
         raise HTTPException(404, f"Pipeline has not run for case {case_id}")
     return PIPELINE_RESULTS[case_id]
+
+
+# ---------- Sprint 2 verification view ----------
+# Case and its nested models are extra="forbid" and coordinator-owned
+# (SPRINT2_CONTRACT 2, 7.2), so the extra Sprint 2 details live in their own
+# response instead of new keys on GET /cases/{id}.
+ToolSource = Literal["fixture", "live", "unknown"]
+
+
+def tool_source(raw_ref: str | None) -> ToolSource:
+    """Sprint 2 has no live provider: a raw_ref under fixtures/ is a fixture,
+    anything else is unknown. "live" is reserved for a future live provider."""
+    if raw_ref and raw_ref.replace("\\", "/").startswith("fixtures/"):
+        return "fixture"
+    return "unknown"
+
+
+class ToolResultOut(ToolResult):
+    source: ToolSource
+
+
+class VerificationOut(BaseModel):
+    case_id: str
+    status: Literal["completed", "completed_with_errors", "failed", "not_available"]
+    stages: dict[str, Literal["ok", "error", "skipped"]]
+    errors: list[str]
+    doubles: list[str]                      # Sprint 2 modules still replaced by test doubles
+    tool_results: list[ToolResultOut]
+    comparisons: list[dict[str, Any]]
+    findings: list[Finding]                 # evaluated rules (same as outcome.findings)
+    # Rules not implemented this sprint ("neverificat"): never pass, never block green.
+    not_checked: list[Finding]
+    rule_catalog: list[dict[str, Any]]      # Role 4 rule_catalog(): description, mandatory, ...
+    outcome: Outcome
+    # Outcome.litigation_score is a placeholder until a scoring policy is approved (contract 7.1).
+    litigation_score_status: Literal["not_computed"] = "not_computed"
+
+
+@app.get("/cases/{case_id}/verification", response_model=VerificationOut)
+def get_verification(case_id: str) -> VerificationOut:
+    _get_case(case_id)
+    if case_id not in VERIFICATIONS:
+        raise HTTPException(
+            409, f"Verification has not run for case {case_id}; call POST /cases/{case_id}/run first")
+    v = VERIFICATIONS[case_id]
+    report = verification_report(v)
+    return VerificationOut(
+        case_id=case_id,
+        status=report["status"],
+        stages=v.stages,
+        errors=v.errors,
+        doubles=list(v.doubles),
+        tool_results=[ToolResultOut(**t.model_dump(), source=tool_source(t.raw_ref))
+                      for t in v.tool_results],
+        comparisons=report["comparisons"],
+        findings=v.findings,
+        not_checked=v.not_checked,
+        rule_catalog=v.catalog,
+        outcome=v.outcome,
+    )
 
 
 @app.get("/cases/{case_id}", response_model=Case)
