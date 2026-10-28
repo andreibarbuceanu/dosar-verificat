@@ -46,7 +46,8 @@ async function req<T>(path: string, init?: RequestInit, timeoutMs = 4000): Promi
   }
 }
 
-/** Maps a backend case to the UI shape; missing docs/fields fall back to bundled data by CUI. */
+/** Maps a backend case to the UI shape. Backend documents always take precedence;
+ * bundled documents are only used for old seeded cases that expose no documents. */
 function toSummary(c: ApiCase | ApiQueueItem): CaseSummary {
   const full = "cui" in c ? c : undefined;
   const mock = mockCases().find((m) => (full?.cui && m.cui === full.cui) || m.name === c.company_name);
@@ -59,7 +60,7 @@ function toSummary(c: ApiCase | ApiQueueItem): CaseSummary {
     regCom: mock?.regCom ?? "",
     city: mock?.city ?? "",
     status: result === "green" ? "green" : "exceptions",
-    documents: mock?.documents ?? full?.documents.map((document) => ({
+    documents: full?.documents.length ? full.documents.map((document) => ({
       document_id: document.id,
       source: "backend" as const,
       company_id: full.id,
@@ -71,7 +72,7 @@ function toSummary(c: ApiCase | ApiQueueItem): CaseSummary {
       planted_errors: [],
       fields: {},
       fields_on_unreadable_pages: {},
-    })) ?? [],
+    })) : mock?.documents ?? [],
     findings: full?.outcome ? full.outcome.findings.filter((f) => f.result === "fail") : mock?.findings ?? [],
     // Sprint 2: backend score is "not_computed" — never shown.
     litigationScore: undefined,
