@@ -12,7 +12,7 @@ export function setApiUrl(url: string) {
   window.localStorage.setItem(KEY, url.replace(/\/$/, ""));
 }
 
-export type Source = "backend" | "mock";
+export type Source = "backend" | "mixed" | "mock";
 export type WithSource<T> = { data: T; source: Source };
 
 export type ApiQueueItem = { id: string; company_name: string; status: string; red: number; amber: number };
@@ -72,7 +72,13 @@ export const api = {
   async listCases(): Promise<WithSource<CaseSummary[]>> {
     try {
       const rows = await req<ApiQueueItem[]>("/cases");
-      return { data: rows.map(toSummary), source: "backend" };
+      const backendRows = rows.map(toSummary);
+      const backendIds = new Set(backendRows.map((row) => row.id));
+      const bundledOnly = mockCases().filter((row) => !backendIds.has(row.id));
+      return {
+        data: [...backendRows, ...bundledOnly],
+        source: bundledOnly.length > 0 ? "mixed" : "backend",
+      };
     } catch {
       return { data: mockCases(), source: "mock" };
     }

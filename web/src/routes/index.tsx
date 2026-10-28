@@ -53,7 +53,13 @@ function Index() {
             {cases.length} files · {green} Completed · {cases.length - green} Pending
           </p>
           <p className="mt-1 text-xs text-muted-foreground">
-            {source === "loading" ? "Connecting to backend…" : source === "backend" ? "Live data from backend" : "Backend offline · showing sample data"}
+            {source === "loading"
+              ? "Connecting to backend…"
+              : source === "backend"
+                ? "Live data from backend"
+                : source === "mixed"
+                  ? "Live backend cases plus bundled demo files"
+                  : "Backend offline · showing sample data"}
           </p>
         </div>
 
