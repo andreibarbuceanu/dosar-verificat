@@ -1,4 +1,35 @@
-# Synthetic credit files: Sprint 1 test data
+# Dosar Verificat
+
+Full-stack hackathon application for PDF intake, evidence-backed extraction, simulated registry
+checks, and deterministic credit-file verification. All bundled companies and documents are
+synthetic.
+
+## Run the demo
+
+Backend:
+
+```bash
+python3 -m pip install -r requirements.txt
+LLM_BACKEND=replay python3 -m uvicorn app.api.main:app --reload
+```
+
+Frontend, in another terminal:
+
+```bash
+cd web
+npm install
+VITE_API_BASE_URL=http://localhost:8000 npm run dev
+```
+
+Open `http://localhost:5173`, upload the five PDFs from `pdfs/DEMO-02/`, and wait for processing.
+The expected result is `exceptions`: R03 detects 12,400,000 RON in the PDF versus 8,100,000 RON
+in the simulated registry, R13 reports the simulated enforcement case, and supporting PDF pages
+can be opened from the findings.
+
+See `docs/FULL_INTEGRATION_REPORT.md` for the branch audit, architecture, verified test results,
+and known limitations.
+
+## Synthetic credit files: Sprint 1 test data
 
 Everything here is fictitious. Every PDF page carries the footer "DOCUMENT SINTETIC - DATE FICTIVE".
 
