@@ -1,0 +1,214 @@
+# Catalogul de reguli R01..R15 al motorului determinist (Sprint 2).
+# Fiecare prag are `source` (de unde vine) și `confirmed` (true doar dacă a fost aprobat
+# de mentori / lead). Un prag cu confirmed: false este o ipoteză de lucru, nu politică.
+# Se modifică aici, nu în cod. Fișierul este validat la încărcare (chei necunoscute,
+# reguli lipsă, severități greșite -> RulesConfigError).
+
+version: 1
+
+defaults:
+  # Severitatea unui rezultat "unknown" al unei reguli evaluate (SPRINT2_CONTRACT §6.1: amber sau info).
+  unknown_severity: amber
+
+rules:
+  R01:
+    description_ro: "Cifra de control a CUI este validă (cheia 753217532) pentru fiecare CUI extras."
+    severity: red
+    implemented: true
+    mandatory: true
+    inputs: ["field:cui"]
+    thresholds: {}
+
+  R02:
+    description_ro: "CUI, denumirea, nr. de înregistrare și adresa coincid între documente și ANAF/ONRC."
+    severity: red
+    implemented: true
+    mandatory: false
+    inputs: ["comparison:R02"]
+    thresholds:
+      non_cui_mismatch_severity:
+        value: amber
+        source: "team doc rule catalogue (red pentru CUI, amber pentru restul)"
+        confirmed: false
+      cui_check_id_markers:
+        value: ["cui"]
+        source: "convenție de denumire a check_id-urilor Role 3 (neconfirmată)"
+        confirmed: false
+
+  R03:
+    description_ro: "Cifra de afaceri din bilanț este egală cu cea depusă la ANAF (același CUI și an)."
+    severity: red
+    implemented: true
+    mandatory: true
+    inputs: ["comparison:R03", "tool:anaf_financials", "field:turnover", "field:fiscal_year"]
+    thresholds:
+      tolerance_abs:
+        value: 0
+        source: "team doc rule catalogue"
+        confirmed: false
+      currency:
+        value: RON
+        source: "SPRINT2_CONTRACT §5.3 (aceeași monedă); bilanțul extras nu poartă monedă"
+        confirmed: false
+
+  R04:
+    description_ro: "Profitul net din bilanț este egal cu cel depus la ANAF."
+    severity: red
+    implemented: true
+    mandatory: false
+    inputs: ["comparison:R04", "tool:anaf_financials", "field:net_profit", "field:fiscal_year"]
+    thresholds:
+      tolerance_abs:
+        value: 0
+        source: "ipoteză: aceeași toleranță ca la R03"
+        confirmed: false
+      currency:
+        value: RON
+        source: "SPRINT2_CONTRACT §5.3"
+        confirmed: false
+
+  R05:
+    description_ro: "Total active este egal cu capitaluri proprii plus datorii pe bilanț."
+    severity: amber
+    implemented: true
+    mandatory: true
+    inputs: ["field:total_assets", "field:equity", "field:liabilities"]
+    thresholds:
+      tolerance_abs:
+        value: 0
+        source: "team doc rule catalogue"
+        confirmed: false
+      currency:
+        value: RON
+        source: "ipoteză: bilanțul extras nu poartă monedă; folosită doar la afișare"
+        confirmed: false
+
+  R06:
+    description_ro: "Firma figurează activă la ANAF."
+    severity: red
+    implemented: true
+    mandatory: true
+    inputs: ["tool:anaf_company"]
+    thresholds: {}
+
+  R07:
+    description_ro: "Nicio anulare a înregistrării în scopuri de TVA în ultimele 12 luni."
+    severity: amber
+    implemented: true
+    mandatory: false
+    inputs: ["tool:anaf_company", "field:application_date"]
+    thresholds:
+      window_months:
+        value: 12
+        source: "team doc rule catalogue"
+        confirmed: false
+
+  R08:
+    description_ro: "Certificatul de atestare fiscală nu este mai vechi de 30 de zile față de data cererii."
+    severity: amber
+    implemented: true
+    mandatory: true
+    inputs: ["field:caf_issue_date", "field:application_date"]
+    thresholds:
+      max_age_days:
+        value: 30
+        source: "team doc rule catalogue"
+        confirmed: false
+
+  R09:
+    description_ro: "Certificatul de atestare fiscală nu arată datorii."
+    severity: red
+    implemented: true
+    mandatory: true
+    inputs: ["field:caf_has_debts"]
+    thresholds: {}
+
+  R10:
+    description_ro: "Administratorii din cerere corespund cu cei din ONRC."
+    severity: red
+    implemented: true
+    mandatory: false
+    inputs: ["comparison:R10", "tool:onrc_company"]
+    thresholds: {}
+
+  R11:
+    description_ro: "Beneficiarii reali declarați corespund cu asociații cu cel puțin 25%."
+    severity: red
+    implemented: true
+    mandatory: false
+    inputs: ["comparison:R11", "tool:onrc_company"]
+    thresholds:
+      min_percent:
+        value: 25
+        source: "team doc rule catalogue (aplicat de furnizorul comparației, informativ aici)"
+        confirmed: false
+
+  R12:
+    description_ro: "Verificare sancțiuni internaționale (UE/ONU)."
+    severity: red
+    implemented: false
+    mandatory: false
+    inputs: []
+    thresholds: {}
+    deferred_reason_ro: "sursă de sancțiuni neintegrată."
+
+  R13:
+    description_ro: "Nicio insolvență sau executare silită deschisă împotriva firmei."
+    severity: amber
+    implemented: true
+    mandatory: true
+    inputs: ["tool:court_cases"]
+    thresholds:
+      insolvency_keywords:
+        value: ["insolventa", "insolvency", "faliment", "reorganizare"]
+        source: "team doc rule catalogue"
+        confirmed: false
+      enforcement_keywords:
+        value: ["executare silita", "enforcement"]
+        source: "team doc rule catalogue"
+        confirmed: false
+      debtor_roles:
+        value: ["debitor", "debitoare", "parat", "parata"]
+        source: "team doc rule catalogue"
+        confirmed: false
+      open_statuses:
+        value: ["open", "deschis", "in curs", "pe rol", "activ"]
+        source: "team doc rule catalogue"
+        confirmed: false
+      closed_statuses:
+        value: ["closed", "inchis", "solutionat", "finalizat", "radiat", "perimat", "inchisa"]
+        source: "team doc rule catalogue"
+        confirmed: false
+      insolvency_severity:
+        value: red
+        source: "team doc rule catalogue"
+        confirmed: false
+      enforcement_severity:
+        value: amber
+        source: "team doc rule catalogue"
+        confirmed: false
+      name_similarity_min:
+        value: 0.85
+        source: "prag tehnic pentru marcarea unei posibile potriviri de denumire (verificare analist)"
+        confirmed: false
+
+  R14:
+    description_ro: "Toate documentele cerute sunt prezente și lizibile."
+    severity: amber
+    implemented: true
+    mandatory: true
+    inputs: ["document:type", "document:readable"]
+    thresholds:
+      required_document_types:
+        value: ["application", "bilant", "caf", "onrc", "ubo"]
+        source: "tipurile de document din contract (lista cerută de bancă nu e documentată)"
+        confirmed: false
+
+  R15:
+    description_ro: "Documentele nu conțin instrucțiuni injectate pentru un sistem AI."
+    severity: red
+    implemented: false
+    mandatory: false
+    inputs: []
+    thresholds: {}
+    deferred_reason_ro: "modelele nu au un indicator de injecție (cerere către lead)."
