@@ -1,5 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { AppHeader, StatusPill } from "@/components/AppHeader";
+import { UploadIntake } from "@/components/UploadIntake";
 import { useEffect, useMemo, useState } from "react";
 import { api, type Source } from "@/services/api";
 import { getCases } from "@/lib/intake";
@@ -23,8 +24,10 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const navigate = useNavigate();
   const [cases, setCases] = useState(getCases);
   const [source, setSource] = useState<Source | "loading">("loading");
+  const [showUpload, setShowUpload] = useState(false);
   useEffect(() => {
     api.listCases().then((r) => { setCases(r.data); setSource(r.source); });
   }, []);
@@ -47,8 +50,8 @@ function Index() {
     <div className="min-h-screen">
       <AppHeader />
       <main className="mx-auto max-w-6xl space-y-6 px-6 py-10">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Credit files</h1>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div><h1 className="text-3xl font-bold tracking-tight">Credit files</h1>
           <p className="mt-1 text-muted-foreground">
             {cases.length} files · {green} Completed · {cases.length - green} Pending
           </p>
@@ -61,7 +64,22 @@ function Index() {
                   ? "Live backend cases plus bundled demo files"
                   : "Backend offline · showing sample data"}
           </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowUpload((visible) => !visible)}
+            className="rounded-md bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition-opacity hover:opacity-90"
+          >
+            {showUpload ? "Close upload" : "+ Add documents"}
+          </button>
         </div>
+
+        {showUpload && <UploadIntake onComplete={async (caseId) => {
+          const refreshed = await api.listCases();
+          setCases(refreshed.data);
+          setSource(refreshed.source);
+          await navigate({ to: "/cases/$id", params: { id: caseId } });
+        }} />}
 
         <div className="flex flex-wrap items-center gap-3">
           <select className={sel} value={status} onChange={(e) => setStatus(e.target.value)} aria-label="Status">

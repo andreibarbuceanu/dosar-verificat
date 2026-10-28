@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { DOC_LABELS, classifyText, extractPages, hasHiddenInstruction, type DocType } from "@/lib/intake";
+import { api } from "@/services/api";
 
 type Result = {
   name: string;
@@ -11,16 +12,25 @@ type Result = {
   error?: string;
 };
 
-export function UploadIntake() {
+export function UploadIntake({ onComplete }: { onComplete?: (caseId: string) => void | Promise<void> }) {
   const [results, setResults] = useState<Result[]>([]);
   const [busy, setBusy] = useState(false);
   const [drag, setDrag] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handle(files: FileList | null) {
-    if (!files?.length) return;
+    if (!files?.length || busy) return;
     setBusy(true);
+    setError(null);
     const out: Result[] = [];
-    for (const f of Array.from(files)) {
+    const selected = Array.from(files);
+    const invalid = selected.find((file) => !file.name.toLowerCase().endsWith(".pdf"));
+    if (invalid) {
+      setError(`${invalid.name}: only PDF files are accepted.`);
+      setBusy(false);
+      return;
+    }
+    for (const f of selected) {
       try {
         const pages = await extractPages(f);
         const text = pages.map((p) => p.text).join("\n");
@@ -38,14 +48,22 @@ export function UploadIntake() {
       }
     }
     setResults(out);
-    setBusy(false);
+    try {
+      const created = await api.createCase(selected);
+      await api.runCase(created.id);
+      await onComplete?.(created.id);
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "The documents could not be uploaded and processed.");
+    } finally {
+      setBusy(false);
+    }
   }
 
   return (
     <section className="rounded-md border border-border bg-card p-6">
       <h2 className="text-lg font-semibold">Upload documents</h2>
       <p className="mt-1 text-sm text-muted-foreground">
-        Text is extracted page by page, then each PDF is classified automatically. Nothing leaves your browser.
+        Select the PDFs for one credit file. They will be uploaded to the backend, classified and verified.
       </p>
       <label
         onDragOver={(e) => { e.preventDefault(); setDrag(true); }}
@@ -53,11 +71,13 @@ export function UploadIntake() {
         onDrop={(e) => { e.preventDefault(); setDrag(false); handle(e.dataTransfer.files); }}
         className={`mt-4 flex cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed px-6 py-10 text-center transition-colors ${drag ? "border-ring bg-accent" : "border-border hover:bg-muted"}`}
       >
-        <input type="file" accept="application/pdf" multiple className="sr-only" onChange={(e) => handle(e.target.files)} />
+        <input type="file" accept="application/pdf,.pdf" multiple disabled={busy} className="sr-only" onChange={(e) => void handle(e.target.files)} />
         <span className="grid h-12 w-12 place-items-center rounded-full bg-primary text-xl font-bold text-primary-foreground">↑</span>
         <span className="mt-3 font-medium">{busy ? "Processing…" : "Drop PDFs here or choose files"}</span>
         <span className="text-xs text-muted-foreground">Application, balance sheet, tax certificate, ONRC, UBO</span>
       </label>
+
+      {error && <p role="alert" className="mt-4 rounded-md bg-destructive/10 px-4 py-3 text-sm text-destructive">{error}</p>}
 
       {results.length > 0 && (
         <ul className="mt-4 divide-y divide-border rounded-md border border-border">
