@@ -1,0 +1,252 @@
+[
+ {
+  "file": "pdfs/DEMO-01/document_1.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-01/document_2.pdf",
+  "doc_type": "caf",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-01/document_3.pdf",
+  "doc_type": "caf",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-01/document_4.pdf",
+  "doc_type": "application",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-01/document_5.pdf",
+  "doc_type": "ubo",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-02/document_1.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-02/document_2.pdf",
+  "doc_type": "application",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-02/document_3.pdf",
+  "doc_type": "bilant",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-02/document_4.pdf",
+  "doc_type": "caf",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-02/document_5.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-03/document_1.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-03/document_2.pdf",
+  "doc_type": "application",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-03/document_3.pdf",
+  "doc_type": "ubo",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-03/document_4.pdf",
+  "doc_type": "caf",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-03/document_5.pdf",
+  "doc_type": "bilant",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-04/document_1.pdf",
+  "doc_type": "bilant",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-04/document_2.pdf",
+  "doc_type": "ubo",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-04/document_3.pdf",
+  "doc_type": "application",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-04/document_4.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-05/document_1.pdf",
+  "doc_type": "bilant",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-05/document_2.pdf",
+  "doc_type": "ubo",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-05/document_3.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-05/document_4.pdf",
+  "doc_type": "application",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-05/document_5.pdf",
+  "doc_type": "caf",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-06/document_1.pdf",
+  "doc_type": "ubo",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-06/document_2.pdf",
+  "doc_type": "bilant",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-06/document_3.pdf",
+  "doc_type": "caf",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-06/document_4.pdf",
+  "doc_type": "application",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/DEMO-06/document_5.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-01/document_1.pdf",
+  "doc_type": "bilant",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-01/document_2.pdf",
+  "doc_type": "caf",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-01/document_3.pdf",
+  "doc_type": "application",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-01/document_4.pdf",
+  "doc_type": "ubo",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-01/document_5.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-02/document_1.pdf",
+  "doc_type": "bilant",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-02/document_2.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-02/document_3.pdf",
+  "doc_type": "invoice",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-02/document_4.pdf",
+  "doc_type": "ubo",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-02/document_5.pdf",
+  "doc_type": "caf",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-03/document_1.pdf",
+  "doc_type": "bilant",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-03/document_2.pdf",
+  "doc_type": "application",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-03/document_3.pdf",
+  "doc_type": "ubo",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-03/document_4.pdf",
+  "doc_type": "caf",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-03/document_5.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-04/document_1.pdf",
+  "doc_type": "bilant",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-04/document_2.pdf",
+  "doc_type": "application",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-04/document_3.pdf",
+  "doc_type": "ubo",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-04/document_4.pdf",
+  "doc_type": "application",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-04/document_5.pdf",
+  "doc_type": "onrc",
+  "confidence": 0.95
+ },
+ {
+  "file": "pdfs/EVAL-04/document_6.pdf",
+  "doc_type": "caf",
+  "confidence": 0.95
+ }
+]
