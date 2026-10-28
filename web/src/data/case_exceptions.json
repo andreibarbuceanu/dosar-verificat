@@ -1,0 +1,474 @@
+{
+  "id": "DEMO-02",
+  "company_name": "AGRO NORD TRANS SRL",
+  "cui": "41738200",
+  "status": "exceptions",
+  "documents": [
+    {
+      "id": "d1",
+      "type": "application",
+      "file": "cerere_credit.pdf",
+      "pages": 2,
+      "readable": true
+    },
+    {
+      "id": "d2",
+      "type": "bilant",
+      "file": "bilant_2024.pdf",
+      "pages": 3,
+      "readable": true
+    },
+    {
+      "id": "d3",
+      "type": "caf",
+      "file": "certificat_fiscal.pdf",
+      "pages": 1,
+      "readable": true
+    },
+    {
+      "id": "d4",
+      "type": "onrc",
+      "file": "certificat_onrc.pdf",
+      "pages": 2,
+      "readable": true
+    },
+    {
+      "id": "d5",
+      "type": "ubo",
+      "file": "declaratie_ubo.pdf",
+      "pages": 1,
+      "readable": true
+    }
+  ],
+  "fields": [
+    {
+      "id": "f1",
+      "name": "company_name",
+      "value": "AGRO NORD TRANS SRL",
+      "doc_id": "d1",
+      "page": 1,
+      "quote": "Denumire solicitant: AGRO NORD TRANS SRL",
+      "verified": true
+    },
+    {
+      "id": "f2",
+      "name": "cui",
+      "value": "41738200",
+      "doc_id": "d1",
+      "page": 1,
+      "quote": "Cod unic de înregistrare: RO41738200",
+      "verified": true
+    },
+    {
+      "id": "f3",
+      "name": "requested_amount",
+      "value": 1500000,
+      "doc_id": "d1",
+      "page": 1,
+      "quote": "Suma solicitată: 1.500.000 RON",
+      "verified": true
+    },
+    {
+      "id": "f4",
+      "name": "directors",
+      "value": [
+        "Andrei Mureșan"
+      ],
+      "doc_id": "d1",
+      "page": 2,
+      "quote": "Semnătura administratorului: Andrei Mureșan",
+      "verified": true
+    },
+    {
+      "id": "f5",
+      "name": "fiscal_year",
+      "value": 2024,
+      "doc_id": "d2",
+      "page": 1,
+      "quote": "Situații financiare anuale la 31.12.2024",
+      "verified": true
+    },
+    {
+      "id": "f6",
+      "name": "turnover",
+      "value": 12400000,
+      "doc_id": "d2",
+      "page": 2,
+      "quote": "Cifra de afaceri netă 12.400.000",
+      "verified": true
+    },
+    {
+      "id": "f7",
+      "name": "net_profit",
+      "value": 462000,
+      "doc_id": "d2",
+      "page": 2,
+      "quote": "Profitul net al exercițiului 462.000",
+      "verified": true
+    },
+    {
+      "id": "f8",
+      "name": "total_assets",
+      "value": 5000000,
+      "doc_id": "d2",
+      "page": 1,
+      "quote": "Total active 5.000.000",
+      "verified": true
+    },
+    {
+      "id": "f9",
+      "name": "equity",
+      "value": 1450000,
+      "doc_id": "d2",
+      "page": 1,
+      "quote": "Capitaluri proprii - total 1.450.000",
+      "verified": true
+    },
+    {
+      "id": "f10",
+      "name": "liabilities",
+      "value": 3550000,
+      "doc_id": "d2",
+      "page": 1,
+      "quote": "Datorii - total 3.550.000",
+      "verified": true
+    },
+    {
+      "id": "f11",
+      "name": "caf_issue_date",
+      "value": "2026-10-14",
+      "doc_id": "d3",
+      "page": 1,
+      "quote": "Data eliberării: 14.10.2026",
+      "verified": true
+    },
+    {
+      "id": "f12",
+      "name": "caf_has_debts",
+      "value": false,
+      "doc_id": "d3",
+      "page": 1,
+      "quote": "nu înregistrează obligații fiscale restante",
+      "verified": true
+    },
+    {
+      "id": "f13",
+      "name": "shareholders",
+      "value": [
+        {
+          "name": "Andrei Mureșan",
+          "percent": 60
+        },
+        {
+          "name": "Ioana Pop",
+          "percent": 40
+        }
+      ],
+      "doc_id": "d4",
+      "page": 1,
+      "quote": "Asociați: Andrei Mureșan 60%, Ioana Pop 40%",
+      "verified": true
+    },
+    {
+      "id": "f14",
+      "name": "ubos",
+      "value": [
+        {
+          "name": "Andrei Mureșan",
+          "percent": 60
+        },
+        {
+          "name": "Ioana Pop",
+          "percent": 40
+        }
+      ],
+      "doc_id": "d5",
+      "page": 1,
+      "quote": "Beneficiari reali: Andrei Mureșan (60%), Ioana Pop (40%)",
+      "verified": true
+    }
+  ],
+  "tool_results": [
+    {
+      "id": "t1",
+      "tool": "anaf_company",
+      "args": {
+        "cui": "41738200"
+      },
+      "status": "ok",
+      "data": {
+        "name": "AGRO NORD TRANS SRL",
+        "inactive": false,
+        "vat_registered": true,
+        "vat_cancelled": null,
+        "e_factura": true
+      },
+      "raw_ref": "fixtures/registry/anaf_company/41738200.json",
+      "fetched_at": "2026-10-28T12:30:00+02:00"
+    },
+    {
+      "id": "t2",
+      "tool": "anaf_financials",
+      "args": {
+        "cui": "41738200",
+        "year": 2024
+      },
+      "status": "ok",
+      "data": {
+        "turnover": 8100000,
+        "net_profit": 462000,
+        "employees": 34
+      },
+      "raw_ref": "fixtures/registry/anaf_financials/41738200_2024.json",
+      "fetched_at": "2026-10-28T12:30:00+02:00"
+    },
+    {
+      "id": "t3",
+      "tool": "sanctions_screen",
+      "args": {
+        "names": [
+          "AGRO NORD TRANS SRL",
+          "Andrei Mureșan",
+          "Ioana Pop"
+        ]
+      },
+      "status": "ok",
+      "data": {
+        "candidates": []
+      },
+      "raw_ref": "fixtures/registry/sanctions/DEMO-02.json",
+      "fetched_at": "2026-10-28T12:30:00+02:00"
+    },
+    {
+      "id": "t4",
+      "tool": "court_cases",
+      "args": {
+        "company_name": "AGRO NORD TRANS SRL",
+        "date_from": "2021-01-01"
+      },
+      "status": "ok",
+      "data": {
+        "cases": [
+          {
+            "number": "2318/117/2025",
+            "court": "Tribunalul Cluj",
+            "subject": "executare silită",
+            "category": "enforcement",
+            "party_role": "debitor",
+            "stage": "executare",
+            "status": "open"
+          }
+        ]
+      },
+      "raw_ref": "fixtures/registry/court/DEMO-02.xml",
+      "fetched_at": "2026-10-28T12:30:00+02:00"
+    },
+    {
+      "id": "t5",
+      "tool": "ubo_register",
+      "args": {
+        "cui": "41738200"
+      },
+      "status": "ok",
+      "data": {
+        "ubos": [
+          {
+            "name": "Andrei Mureșan",
+            "percent": 60
+          },
+          {
+            "name": "Ioana Pop",
+            "percent": 40
+          }
+        ]
+      },
+      "raw_ref": "fixtures/registry/ubo/41738200.json",
+      "fetched_at": "2026-10-28T12:30:00+02:00"
+    }
+  ],
+  "outcome": {
+    "case_id": "DEMO-02",
+    "result": "exceptions",
+    "litigation_score": 80,
+    "deductions": [
+      {
+        "case_number": "2318/117/2025",
+        "category": "enforcement",
+        "points": -20
+      }
+    ],
+    "findings": [
+      {
+        "id": "x-R01",
+        "rule_id": "R01",
+        "severity": "red",
+        "result": "pass",
+        "evidence": [
+          "field:f2"
+        ],
+        "explanation": "The CUI check digit is valid.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R02",
+        "rule_id": "R02",
+        "severity": "red",
+        "result": "pass",
+        "evidence": [
+          "field:f1",
+          "field:f2",
+          "tool:t1"
+        ],
+        "explanation": "CUI and company name match across documents and ANAF.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R03",
+        "rule_id": "R03",
+        "severity": "red",
+        "result": "fail",
+        "evidence": [
+          "field:f6",
+          "tool:t2"
+        ],
+        "explanation": "The balance sheet declares a turnover of 12,400,000 lei; ANAF has 8,100,000 lei filed for 2024.",
+        "checker": "agree"
+      },
+      {
+        "id": "x-R04",
+        "rule_id": "R04",
+        "severity": "red",
+        "result": "pass",
+        "evidence": [
+          "field:f7",
+          "tool:t2"
+        ],
+        "explanation": "Net profit matches ANAF (462,000 lei).",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R05",
+        "rule_id": "R05",
+        "severity": "amber",
+        "result": "pass",
+        "evidence": [
+          "field:f8",
+          "field:f9",
+          "field:f10"
+        ],
+        "explanation": "Total active = capitaluri proprii + datorii.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R06",
+        "rule_id": "R06",
+        "severity": "red",
+        "result": "pass",
+        "evidence": [
+          "tool:t1"
+        ],
+        "explanation": "The company is active at ANAF.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R07",
+        "rule_id": "R07",
+        "severity": "amber",
+        "result": "pass",
+        "evidence": [
+          "tool:t1"
+        ],
+        "explanation": "No VAT deregistration in the last 12 months.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R08",
+        "rule_id": "R08",
+        "severity": "amber",
+        "result": "pass",
+        "evidence": [
+          "field:f11"
+        ],
+        "explanation": "The tax certificate was 6 days old on the application date.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R09",
+        "rule_id": "R09",
+        "severity": "red",
+        "result": "pass",
+        "evidence": [
+          "field:f12"
+        ],
+        "explanation": "The tax certificate shows no debts.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R10",
+        "rule_id": "R10",
+        "severity": "red",
+        "result": "pass",
+        "evidence": [
+          "field:f4"
+        ],
+        "explanation": "The application signatory is a director in the ONRC certificate.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R11",
+        "rule_id": "R11",
+        "severity": "red",
+        "result": "pass",
+        "evidence": [
+          "field:f13",
+          "field:f14",
+          "tool:t5"
+        ],
+        "explanation": "Declared beneficial owners cover all shareholders above 25%.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R12",
+        "rule_id": "R12",
+        "severity": "red",
+        "result": "pass",
+        "evidence": [
+          "tool:t3"
+        ],
+        "explanation": "No matches on EU and UN lists.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R13",
+        "rule_id": "R13",
+        "severity": "amber",
+        "result": "fail",
+        "evidence": [
+          "tool:t4"
+        ],
+        "explanation": "One open enforcement case with the company as debtor (2318/117/2025). Litigation score 80.",
+        "checker": "agree"
+      },
+      {
+        "id": "x-R14",
+        "rule_id": "R14",
+        "severity": "amber",
+        "result": "pass",
+        "evidence": [
+          "field:f1"
+        ],
+        "explanation": "All 5 documents are present and readable.",
+        "checker": "n/a"
+      },
+      {
+        "id": "x-R15",
+        "rule_id": "R15",
+        "severity": "red",
+        "result": "pass",
+        "evidence": [],
+        "explanation": "No hidden instructions in the documents.",
+        "checker": "n/a"
+      }
+    ]
+  }
+}
