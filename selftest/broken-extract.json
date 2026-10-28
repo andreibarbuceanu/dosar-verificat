@@ -1,0 +1,3316 @@
+[
+ {
+  "file": "pdfs/DEMO-01/document_1.pdf",
+  "fields": {
+   "company_name": {
+    "value": "CODRU VERDE MOBILIER SRL",
+    "quote": "CODRU VERDE MOBILIER SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "36182043",
+    "quote": "36182043",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J33/412/2016",
+    "quote": "J33/412/2016",
+    "page": 1
+   },
+   "euid": {
+    "value": "ROONRC.J33/412/2016",
+    "quote": "ROONRC.J33/412/2016",
+    "page": 1
+   },
+   "registration_date": {
+    "value": "2016-03-21",
+    "quote": "21.03.2016",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Tâmplarilor",
+     "number": "12",
+     "city": "Rădăuți",
+     "county": "Suceava",
+     "postal_code": "725400"
+    },
+    "quote": "Str. Tâmplarilor nr. 12, Rădăuți, jud. Suceava, cod poștal 725400",
+    "page": 1
+   },
+   "onrc_status": {
+    "value": "funcțiune",
+    "quote": "funcțiune",
+    "page": 1
+   },
+   "share_capital": {
+    "value": 200,
+    "quote": "200 lei",
+    "page": 1
+   },
+   "caen": {
+    "value": "3109",
+    "quote": "3109 - Fabricarea de mobilă n.c.a.",
+    "page": 1
+   },
+   "directors": {
+    "value": [
+     {
+      "name": "Mihai Hrițcu",
+      "role": "administrator",
+      "appointed": "2016-03-21",
+      "can_sign": true
+     }
+    ],
+    "quote": "Mihai Hrițcu",
+    "page": 2
+   },
+   "shareholders": {
+    "value": [
+     {
+      "name": "Mihai Hrițcu",
+      "type": "person",
+      "percent": 70
+     },
+     {
+      "name": "Elena Hrițcu",
+      "type": "person",
+      "percent": 30
+     }
+    ],
+    "quote": "70%, 30%",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-01/document_2.pdf",
+  "fields": {
+   "caf_number": {
+    "value": "CAF-33/41207",
+    "quote": "CAF-33/41207",
+    "page": 1
+   },
+   "company_name": {
+    "value": "CODRU VERDE MOBILIER SRL",
+    "quote": "CODRU VERDE MOBILIER SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "36182043",
+    "quote": "36182043",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Tâmplarilor",
+     "number": "12",
+     "city": "Rădăuți",
+     "county": "Suceava",
+     "postal_code": "725400"
+    },
+    "quote": "Str. Tâmplarilor nr. 12, Rădăuți, jud. Suceava, cod poștal 725400",
+    "page": 1
+   },
+   "caf_issue_date": {
+    "value": "2026-10-19",
+    "quote": "19.10.2026",
+    "page": 1
+   },
+   "caf_debts_total": {
+    "value": 0,
+    "quote": "0 lei",
+    "page": 1
+   },
+   "caf_has_debts": {
+    "value": false,
+    "quote": "nu înregistrează obligații fiscale restante",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-01/document_3.pdf",
+  "fields": {
+   "company_name": {
+    "value": "CODRU VERDE MOBILIER SRL",
+    "quote": "CODRU VERDE MOBILIER SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "36182043",
+    "quote": "36182043",
+    "page": 1
+   },
+   "fiscal_year": {
+    "value": 2024,
+    "quote": "2024",
+    "page": 1
+   },
+   "fixed_assets": {
+    "value": 1900000,
+    "quote": "1.900.000",
+    "page": 1
+   },
+   "current_assets": {
+    "value": 1350000,
+    "quote": "1.350.000",
+    "page": 1
+   },
+   "total_assets": {
+    "value": 3250000,
+    "quote": "3.250.000",
+    "page": 1
+   },
+   "equity": {
+    "value": 1220000,
+    "quote": "1.220.000",
+    "page": 1
+   },
+   "liabilities": {
+    "value": 2030000,
+    "quote": "2.030.000",
+    "page": 1
+   },
+   "turnover": {
+    "value": 4650000,
+    "quote": "4.650.000",
+    "page": 2
+   },
+   "total_revenue": {
+    "value": 4710000,
+    "quote": "4.710.000",
+    "page": 2
+   },
+   "total_expenses": {
+    "value": 4380000,
+    "quote": "4.380.000",
+    "page": 2
+   },
+   "net_profit": {
+    "value": 281000,
+    "quote": "281.000",
+    "page": 2
+   },
+   "employees": {
+    "value": 27,
+    "quote": "27",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-01/document_4.pdf",
+  "fields": {
+   "company_name": {
+    "value": "CODRU VERDE MOBILIER SRL",
+    "quote": "CODRU VERDE MOBILIER SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "36182043",
+    "quote": "36182043",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J33/412/2016",
+    "quote": "J33/412/2016",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Tâmplarilor",
+     "number": "12",
+     "city": "Rădăuți",
+     "county": "Suceava",
+     "postal_code": "725400"
+    },
+    "quote": "Str. Tâmplarilor nr. 12, Rădăuți, jud. Suceava, cod poștal 725400",
+    "page": 1
+   },
+   "caen": {
+    "value": "3109",
+    "quote": "3109",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Mihai Hrițcu",
+    "quote": "Mihai Hrițcu",
+    "page": 1
+   },
+   "product": {
+    "value": "credit de investiții",
+    "quote": "credit de investiții",
+    "page": 1
+   },
+   "requested_amount": {
+    "value": 900000,
+    "quote": "900.000 RON",
+    "page": 1
+   },
+   "term_months": {
+    "value": 48,
+    "quote": "48 luni",
+    "page": 1
+   },
+   "purpose": {
+    "value": "Linie de vopsire CNC",
+    "quote": "Linie de vopsire CNC",
+    "page": 1
+   },
+   "collateral": {
+    "value": [
+     {
+      "type": "ipotecă pe hală",
+      "value": 1400000
+     }
+    ],
+    "quote": "ipotecă pe hală (1.400.000 RON)",
+    "page": 1
+   },
+   "existing_bank_debts": {
+    "value": [],
+    "quote": "nu există",
+    "page": 1
+   },
+   "request_date": {
+    "value": "2026-10-22",
+    "quote": "data cererii",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-01/document_5.pdf",
+  "fields": {
+   "company_name": {
+    "value": "CODRU VERDE MOBILIER SRL",
+    "quote": "CODRU VERDE MOBILIER SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "36182043",
+    "quote": "36182043",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J33/412/2016",
+    "quote": "J33/412/2016",
+    "page": 1
+   },
+   "ubos": {
+    "value": [
+     {
+      "name": "Mihai Hrițcu",
+      "birth_date": "1979-06-04",
+      "nationality": "RO",
+      "percent": 70,
+      "control": "direct"
+     },
+     {
+      "name": "Elena Hrițcu",
+      "birth_date": "1982-01-19",
+      "nationality": "RO",
+      "percent": 30,
+      "control": "direct"
+     }
+    ],
+    "quote": "Mihai Hrițcu, Elena Hrițcu",
+    "page": 1
+   },
+   "declaration_date": {
+    "value": "2026-10-22",
+    "quote": "22.10.2026",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Mihai Hrițcu",
+    "quote": "Mihai Hrițcu",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-02/document_1.pdf",
+  "fields": {
+   "company_name": {
+    "value": "AGRO NORD TRANS SRL",
+    "quote": "AGRO NORD TRANS SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "41738200",
+    "quote": "41738200",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J12/1834/2019",
+    "quote": "J12/1834/2019",
+    "page": 1
+   },
+   "ubos": {
+    "value": [
+     {
+      "name": "Andrei Mureșan",
+      "birth_date": "1984-03-12",
+      "nationality": "RO",
+      "percent": 60,
+      "control": "direct"
+     },
+     {
+      "name": "Ioana Pop",
+      "birth_date": "1987-11-02",
+      "nationality": "RO",
+      "percent": 40,
+      "control": "direct"
+     }
+    ],
+    "quote": "Andrei Mureșan, Ioana Pop",
+    "page": 1
+   },
+   "declaration_date": {
+    "value": "2026-10-20",
+    "quote": "20.10.2026",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Andrei Mureșan",
+    "quote": "Andrei Mureșan",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-02/document_2.pdf",
+  "fields": {
+   "company_name": {
+    "value": "AGRO NORD TRANS SRL",
+    "quote": "AGRO NORD TRANS SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "41738200",
+    "quote": "41738200",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J12/1834/2019",
+    "quote": "J12/1834/2019",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Fabricii",
+     "number": "47",
+     "city": "Cluj-Napoca",
+     "county": "Cluj",
+     "postal_code": "400632"
+    },
+    "quote": "Str. Fabricii nr. 47, Cluj-Napoca, jud. Cluj, cod poștal 400632",
+    "page": 1
+   },
+   "caen": {
+    "value": "4941",
+    "quote": "4941",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Andrei Mureșan",
+    "quote": "Andrei Mureșan",
+    "page": 1
+   },
+   "product": {
+    "value": "credit de investiții",
+    "quote": "credit de investiții",
+    "page": 1
+   },
+   "requested_amount": {
+    "value": 1500000,
+    "quote": "1.500.000 RON",
+    "page": 1
+   },
+   "term_months": {
+    "value": 60,
+    "quote": "60 luni",
+    "page": 1
+   },
+   "purpose": {
+    "value": "Achiziție 3 autocamioane",
+    "quote": "Achiziție 3 autocamioane",
+    "page": 1
+   },
+   "collateral": {
+    "value": [
+     {
+      "type": "gaj pe vehicule",
+      "value": 1800000
+     }
+    ],
+    "quote": "gaj pe vehicule (1.800.000 RON)",
+    "page": 1
+   },
+   "existing_bank_debts": {
+    "value": [
+     {
+      "bank": "Banca fictivă A",
+      "balance": 900000
+     }
+    ],
+    "quote": "Banca fictivă A: 900.000 RON",
+    "page": 1
+   },
+   "request_date": {
+    "value": "2026-10-20",
+    "quote": "20.10.2026",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-02/document_3.pdf",
+  "fields": {
+   "company_name": {
+    "value": "AGRO NORD TRANS SRL",
+    "quote": "AGRO NORD TRANS SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "41738200",
+    "quote": "41738200",
+    "page": 1
+   },
+   "fiscal_year": {
+    "value": 2024,
+    "quote": "2024",
+    "page": 1
+   },
+   "fixed_assets": {
+    "value": 3100000,
+    "quote": "3.100.000",
+    "page": 1
+   },
+   "current_assets": {
+    "value": 1900000,
+    "quote": "1.900.000",
+    "page": 1
+   },
+   "total_assets": {
+    "value": 5000000,
+    "quote": "5.000.000",
+    "page": 1
+   },
+   "equity": {
+    "value": 1450000,
+    "quote": "1.450.000",
+    "page": 1
+   },
+   "liabilities": {
+    "value": 3550000,
+    "quote": "3.550.000",
+    "page": 1
+   },
+   "turnover": {
+    "value": 8100000,
+    "quote": "12.400.000",
+    "page": 2
+   },
+   "total_revenue": {
+    "value": 8240000,
+    "quote": "8.240.000",
+    "page": 2
+   },
+   "total_expenses": {
+    "value": 7690000,
+    "quote": "7.690.000",
+    "page": 2
+   },
+   "net_profit": {
+    "value": 462000,
+    "quote": "462.000",
+    "page": 2
+   },
+   "employees": {
+    "value": 34,
+    "quote": "34",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-02/document_4.pdf",
+  "fields": {
+   "caf_number": {
+    "value": "CAF-12/58214",
+    "quote": "CAF-12/58214",
+    "page": 1
+   },
+   "company_name": {
+    "value": "AGRO NORD TRANS SRL",
+    "quote": "AGRO NORD TRANS SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "41738200",
+    "quote": "41738200",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Fabricii",
+     "number": "47",
+     "city": "Cluj-Napoca",
+     "county": "Cluj",
+     "postal_code": "400632"
+    },
+    "quote": "Str. Fabricii nr. 47, Cluj-Napoca, jud. Cluj, cod poștal 400632",
+    "page": 1
+   },
+   "caf_issue_date": {
+    "value": "2026-10-14",
+    "quote": "14.10.2026",
+    "page": 1
+   },
+   "caf_debts_total": {
+    "value": 0,
+    "quote": "0 lei",
+    "page": 1
+   },
+   "caf_has_debts": {
+    "value": false,
+    "quote": "nu înregistrează obligații fiscale restante",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-02/document_5.pdf",
+  "fields": {
+   "company_name": {
+    "value": "AGRO NORD TRANS SRL",
+    "quote": "AGRO NORD TRANS SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "41738200",
+    "quote": "41738200",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J12/1834/2019",
+    "quote": "J12/1834/2019",
+    "page": 1
+   },
+   "euid": {
+    "value": "ROONRC.J12/1834/2019",
+    "quote": "ROONRC.J12/1834/2019",
+    "page": 1
+   },
+   "registration_date": {
+    "value": "2019-09-16",
+    "quote": "16.09.2019",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Fabricii",
+     "number": "47",
+     "city": "Cluj-Napoca",
+     "county": "Cluj",
+     "postal_code": "400632"
+    },
+    "quote": "Str. Fabricii nr. 47, Cluj-Napoca, jud. Cluj, cod poștal 400632",
+    "page": 1
+   },
+   "onrc_status": {
+    "value": "funcțiune",
+    "quote": "funcțiune",
+    "page": 1
+   },
+   "share_capital": {
+    "value": 200,
+    "quote": "200 lei",
+    "page": 1
+   },
+   "caen": {
+    "value": "4941",
+    "quote": "4941 - Transporturi rutiere de mărfuri",
+    "page": 1
+   },
+   "directors": {
+    "value": [
+     {
+      "name": "Andrei Mureșan",
+      "role": "administrator",
+      "appointed": "2019-09-16",
+      "can_sign": true
+     }
+    ],
+    "quote": "Andrei Mureșan",
+    "page": 2
+   },
+   "shareholders": {
+    "value": [
+     {
+      "name": "Andrei Mureșan",
+      "type": "person",
+      "percent": 60
+     },
+     {
+      "name": "Ioana Pop",
+      "type": "person",
+      "percent": 40
+     }
+    ],
+    "quote": "60%, 40%",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-03/document_1.pdf",
+  "fields": {
+   "company_name": {
+    "value": "LUMINA SOFT CONSULTING SRL",
+    "quote": "LUMINA SOFT CONSULTING SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "39205176",
+    "quote": "39205176",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J22/2290/2017",
+    "quote": "J22/2290/2017",
+    "page": 1
+   },
+   "euid": {
+    "value": "ROONRC.J22/2290/2017",
+    "quote": "ROONRC.J22/2290/2017",
+    "page": 1
+   },
+   "registration_date": {
+    "value": "2017-11-08",
+    "quote": "08.11.2017",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Bd. Carol I",
+     "number": "8",
+     "city": "Iași",
+     "county": "Iași",
+     "postal_code": "700505"
+    },
+    "quote": "Bd. Carol I nr. 8, Iași, jud. Iași, cod poștal 700505",
+    "page": 1
+   },
+   "onrc_status": {
+    "value": "funcțiune",
+    "quote": "funcțiune",
+    "page": 1
+   },
+   "share_capital": {
+    "value": 200,
+    "quote": "200 lei",
+    "page": 1
+   },
+   "caen": {
+    "value": "6201",
+    "quote": "6201 - Activități de realizare a soft-ului la comandă",
+    "page": 1
+   },
+   "directors": {
+    "value": [
+     {
+      "name": "Raluca Ciobanu",
+      "role": "administrator",
+      "appointed": "2017-11-08",
+      "can_sign": true
+     }
+    ],
+    "quote": "Raluca Ciobanu",
+    "page": 2
+   },
+   "shareholders": {
+    "value": [
+     {
+      "name": "Raluca Ciobanu",
+      "type": "person",
+      "percent": 100
+     }
+    ],
+    "quote": "100%",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-03/document_2.pdf",
+  "fields": {
+   "company_name": {
+    "value": "LUMINA SOFT CONSULTING SRL",
+    "quote": "LUMINA SOFT CONSULTING SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "39205176",
+    "quote": "39205176",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J22/2290/2017",
+    "quote": "J22/2290/2017",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Bd. Carol I",
+     "number": "8",
+     "city": "Iași",
+     "county": "Iași",
+     "postal_code": "700505"
+    },
+    "quote": "Bd. Carol I nr. 8, Iași, jud. Iași, cod poștal 700505",
+    "page": 1
+   },
+   "caen": {
+    "value": "6201",
+    "quote": "6201",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Raluca Ciobanu",
+    "quote": "Raluca Ciobanu",
+    "page": 1
+   },
+   "product": {
+    "value": "linie de credit",
+    "quote": "linie de credit",
+    "page": 1
+   },
+   "requested_amount": {
+    "value": 600000,
+    "quote": "600.000 RON",
+    "page": 1
+   },
+   "term_months": {
+    "value": 12,
+    "quote": "12 luni",
+    "page": 1
+   },
+   "purpose": {
+    "value": "Capital de lucru pentru proiecte noi",
+    "quote": "Capital de lucru pentru proiecte noi",
+    "page": 1
+   },
+   "collateral": {
+    "value": [
+     {
+      "type": "cesiune de creanțe",
+      "value": 750000
+     }
+    ],
+    "quote": "cesiune de creanțe (750.000 RON)",
+    "page": 1
+   },
+   "existing_bank_debts": {
+    "value": [],
+    "quote": "nu există",
+    "page": 1
+   },
+   "request_date": {
+    "value": "2026-10-23",
+    "quote": "23.10.2026",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-03/document_3.pdf",
+  "fields": {
+   "company_name": {
+    "value": "LUMINA SOFT CONSULTING SRL",
+    "quote": "LUMINA SOFT CONSULTING SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "39205176",
+    "quote": "39205176",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J22/2290/2017",
+    "quote": "J22/2290/2017",
+    "page": 1
+   },
+   "ubos": {
+    "value": [
+     {
+      "name": "Raluca Ciobanu",
+      "birth_date": "1990-08-27",
+      "nationality": "RO",
+      "percent": 100,
+      "control": "direct"
+     }
+    ],
+    "quote": "Raluca Ciobanu",
+    "page": 1
+   },
+   "declaration_date": {
+    "value": "2026-10-23",
+    "quote": "23.10.2026",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Raluca Ciobanu",
+    "quote": "Raluca Ciobanu",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-03/document_4.pdf",
+  "fields": {
+   "caf_number": {
+    "value": "CAF-22/77310",
+    "quote": "CAF-22/77310",
+    "page": 1
+   },
+   "company_name": {
+    "value": "LUMINA SOFT CONSULTING SRL",
+    "quote": "LUMINA SOFT CONSULTING SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "39205176",
+    "quote": "39205176",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Bd. Carol I",
+     "number": "8",
+     "city": "Iași",
+     "county": "Iași",
+     "postal_code": "700505"
+    },
+    "quote": "Bd. Carol I nr. 8, Iași, jud. Iași, cod poștal 700505",
+    "page": 1
+   },
+   "caf_issue_date": {
+    "value": "2026-10-21",
+    "quote": "21.10.2026",
+    "page": 1
+   },
+   "caf_debts_total": {
+    "value": 0,
+    "quote": "0 lei",
+    "page": 1
+   },
+   "caf_has_debts": {
+    "value": false,
+    "quote": "nu înregistrează obligații fiscale restante",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-03/document_5.pdf",
+  "fields": {
+   "company_name": {
+    "value": "LUMINA SOFT CONSULTING SRL",
+    "quote": "LUMINA SOFT CONSULTING SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "39205176",
+    "quote": "39205176",
+    "page": 1
+   },
+   "fiscal_year": {
+    "value": 2024,
+    "quote": "2024",
+    "page": 1
+   },
+   "fixed_assets": {
+    "value": 420000,
+    "quote": "420.000",
+    "page": 1
+   },
+   "current_assets": {
+    "value": 2100000,
+    "quote": "2.100.000",
+    "page": 1
+   },
+   "total_assets": {
+    "value": 2520000,
+    "quote": "2.520.000",
+    "page": 1
+   },
+   "equity": {
+    "value": 1890000,
+    "quote": "1.890.000",
+    "page": 1
+   },
+   "liabilities": {
+    "value": 630000,
+    "quote": "630.000",
+    "page": 1
+   },
+   "turnover": {
+    "value": 3280000,
+    "quote": "3.280.000",
+    "page": 2
+   },
+   "total_revenue": {
+    "value": 3300000,
+    "quote": "3.300.000",
+    "page": 2
+   },
+   "total_expenses": {
+    "value": 2560000,
+    "quote": "2.560.000",
+    "page": 2
+   },
+   "net_profit": {
+    "value": 640000,
+    "quote": "640.000",
+    "page": 2
+   },
+   "employees": {
+    "value": 22,
+    "quote": "22",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-04/document_1.pdf",
+  "fields": {
+   "company_name": {
+    "value": "DELTA FRESH DISTRIBUȚIE SRL",
+    "quote": "DELTA FRESH DISTRIBUȚIE SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "45210967",
+    "quote": "45210967",
+    "page": 1
+   },
+   "fiscal_year": {
+    "value": 2024,
+    "quote": "2024",
+    "page": 1
+   },
+   "fixed_assets": {
+    "value": 2600000,
+    "quote": "2.600.000",
+    "page": 1
+   },
+   "current_assets": {
+    "value": 4300000,
+    "quote": "4.300.000",
+    "page": 1
+   },
+   "total_assets": {
+    "value": 6900000,
+    "quote": "6.900.000",
+    "page": 1
+   },
+   "equity": {
+    "value": 1610000,
+    "quote": "1.610.000",
+    "page": 1
+   },
+   "liabilities": {
+    "value": 5290000,
+    "quote": "5.290.000",
+    "page": 1
+   },
+   "turnover": {
+    "value": 11900000,
+    "quote": "11.900.000",
+    "page": 2
+   },
+   "total_revenue": {
+    "value": 12000000,
+    "quote": "12.000.000",
+    "page": 2
+   },
+   "total_expenses": {
+    "value": 11520000,
+    "quote": "11.520.000",
+    "page": 2
+   },
+   "net_profit": {
+    "value": 372000,
+    "quote": "372.000",
+    "page": 2
+   },
+   "employees": {
+    "value": 41,
+    "quote": "41",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-04/document_2.pdf",
+  "fields": {
+   "company_name": {
+    "value": "DELTA FRESH DISTRIBUȚIE SRL",
+    "quote": "DELTA FRESH DISTRIBUȚIE SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "45210967",
+    "quote": "45210967",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J13/905/2021",
+    "quote": "J13/905/2021",
+    "page": 1
+   },
+   "ubos": {
+    "value": [
+     {
+      "name": "Victor Albu",
+      "birth_date": "1976-12-01",
+      "nationality": "RO",
+      "percent": 55,
+      "control": "direct"
+     },
+     {
+      "name": "Sorin Neagu",
+      "birth_date": "1981-05-30",
+      "nationality": "RO",
+      "percent": 45,
+      "control": "direct"
+     }
+    ],
+    "quote": "Victor Albu, Sorin Neagu",
+    "page": 1
+   },
+   "declaration_date": {
+    "value": "2026-10-21",
+    "quote": "21.10.2026",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Victor Albu",
+    "quote": "Victor Albu",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-04/document_3.pdf",
+  "fields": {
+   "company_name": {
+    "value": "DELTA FRESH DISTRIBUȚIE SRL",
+    "quote": "DELTA FRESH DISTRIBUȚIE SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "45210967",
+    "quote": "45210967",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J13/905/2021",
+    "quote": "J13/905/2021",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Portului",
+     "number": "3",
+     "city": "Constanța",
+     "county": "Constanța",
+     "postal_code": "900178"
+    },
+    "quote": "Str. Portului nr. 3, Constanța, jud. Constanța, cod poștal 900178",
+    "page": 1
+   },
+   "caen": {
+    "value": "4639",
+    "quote": "4639",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Victor Albu",
+    "quote": "Victor Albu",
+    "page": 1
+   },
+   "product": {
+    "value": "linie de credit",
+    "quote": "linie de credit",
+    "page": 1
+   },
+   "requested_amount": {
+    "value": 2000000,
+    "quote": "2.000.000 RON",
+    "page": 1
+   },
+   "term_months": {
+    "value": 12,
+    "quote": "12 luni",
+    "page": 1
+   },
+   "purpose": {
+    "value": "Finanțare stocuri sezon de iarnă",
+    "quote": "Finanțare stocuri sezon de iarnă",
+    "page": 1
+   },
+   "collateral": {
+    "value": [
+     {
+      "type": "gaj pe stocuri",
+      "value": 2600000
+     }
+    ],
+    "quote": "gaj pe stocuri (2.600.000 RON)",
+    "page": 1
+   },
+   "existing_bank_debts": {
+    "value": [
+     {
+      "bank": "Banca fictivă B",
+      "balance": 1200000
+     }
+    ],
+    "quote": "Banca fictivă B: 1.200.000 RON",
+    "page": 1
+   },
+   "request_date": {
+    "value": "2026-10-21",
+    "quote": "21.10.2026",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-04/document_4.pdf",
+  "fields": {
+   "company_name": {
+    "value": "DELTA FRESH DISTRIBUȚIE SRL",
+    "quote": "DELTA FRESH DISTRIBUȚIE SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "45210967",
+    "quote": "45210967",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J13/905/2021",
+    "quote": "J13/905/2021",
+    "page": 1
+   },
+   "euid": {
+    "value": "ROONRC.J13/905/2021",
+    "quote": "ROONRC.J13/905/2021",
+    "page": 1
+   },
+   "registration_date": {
+    "value": "2021-04-14",
+    "quote": "14.04.2021",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Portului",
+     "number": "3",
+     "city": "Constanța",
+     "county": "Constanța",
+     "postal_code": "900178"
+    },
+    "quote": "Str. Portului nr. 3, Constanța, jud. Constanța, cod poștal 900178",
+    "page": 1
+   },
+   "onrc_status": {
+    "value": "funcțiune",
+    "quote": "funcțiune",
+    "page": 1
+   },
+   "share_capital": {
+    "value": 200,
+    "quote": "200 lei",
+    "page": 1
+   },
+   "caen": {
+    "value": "4639",
+    "quote": "4639 - Comerț cu ridicata nespecializat de alimente",
+    "page": 1
+   },
+   "directors": {
+    "value": [
+     {
+      "name": "Victor Albu",
+      "role": "administrator",
+      "appointed": "2021-04-14",
+      "can_sign": true
+     }
+    ],
+    "quote": "Victor Albu",
+    "page": 2
+   },
+   "shareholders": {
+    "value": [
+     {
+      "name": "Victor Albu",
+      "type": "person",
+      "percent": 55
+     },
+     {
+      "name": "Sorin Neagu",
+      "type": "person",
+      "percent": 45
+     }
+    ],
+    "quote": "55%, 45%",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-04/document_5.pdf",
+  "fields": {
+   "caf_number": {
+    "value": "CAF-13/30558",
+    "quote": "CAF-13/30558",
+    "page": 1
+   },
+   "company_name": {
+    "value": "DELTA FRESH DISTRIBUȚIE SRL",
+    "quote": "DELTA FRESH DISTRIBUȚIE SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "45210967",
+    "quote": "45210967",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Portului",
+     "number": "3",
+     "city": "Constanța",
+     "county": "Constanța",
+     "postal_code": "900178"
+    },
+    "quote": "Str. Portului nr. 3, Constanța, jud. Constanța, cod poștal 900178",
+    "page": 1
+   },
+   "caf_issue_date": {
+    "value": "2026-10-16",
+    "quote": "16.10.2026",
+    "page": 1
+   },
+   "caf_debts_total": {
+    "value": 0,
+    "quote": "0 lei",
+    "page": 1
+   },
+   "caf_has_debts": {
+    "value": false,
+    "quote": "nu înregistrează obligații fiscale restante",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-05/document_1.pdf",
+  "fields": {
+   "company_name": {
+    "value": "TERMOSTAR INSTALAȚII SRL",
+    "quote": "TERMOSTAR INSTALAȚII SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "33774156",
+    "quote": "33774156",
+    "page": 1
+   },
+   "fiscal_year": {
+    "value": 2024,
+    "quote": "2024",
+    "page": 1
+   },
+   "fixed_assets": {
+    "value": 980000,
+    "quote": "980.000",
+    "page": 1
+   },
+   "current_assets": {
+    "value": 2400000,
+    "quote": "2.400.000",
+    "page": 1
+   },
+   "total_assets": {
+    "value": 3380000,
+    "quote": "3.380.000",
+    "page": 1
+   },
+   "equity": {
+    "value": 1505000,
+    "quote": "1.505.000",
+    "page": 1
+   },
+   "liabilities": {
+    "value": 1875000,
+    "quote": "1.875.000",
+    "page": 1
+   },
+   "turnover": {
+    "value": 5420000,
+    "quote": "5.420.000",
+    "page": 2
+   },
+   "total_revenue": {
+    "value": 5480000,
+    "quote": "5.480.000",
+    "page": 2
+   },
+   "total_expenses": {
+    "value": 5150000,
+    "quote": "5.150.000",
+    "page": 2
+   },
+   "net_profit": {
+    "value": 276000,
+    "quote": "276.000",
+    "page": 2
+   },
+   "employees": {
+    "value": 30,
+    "quote": "30",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-05/document_2.pdf",
+  "fields": {
+   "company_name": {
+    "value": "TERMOSTAR INSTALAȚII SRL",
+    "quote": "TERMOSTAR INSTALAȚII SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "33774156",
+    "quote": "33774156",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J08/1561/2015",
+    "quote": "J08/1561/2015",
+    "page": 1
+   },
+   "ubos": {
+    "value": [
+     {
+      "name": "Cristian Stoica",
+      "birth_date": "1972-09-15",
+      "nationality": "RO",
+      "percent": 50,
+      "control": "direct"
+     },
+     {
+      "name": "Dan Stoica",
+      "birth_date": "1975-02-11",
+      "nationality": "RO",
+      "percent": 50,
+      "control": "direct"
+     }
+    ],
+    "quote": "Cristian Stoica, Dan Stoica",
+    "page": 1
+   },
+   "declaration_date": {
+    "value": "2026-10-19",
+    "quote": "19.10.2026",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Cristian Stoica",
+    "quote": "Cristian Stoica",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-05/document_3.pdf",
+  "fields": {
+   "company_name": {
+    "value": "TERMOSTAR INSTALAȚII SRL",
+    "quote": "TERMOSTAR INSTALAȚII SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "33774156",
+    "quote": "33774156",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J08/1561/2015",
+    "quote": "J08/1561/2015",
+    "page": 1
+   },
+   "euid": {
+    "value": "ROONRC.J08/1561/2015",
+    "quote": "ROONRC.J08/1561/2015",
+    "page": 1
+   },
+   "registration_date": {
+    "value": "2015-07-02",
+    "quote": "02.07.2015",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Lungă",
+     "number": "210",
+     "city": "Brașov",
+     "county": "Brașov",
+     "postal_code": "500058"
+    },
+    "quote": "Str. Lungă nr. 210, Brașov, jud. Brașov, cod poștal 500058",
+    "page": 1
+   },
+   "onrc_status": {
+    "value": "funcțiune",
+    "quote": "funcțiune",
+    "page": 1
+   },
+   "share_capital": {
+    "value": 200,
+    "quote": "200 lei",
+    "page": 1
+   },
+   "caen": {
+    "value": "4322",
+    "quote": "4322 - Lucrări de instalații sanitare, de încălzire și de aer condiționat",
+    "page": 1
+   },
+   "directors": {
+    "value": [
+     {
+      "name": "Cristian Stoica",
+      "role": "administrator",
+      "appointed": "2015-07-02",
+      "can_sign": true
+     }
+    ],
+    "quote": "Cristian Stoica",
+    "page": 2
+   },
+   "shareholders": {
+    "value": [
+     {
+      "name": "Cristian Stoica",
+      "type": "person",
+      "percent": 50
+     },
+     {
+      "name": "Dan Stoica",
+      "type": "person",
+      "percent": 50
+     }
+    ],
+    "quote": "50%, 50%",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-05/document_4.pdf",
+  "fields": {
+   "company_name": {
+    "value": "TERMOSTAR INSTALAȚII SRL",
+    "quote": "TERMOSTAR INSTALAȚII SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "33774156",
+    "quote": "33774156",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J08/1561/2015",
+    "quote": "J08/1561/2015",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Lungă",
+     "number": "210",
+     "city": "Brașov",
+     "county": "Brașov",
+     "postal_code": "500058"
+    },
+    "quote": "Str. Lungă nr. 210, Brașov, jud. Brașov, cod poștal 500058",
+    "page": 1
+   },
+   "caen": {
+    "value": "4322",
+    "quote": "4322",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Cristian Stoica",
+    "quote": "Cristian Stoica",
+    "page": 1
+   },
+   "product": {
+    "value": "credit de investiții",
+    "quote": "credit de investiții",
+    "page": 1
+   },
+   "requested_amount": {
+    "value": 700000,
+    "quote": "700.000 RON",
+    "page": 1
+   },
+   "term_months": {
+    "value": 36,
+    "quote": "36 luni",
+    "page": 1
+   },
+   "purpose": {
+    "value": "Utilaje și autoutilitare",
+    "quote": "Utilaje și autoutilitare",
+    "page": 1
+   },
+   "collateral": {
+    "value": [
+     {
+      "type": "gaj pe utilaje",
+      "value": 900000
+     }
+    ],
+    "quote": "gaj pe utilaje (900.000 RON)",
+    "page": 1
+   },
+   "existing_bank_debts": {
+    "value": [],
+    "quote": "nu există",
+    "page": 1
+   },
+   "request_date": {
+    "value": "2026-10-19",
+    "quote": "19.10.2026",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-05/document_5.pdf",
+  "fields": {
+   "caf_number": {
+    "value": "CAF-08/62019",
+    "quote": "CAF-08/62019",
+    "page": 1
+   },
+   "company_name": {
+    "value": "TERMOSTAR INSTALAȚII SRL",
+    "quote": "TERMOSTAR INSTALAȚII SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "33774156",
+    "quote": "33774156",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Lungă",
+     "number": "210",
+     "city": "Brașov",
+     "county": "Brașov",
+     "postal_code": "500058"
+    },
+    "quote": "Str. Lungă nr. 210, Brașov, jud. Brașov, cod poștal 500058",
+    "page": 1
+   },
+   "caf_issue_date": {
+    "value": "2026-10-12",
+    "quote": "12.10.2026",
+    "page": 1
+   },
+   "caf_debts_total": {
+    "value": 0,
+    "quote": "0 lei",
+    "page": 1
+   },
+   "caf_has_debts": {
+    "value": false,
+    "quote": "nu înregistrează obligații fiscale restante",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-06/document_1.pdf",
+  "fields": {
+   "company_name": {
+    "value": "PANIFICAȚIA DOR DE CASĂ SRL",
+    "quote": "PANIFICAȚIA DOR DE CASĂ SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "40118383",
+    "quote": "40118383",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J35/3307/2018",
+    "quote": "J35/3307/2018",
+    "page": 1
+   },
+   "ubos": {
+    "value": [
+     {
+      "name": "Laura Popescu",
+      "birth_date": "1985-04-09",
+      "nationality": "RO",
+      "percent": 100,
+      "control": "direct"
+     }
+    ],
+    "quote": "Laura Popescu",
+    "page": 1
+   },
+   "declaration_date": {
+    "value": "2026-10-24",
+    "quote": "24.10.2026",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Laura Popescu",
+    "quote": "Laura Popescu",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-06/document_2.pdf",
+  "fields": {
+   "company_name": {
+    "value": "PANIFICAȚIA DOR DE CASĂ SRL",
+    "quote": "PANIFICAȚIA DOR DE CASĂ SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "40118383",
+    "quote": "40118383",
+    "page": 1
+   },
+   "fiscal_year": {
+    "value": 2024,
+    "quote": "2024",
+    "page": 1
+   },
+   "fixed_assets": {
+    "value": 1250000,
+    "quote": "1.250.000",
+    "page": 1
+   },
+   "current_assets": {
+    "value": 640000,
+    "quote": "640.000",
+    "page": 1
+   },
+   "total_assets": {
+    "value": 1890000,
+    "quote": "1.890.000",
+    "page": 1
+   },
+   "equity": {
+    "value": 1020000,
+    "quote": "1.020.000",
+    "page": 1
+   },
+   "liabilities": {
+    "value": 870000,
+    "quote": "870.000",
+    "page": 1
+   },
+   "turnover": {
+    "value": 2870000,
+    "quote": "2.870.000",
+    "page": 2
+   },
+   "total_revenue": {
+    "value": 2900000,
+    "quote": "2.900.000",
+    "page": 2
+   },
+   "total_expenses": {
+    "value": 2700000,
+    "quote": "2.700.000",
+    "page": 2
+   },
+   "net_profit": {
+    "value": 168000,
+    "quote": "168.000",
+    "page": 2
+   },
+   "employees": {
+    "value": 24,
+    "quote": "24",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-06/document_3.pdf",
+  "fields": {
+   "caf_number": {
+    "value": "CAF-35/19844",
+    "quote": "CAF-35/19844",
+    "page": 1
+   },
+   "company_name": {
+    "value": "PANIFICAȚIA DOR DE CASĂ SRL",
+    "quote": "PANIFICAȚIA DOR DE CASĂ SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "40118383",
+    "quote": "40118383",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Calea Șagului",
+     "number": "96",
+     "city": "Timișoara",
+     "county": "Timiș",
+     "postal_code": "300516"
+    },
+    "quote": "Calea Șagului nr. 96, Timișoara, jud. Timiș, cod poștal 300516",
+    "page": 1
+   },
+   "caf_issue_date": {
+    "value": "2026-10-20",
+    "quote": "20.10.2026",
+    "page": 1
+   },
+   "caf_debts_total": {
+    "value": 0,
+    "quote": "0 lei",
+    "page": 1
+   },
+   "caf_has_debts": {
+    "value": false,
+    "quote": "nu înregistrează obligații fiscale restante",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-06/document_4.pdf",
+  "fields": {
+   "company_name": {
+    "value": "PANIFICAȚIA DOR DE CASĂ SRL",
+    "quote": "PANIFICAȚIA DOR DE CASĂ SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "40118383",
+    "quote": "40118383",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J35/3307/2018",
+    "quote": "J35/3307/2018",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Calea Șagului",
+     "number": "96",
+     "city": "Timișoara",
+     "county": "Timiș",
+     "postal_code": "300516"
+    },
+    "quote": "Calea Șagului nr. 96, Timișoara, jud. Timiș, cod poștal 300516",
+    "page": 1
+   },
+   "caen": {
+    "value": "1071",
+    "quote": "1071",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Laura Popescu",
+    "quote": "Laura Popescu",
+    "page": 1
+   },
+   "product": {
+    "value": "credit de investiții",
+    "quote": "credit de investiții",
+    "page": 1
+   },
+   "requested_amount": {
+    "value": 450000,
+    "quote": "450.000 RON",
+    "page": 1
+   },
+   "term_months": {
+    "value": 48,
+    "quote": "48 luni",
+    "page": 1
+   },
+   "purpose": {
+    "value": "Cuptor nou și linie de ambalare",
+    "quote": "Cuptor nou și linie de ambalare",
+    "page": 1
+   },
+   "collateral": {
+    "value": [
+     {
+      "type": "gaj pe echipamente",
+      "value": 550000
+     }
+    ],
+    "quote": "gaj pe echipamente (550.000 RON)",
+    "page": 1
+   },
+   "existing_bank_debts": {
+    "value": [],
+    "quote": "nu există",
+    "page": 1
+   },
+   "request_date": {
+    "value": "2026-10-24",
+    "quote": "24.10.2026",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/DEMO-06/document_5.pdf",
+  "fields": {
+   "company_name": {
+    "value": "PANIFICAȚIA DOR DE CASĂ SRL",
+    "quote": "PANIFICAȚIA DOR DE CASĂ SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "40118383",
+    "quote": "40118383",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J35/3307/2018",
+    "quote": "J35/3307/2018",
+    "page": 1
+   },
+   "euid": {
+    "value": "ROONRC.J35/3307/2018",
+    "quote": "ROONRC.J35/3307/2018",
+    "page": 1
+   },
+   "registration_date": {
+    "value": "2018-02-26",
+    "quote": "26.02.2018",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Calea Șagului",
+     "number": "96",
+     "city": "Timișoara",
+     "county": "Timiș",
+     "postal_code": "300516"
+    },
+    "quote": "Calea Șagului nr. 96, Timișoara, jud. Timiș, cod poștal 300516",
+    "page": 1
+   },
+   "onrc_status": {
+    "value": "funcțiune",
+    "quote": "funcțiune",
+    "page": 1
+   },
+   "share_capital": {
+    "value": 200,
+    "quote": "200 lei",
+    "page": 1
+   },
+   "caen": {
+    "value": "1071",
+    "quote": "1071 - Fabricarea pâinii; fabricarea prăjiturilor și a produselor proaspete de patiserie",
+    "page": 1
+   },
+   "directors": {
+    "value": [
+     {
+      "name": "Laura Popescu",
+      "role": "administrator",
+      "appointed": "2018-02-26",
+      "can_sign": true
+     }
+    ],
+    "quote": "Laura Popescu",
+    "page": 2
+   },
+   "shareholders": {
+    "value": [
+     {
+      "name": "Laura Popescu",
+      "type": "person",
+      "percent": 100
+     }
+    ],
+    "quote": "100%",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-01/document_1.pdf",
+  "fields": {
+   "company_name": {
+    "value": "GRANIT CONSTRUCT VEST SRL",
+    "quote": "GRANIT CONSTRUCT VEST SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "38455190",
+    "quote": "38455190",
+    "page": 1
+   },
+   "fiscal_year": {
+    "value": 2024,
+    "quote": "2024",
+    "page": 1
+   },
+   "fixed_assets": {
+    "value": 2200000,
+    "quote": "2.200.000",
+    "page": 1
+   },
+   "current_assets": {
+    "value": 2900000,
+    "quote": "2.900.000",
+    "page": 1
+   },
+   "total_assets": {
+    "value": 5450000,
+    "quote": "5.450.000",
+    "page": 1
+   },
+   "equity": {
+    "value": 1830000,
+    "quote": "1.830.000",
+    "page": 1
+   },
+   "liabilities": {
+    "value": 3270000,
+    "quote": "3.270.000",
+    "page": 1
+   },
+   "turnover": {
+    "value": 6900000,
+    "quote": "6.900.000",
+    "page": 2
+   },
+   "total_revenue": {
+    "value": 6980000,
+    "quote": "6.980.000",
+    "page": 2
+   },
+   "total_expenses": {
+    "value": 6640000,
+    "quote": "6.640.000",
+    "page": 2
+   },
+   "net_profit": {
+    "value": 286000,
+    "quote": "286.000",
+    "page": 2
+   },
+   "employees": {
+    "value": 46,
+    "quote": "46",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-01/document_2.pdf",
+  "fields": {
+   "caf_number": {
+    "value": "CAF-05/22876",
+    "quote": "CAF-05/22876",
+    "page": 1
+   },
+   "company_name": {
+    "value": "GRANIT CONSTRUCT VEST SRL",
+    "quote": "GRANIT CONSTRUCT VEST SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "38455190",
+    "quote": "38455190",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Republicii",
+     "number": "61",
+     "city": "Oradea",
+     "county": "Bihor",
+     "postal_code": "410167"
+    },
+    "quote": "Str. Republicii nr. 61, Oradea, jud. Bihor, cod poștal 410167",
+    "page": 1
+   },
+   "caf_issue_date": {
+    "value": "2026-10-18",
+    "quote": "18.10.2026",
+    "page": 1
+   },
+   "caf_debts_total": {
+    "value": 0,
+    "quote": "0 lei",
+    "page": 1
+   },
+   "caf_has_debts": {
+    "value": false,
+    "quote": "nu înregistrează obligații fiscale restante",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-01/document_3.pdf",
+  "fields": {
+   "company_name": {
+    "value": "GRANIT CONSTRUCT VEST SRL",
+    "quote": "GRANIT CONSTRUCT VEST SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "38455191",
+    "quote": "38455191",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J05/1188/2017",
+    "quote": "J05/1188/2017",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Republicii",
+     "number": "61",
+     "city": "Oradea",
+     "county": "Bihor",
+     "postal_code": "410167"
+    },
+    "quote": "Str. Republicii nr. 61, Oradea, jud. Bihor, cod poștal 410167",
+    "page": 1
+   },
+   "caen": {
+    "value": "4120",
+    "quote": "4120",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Florin Bara",
+    "quote": "Florin Bara",
+    "page": 1
+   },
+   "product": {
+    "value": "credit de investiții",
+    "quote": "credit de investiții",
+    "page": 1
+   },
+   "requested_amount": {
+    "value": 1100000,
+    "quote": "1.100.000 RON",
+    "page": 1
+   },
+   "term_months": {
+    "value": 60,
+    "quote": "60 luni",
+    "page": 1
+   },
+   "purpose": {
+    "value": "Excavator și macara",
+    "quote": "Excavator și macara",
+    "page": 1
+   },
+   "collateral": {
+    "value": [
+     {
+      "type": "gaj pe utilaje",
+      "value": 1400000
+     }
+    ],
+    "quote": "gaj pe utilaje (1.400.000 RON)",
+    "page": 1
+   },
+   "existing_bank_debts": {
+    "value": [],
+    "quote": "nu există",
+    "page": 1
+   },
+   "request_date": {
+    "value": "2026-10-22",
+    "quote": "22.10.2026",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-01/document_4.pdf",
+  "fields": {
+   "company_name": {
+    "value": "GRANIT CONSTRUCT VEST SRL",
+    "quote": "GRANIT CONSTRUCT VEST SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "38455190",
+    "quote": "38455190",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J05/1188/2017",
+    "quote": "J05/1188/2017",
+    "page": 1
+   },
+   "ubos": {
+    "value": [
+     {
+      "name": "Florin Bara",
+      "birth_date": "1980-10-23",
+      "nationality": "RO",
+      "percent": 100,
+      "control": "direct"
+     }
+    ],
+    "quote": "Florin Bara",
+    "page": 1
+   },
+   "declaration_date": {
+    "value": "2026-10-22",
+    "quote": "22.10.2026",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Florin Bara",
+    "quote": "Florin Bara",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-01/document_5.pdf",
+  "fields": {
+   "company_name": {
+    "value": "GRANIT CONSTRUCT VEST SRL",
+    "quote": "GRANIT CONSTRUCT VEST SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "38455190",
+    "quote": "38455190",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J05/1188/2017",
+    "quote": "J05/1188/2017",
+    "page": 1
+   },
+   "euid": {
+    "value": "ROONRC.J05/1188/2017",
+    "quote": "ROONRC.J05/1188/2017",
+    "page": 1
+   },
+   "registration_date": {
+    "value": "2017-05-10",
+    "quote": "10.05.2017",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Republicii",
+     "number": "61",
+     "city": "Oradea",
+     "county": "Bihor",
+     "postal_code": "410167"
+    },
+    "quote": "Str. Republicii nr. 61, Oradea, jud. Bihor, cod poștal 410167",
+    "page": 1
+   },
+   "onrc_status": {
+    "value": "funcțiune",
+    "quote": "funcțiune",
+    "page": 1
+   },
+   "share_capital": {
+    "value": 200,
+    "quote": "200 lei",
+    "page": 1
+   },
+   "caen": {
+    "value": "4120",
+    "quote": "4120 - Lucrări de construcții a clădirilor rezidențiale și nerezidențiale",
+    "page": 1
+   },
+   "directors": {
+    "value": [
+     {
+      "name": "Florin Bara",
+      "role": "administrator",
+      "appointed": "2017-05-10",
+      "can_sign": true
+     }
+    ],
+    "quote": "Florin Bara",
+    "page": 2
+   },
+   "shareholders": {
+    "value": [
+     {
+      "name": "Florin Bara",
+      "type": "person",
+      "percent": 100
+     }
+    ],
+    "quote": "100%",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-02/document_1.pdf",
+  "fields": {
+   "company_name": {
+    "value": "MARIS LOGISTIC SERV SRL",
+    "quote": "MARIS LOGISTIC SERV SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "42884638",
+    "quote": "42884638",
+    "page": 1
+   },
+   "fiscal_year": {
+    "value": 2024,
+    "quote": "2024",
+    "page": 1
+   },
+   "fixed_assets": {
+    "value": 2100000,
+    "quote": "2.100.000",
+    "page": 1
+   },
+   "current_assets": {
+    "value": 900000,
+    "quote": "900.000",
+    "page": 1
+   },
+   "total_assets": {
+    "value": 3000000,
+    "quote": "3.000.000",
+    "page": 1
+   },
+   "equity": {
+    "value": 1120000,
+    "quote": "1.120.000",
+    "page": 1
+   },
+   "liabilities": {
+    "value": 1880000,
+    "quote": "1.880.000",
+    "page": 1
+   },
+   "turnover": {
+    "value": 3950000,
+    "quote": "3.950.000",
+    "page": 2
+   },
+   "total_revenue": {
+    "value": 4000000,
+    "quote": "4.000.000",
+    "page": 2
+   },
+   "total_expenses": {
+    "value": 3830000,
+    "quote": "3.830.000",
+    "page": 2
+   },
+   "net_profit": {
+    "value": 151000,
+    "quote": "151.000",
+    "page": 2
+   },
+   "employees": {
+    "value": 18,
+    "quote": "18",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-02/document_2.pdf",
+  "fields": {
+   "company_name": {
+    "value": "MARIS LOGISTIC SERV SRL",
+    "quote": "MARIS LOGISTIC SERV SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "42884638",
+    "quote": "42884638",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J17/640/2020",
+    "quote": "J17/640/2020",
+    "page": 1
+   },
+   "euid": {
+    "value": "ROONRC.J17/640/2020",
+    "quote": "ROONRC.J17/640/2020",
+    "page": 1
+   },
+   "registration_date": {
+    "value": "2020-02-17",
+    "quote": "17.02.2020",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Brăilei",
+     "number": "150",
+     "city": "Galați",
+     "county": "Galați",
+     "postal_code": "800310"
+    },
+    "quote": "Str. Brăilei nr. 150, Galați, jud. Galați, cod poștal 800310",
+    "page": 1
+   },
+   "onrc_status": {
+    "value": "funcțiune",
+    "quote": "funcțiune",
+    "page": 1
+   },
+   "share_capital": {
+    "value": 200,
+    "quote": "200 lei",
+    "page": 1
+   },
+   "caen": {
+    "value": "5210",
+    "quote": "5210 - Depozitări",
+    "page": 1
+   },
+   "directors": {
+    "value": [
+     {
+      "name": "Cătălin Dumitru",
+      "role": "administrator",
+      "appointed": "2020-02-17",
+      "can_sign": true
+     }
+    ],
+    "quote": "Cătălin Dumitru",
+    "page": 2
+   },
+   "shareholders": {
+    "value": [
+     {
+      "name": "Cătălin Dumitru",
+      "type": "person",
+      "percent": 80
+     },
+     {
+      "name": "Alina Dumitru",
+      "type": "person",
+      "percent": 20
+     }
+    ],
+    "quote": "80%, 20%",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-02/document_3.pdf",
+  "fields": {
+   "company_name": {
+    "value": "MARIS LOGISTIC SERV SRL",
+    "quote": "MARIS LOGISTIC SERV SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "42884638",
+    "quote": "42884638",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J17/640/2020",
+    "quote": "J17/640/2020",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Brăilei",
+     "number": "150",
+     "city": "Galați",
+     "county": "Galați",
+     "postal_code": "800310"
+    },
+    "quote": "Str. Brăilei nr. 150, Galați, jud. Galați, cod poștal 800310",
+    "page": 1
+   },
+   "caen": {
+    "value": "5210",
+    "quote": "5210",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Marian Vlad",
+    "quote": "Marian Vlad",
+    "page": 1
+   },
+   "product": {
+    "value": "linie de credit",
+    "quote": "linie de credit",
+    "page": 1
+   },
+   "requested_amount": {
+    "value": 500000,
+    "quote": "500.000 RON",
+    "page": 1
+   },
+   "term_months": {
+    "value": 12,
+    "quote": "12 luni",
+    "page": 1
+   },
+   "purpose": {
+    "value": "Capital de lucru",
+    "quote": "Capital de lucru",
+    "page": 1
+   },
+   "collateral": {
+    "value": [
+     {
+      "type": "ipotecă pe depozit",
+      "value": 1200000
+     }
+    ],
+    "quote": "ipotecă pe depozit (1.200.000 RON)",
+    "page": 1
+   },
+   "existing_bank_debts": {
+    "value": [],
+    "quote": "nu există",
+    "page": 1
+   },
+   "request_date": {
+    "value": "2026-10-22",
+    "quote": "22.10.2026",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-02/document_4.pdf",
+  "fields": {
+   "company_name": {
+    "value": "MARIS LOGISTIC SERV SRL",
+    "quote": "MARIS LOGISTIC SERV SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "42884638",
+    "quote": "42884638",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J17/640/2020",
+    "quote": "J17/640/2020",
+    "page": 1
+   },
+   "ubos": {
+    "value": [
+     {
+      "name": "Cătălin Dumitru",
+      "birth_date": "1983-07-07",
+      "nationality": "RO",
+      "percent": 80,
+      "control": "direct"
+     }
+    ],
+    "quote": "Cătălin Dumitru",
+    "page": 1
+   },
+   "declaration_date": {
+    "value": "2026-10-22",
+    "quote": "22.10.2026",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Cătălin Dumitru",
+    "quote": "Cătălin Dumitru",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-02/document_5.pdf",
+  "fields": {
+   "caf_number": {
+    "value": "CAF-17/11406",
+    "quote": "CAF-17/11406",
+    "page": 1
+   },
+   "company_name": {
+    "value": "MARIS LOGISTIC SERV SRL",
+    "quote": "MARIS LOGISTIC SERV SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "42884638",
+    "quote": "42884638",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Brăilei",
+     "number": "150",
+     "city": "Galați",
+     "county": "Galați",
+     "postal_code": "800310"
+    },
+    "quote": "Str. Brăilei nr. 150, Galați, jud. Galați, cod poștal 800310",
+    "page": 1
+   },
+   "caf_issue_date": {
+    "value": "2026-08-03",
+    "quote": "03.08.2026",
+    "page": 1
+   },
+   "caf_debts_total": {
+    "value": 61050,
+    "quote": "61.050 lei",
+    "page": 1
+   },
+   "caf_has_debts": {
+    "value": true,
+    "quote": "înregistrează obligații fiscale restante",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-03/document_1.pdf",
+  "fields": {
+   "company_name": {
+    "value": "ALPIN TURISM MUNTENIA SRL",
+    "quote": "ALPIN TURISM MUNTENIA SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "37022881",
+    "quote": "37022881",
+    "page": 1
+   },
+   "fiscal_year": {
+    "value": 2024,
+    "quote": "2024",
+    "page": 1
+   },
+   "fixed_assets": {
+    "value": 3600000,
+    "quote": "3.600.000",
+    "page": 1
+   },
+   "current_assets": {
+    "value": 500000,
+    "quote": "500.000",
+    "page": 1
+   },
+   "total_assets": {
+    "value": 4100000,
+    "quote": "4.100.000",
+    "page": 1
+   },
+   "equity": {
+    "value": 2210000,
+    "quote": "2.210.000",
+    "page": 1
+   },
+   "liabilities": {
+    "value": 1890000,
+    "quote": "1.890.000",
+    "page": 1
+   },
+   "turnover": {
+    "value": 2400000,
+    "quote": "2.400.000",
+    "page": 2
+   },
+   "total_revenue": {
+    "value": 2450000,
+    "quote": "2.450.000",
+    "page": 2
+   },
+   "total_expenses": {
+    "value": 2290000,
+    "quote": "2.290.000",
+    "page": 2
+   },
+   "net_profit": {
+    "value": 134000,
+    "quote": "134.000",
+    "page": 2
+   },
+   "employees": {
+    "value": 21,
+    "quote": "21",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-03/document_2.pdf",
+  "fields": {
+   "company_name": {
+    "value": "ALPIN TURISM MUNTENIA SRL",
+    "quote": "ALPIN TURISM MUNTENIA SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "37022881",
+    "quote": "37022881",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J03/977/2016",
+    "quote": "J03/977/2016",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Valea Rece",
+     "number": "7",
+     "city": "Câmpulung",
+     "county": "Argeș",
+     "postal_code": "115100"
+    },
+    "quote": "Str. Valea Rece nr. 7, Câmpulung, jud. Argeș, cod poștal 115100",
+    "page": 1
+   },
+   "caen": {
+    "value": "5510",
+    "quote": "5510",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Bogdan Ilie",
+    "quote": "Bogdan Ilie",
+    "page": 1
+   },
+   "product": {
+    "value": "credit de investiții",
+    "quote": "credit de investiții",
+    "page": 1
+   },
+   "requested_amount": {
+    "value": 800000,
+    "quote": "800.000 RON",
+    "page": 1
+   },
+   "term_months": {
+    "value": 84,
+    "quote": "84 luni",
+    "page": 1
+   },
+   "purpose": {
+    "value": "Modernizare 12 camere",
+    "quote": "Modernizare 12 camere",
+    "page": 1
+   },
+   "collateral": {
+    "value": [
+     {
+      "type": "ipotecă pe pensiune",
+      "value": 2500000
+     }
+    ],
+    "quote": "ipotecă pe pensiune (2.500.000 RON)",
+    "page": 1
+   },
+   "existing_bank_debts": {
+    "value": [],
+    "quote": "nu există",
+    "page": 1
+   },
+   "request_date": {
+    "value": "2026-10-23",
+    "quote": "23.10.2026",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-03/document_3.pdf",
+  "fields": {
+   "company_name": {
+    "value": "ALPIN TURISM MUNTENIA SRL",
+    "quote": "ALPIN TURISM MUNTENIA SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "37022881",
+    "quote": "37022881",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J03/977/2016",
+    "quote": "J03/977/2016",
+    "page": 1
+   },
+   "ubos": {
+    "value": [
+     {
+      "name": "Bogdan Ilie",
+      "birth_date": "1978-03-03",
+      "nationality": "RO",
+      "percent": 50,
+      "control": "direct"
+     }
+    ],
+    "quote": "Bogdan Ilie",
+    "page": 1
+   },
+   "declaration_date": {
+    "value": "2026-10-23",
+    "quote": "23.10.2026",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Bogdan Ilie",
+    "quote": "Bogdan Ilie",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-03/document_4.pdf",
+  "fields": {
+   "caf_number": {
+    "value": "CAF-03/50471",
+    "quote": "CAF-03/50471",
+    "page": 1
+   },
+   "company_name": {
+    "value": "ALPIN TURISM MUNTENIA SRL",
+    "quote": "ALPIN TURISM MUNTENIA SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "37022881",
+    "quote": "37022881",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Valea Rece",
+     "number": "7",
+     "city": "Câmpulung",
+     "county": "Argeș",
+     "postal_code": "115100"
+    },
+    "quote": "Str. Valea Rece nr. 7, Câmpulung, jud. Argeș, cod poștal 115100",
+    "page": 1
+   },
+   "caf_issue_date": {
+    "value": "2026-10-17",
+    "quote": "17.10.2026",
+    "page": 1
+   },
+   "caf_debts_total": {
+    "value": 0,
+    "quote": "0 lei",
+    "page": 1
+   },
+   "caf_has_debts": {
+    "value": false,
+    "quote": "nu înregistrează obligații fiscale restante",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-03/document_5.pdf",
+  "fields": {
+   "company_name": {
+    "value": "ALPIN TURISM MUNTENIA SRL",
+    "quote": "ALPIN TURISM MUNTENIA SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "37022881",
+    "quote": "37022881",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J03/977/2016",
+    "quote": "J03/977/2016",
+    "page": 1
+   },
+   "euid": {
+    "value": "ROONRC.J03/977/2016",
+    "quote": "ROONRC.J03/977/2016",
+    "page": 1
+   },
+   "registration_date": {
+    "value": "2016-09-05",
+    "quote": "05.09.2016",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Str. Valea Rece",
+     "number": "17",
+     "city": "Câmpulung",
+     "county": "Argeș",
+     "postal_code": "115100"
+    },
+    "quote": "Str. Valea Rece nr. 17, Câmpulung, jud. Argeș, cod poștal 115100",
+    "page": 1
+   },
+   "onrc_status": {
+    "value": "funcțiune",
+    "quote": "funcțiune",
+    "page": 1
+   },
+   "share_capital": {
+    "value": 200,
+    "quote": "200 lei",
+    "page": 1
+   },
+   "caen": {
+    "value": "5510",
+    "quote": "5510 - Hoteluri și alte facilități de cazare similare",
+    "page": 1
+   },
+   "directors": {
+    "value": [
+     {
+      "name": "Bogdan Ilie",
+      "role": "administrator",
+      "appointed": "2016-09-05",
+      "can_sign": true
+     }
+    ],
+    "quote": "Bogdan Ilie",
+    "page": 2
+   },
+   "shareholders": {
+    "value": [
+     {
+      "name": "Bogdan Ilie",
+      "type": "person",
+      "percent": 50
+     },
+     {
+      "name": "Paul Radu",
+      "type": "person",
+      "percent": 30
+     },
+     {
+      "name": "Ana Ilie",
+      "type": "person",
+      "percent": 20
+     }
+    ],
+    "quote": "50%, 30%, 20%",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-04/document_1.pdf",
+  "fields": {
+   "company_name": {
+    "value": "NOVA PRINT MEDIA SRL",
+    "quote": "NOVA PRINT MEDIA SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "43957304",
+    "quote": "43957304",
+    "page": 1
+   },
+   "fiscal_year": {
+    "value": 2024,
+    "quote": "2024",
+    "page": 1
+   },
+   "fixed_assets": {
+    "value": 1700000,
+    "quote": "1.700.000",
+    "page": 1
+   },
+   "current_assets": {
+    "value": 1100000,
+    "quote": "1.100.000",
+    "page": 1
+   },
+   "total_assets": {
+    "value": 2800000,
+    "quote": "2.800.000",
+    "page": 1
+   },
+   "equity": {
+    "value": 1290000,
+    "quote": "1.290.000",
+    "page": 1
+   },
+   "liabilities": {
+    "value": 1510000,
+    "quote": "1.510.000",
+    "page": 1
+   },
+   "turnover": {
+    "value": 3150000,
+    "quote": "3.150.000",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-04/document_2.pdf",
+  "fields": {
+   "buyer": {
+    "value": "NOVA PRINT MEDIA SRL",
+    "quote": "NOVA PRINT MEDIA SRL",
+    "page": 1
+   },
+   "invoice_date": {
+    "value": "2026-10-02",
+    "quote": "02.10.2026",
+    "page": 1
+   },
+   "total": {
+    "value": 3570.0,
+    "quote": "3.570,00 lei",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-04/document_3.pdf",
+  "fields": {
+   "company_name": {
+    "value": "NOVA PRINT MEDIA SRL",
+    "quote": "NOVA PRINT MEDIA SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "43957304",
+    "quote": "43957304",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J40/7712/2020",
+    "quote": "J40/7712/2020",
+    "page": 1
+   },
+   "ubos": {
+    "value": [
+     {
+      "name": "Irina Marinescu",
+      "birth_date": "1988-02-28",
+      "nationality": "RO",
+      "percent": 100,
+      "control": "direct"
+     }
+    ],
+    "quote": "Irina Marinescu",
+    "page": 1
+   },
+   "declaration_date": {
+    "value": "2026-10-24",
+    "quote": "24.10.2026",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Irina Marinescu",
+    "quote": "Irina Marinescu",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-04/document_4.pdf",
+  "fields": {
+   "company_name": {
+    "value": "NOVA PRINT MEDIA SRL",
+    "quote": "NOVA PRINT MEDIA SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "43957304",
+    "quote": "43957304",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J40/7712/2020",
+    "quote": "J40/7712/2020",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Șos. Pantelimon",
+     "number": "255",
+     "city": "București",
+     "county": "București",
+     "postal_code": "021632"
+    },
+    "quote": "Șos. Pantelimon nr. 255, București, jud. București, cod poștal 021632",
+    "page": 1
+   },
+   "caen": {
+    "value": "1812",
+    "quote": "1812",
+    "page": 1
+   },
+   "signed_by": {
+    "value": "Irina Marinescu",
+    "quote": "Irina Marinescu",
+    "page": 1
+   },
+   "product": {
+    "value": "credit de investiții",
+    "quote": "credit de investiții",
+    "page": 1
+   },
+   "requested_amount": {
+    "value": 650000,
+    "quote": "650.000 RON",
+    "page": 1
+   },
+   "term_months": {
+    "value": 48,
+    "quote": "48 luni",
+    "page": 1
+   },
+   "purpose": {
+    "value": "Mașină de tipar offset",
+    "quote": "Mașină de tipar offset",
+    "page": 1
+   },
+   "collateral": {
+    "value": [
+     {
+      "type": "gaj pe echipament",
+      "value": 800000
+     }
+    ],
+    "quote": "gaj pe echipament (800.000 RON)",
+    "page": 1
+   },
+   "existing_bank_debts": {
+    "value": [],
+    "quote": "nu există",
+    "page": 1
+   },
+   "request_date": {
+    "value": "2026-10-24",
+    "quote": "24.10.2026",
+    "page": 1
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-04/document_5.pdf",
+  "fields": {
+   "company_name": {
+    "value": "NOVA PRINT MEDIA SRL",
+    "quote": "NOVA PRINT MEDIA SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "43957304",
+    "quote": "43957304",
+    "page": 1
+   },
+   "reg_com_number": {
+    "value": "J40/7712/2020",
+    "quote": "J40/7712/2020",
+    "page": 1
+   },
+   "euid": {
+    "value": "ROONRC.J40/7712/2020",
+    "quote": "ROONRC.J40/7712/2020",
+    "page": 1
+   },
+   "registration_date": {
+    "value": "2020-06-11",
+    "quote": "11.06.2020",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Șos. Pantelimon",
+     "number": "255",
+     "city": "București",
+     "county": "București",
+     "postal_code": "021632"
+    },
+    "quote": "Șos. Pantelimon nr. 255, București, jud. București, cod poștal 021632",
+    "page": 1
+   },
+   "onrc_status": {
+    "value": "funcțiune",
+    "quote": "funcțiune",
+    "page": 1
+   },
+   "share_capital": {
+    "value": 200,
+    "quote": "200 lei",
+    "page": 1
+   },
+   "caen": {
+    "value": "1812",
+    "quote": "1812 - Alte activități de tipărire n.c.a.",
+    "page": 1
+   },
+   "directors": {
+    "value": [
+     {
+      "name": "Irina Marinescu",
+      "role": "administrator",
+      "appointed": "2020-06-11",
+      "can_sign": true
+     }
+    ],
+    "quote": "Irina Marinescu",
+    "page": 2
+   },
+   "shareholders": {
+    "value": [
+     {
+      "name": "Irina Marinescu",
+      "type": "person",
+      "percent": 100
+     }
+    ],
+    "quote": "100%",
+    "page": 2
+   }
+  },
+  "flags": []
+ },
+ {
+  "file": "pdfs/EVAL-04/document_6.pdf",
+  "fields": {
+   "caf_number": {
+    "value": "CAF-40/88125",
+    "quote": "CAF-40/88125",
+    "page": 1
+   },
+   "company_name": {
+    "value": "NOVA PRINT MEDIA SRL",
+    "quote": "NOVA PRINT MEDIA SRL",
+    "page": 1
+   },
+   "cui": {
+    "value": "43957304",
+    "quote": "43957304",
+    "page": 1
+   },
+   "address": {
+    "value": {
+     "street": "Șos. Pantelimon",
+     "number": "255",
+     "city": "București",
+     "county": "București",
+     "postal_code": "021632"
+    },
+    "quote": "Șos. Pantelimon nr. 255, București, jud. București, cod poștal 021632",
+    "page": 1
+   },
+   "caf_issue_date": {
+    "value": "2026-10-20",
+    "quote": "20.10.2026",
+    "page": 1
+   },
+   "caf_debts_total": {
+    "value": 0,
+    "quote": "0 lei",
+    "page": 1
+   },
+   "caf_has_debts": {
+    "value": false,
+    "quote": "nu înregistrează obligații fiscale restante",
+    "page": 1
+   }
+  },
+  "flags": []
+ }
+]
