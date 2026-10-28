@@ -1,0 +1,95 @@
+{
+  "as_of": "2026-10-20T00:00:00+00:00",
+  "cases": {
+    "DEMO-01": {
+      "cui": "36182043",
+      "paths": {
+        "anaf_company": "DEMO-01/anaf_company.json",
+        "anaf_financials": "DEMO-01/anaf_financials.json",
+        "onrc_company": "DEMO-01/onrc.json",
+        "court_cases": "DEMO-01/court_cases.json"
+      }
+    },
+    "DEMO-02": {
+      "cui": "41738200",
+      "paths": {
+        "anaf_company": "DEMO-02/anaf_company.json",
+        "anaf_financials": "DEMO-02/anaf_financials.json",
+        "onrc_company": "DEMO-02/onrc.json",
+        "court_cases": "DEMO-02/court_cases.json"
+      }
+    },
+    "DEMO-03": {
+      "cui": "39205176",
+      "paths": {
+        "anaf_company": "DEMO-03/anaf_company.json",
+        "anaf_financials": "DEMO-03/anaf_financials.json",
+        "onrc_company": "DEMO-03/onrc.json",
+        "court_cases": "DEMO-03/court_cases.json"
+      }
+    },
+    "DEMO-04": {
+      "cui": "45210967",
+      "paths": {
+        "anaf_company": "DEMO-04/anaf_company.json",
+        "anaf_financials": "DEMO-04/anaf_financials.json",
+        "onrc_company": "DEMO-04/onrc.json",
+        "court_cases": "DEMO-04/court_cases.json"
+      }
+    },
+    "DEMO-05": {
+      "cui": "33774156",
+      "paths": {
+        "anaf_company": "DEMO-05/anaf_company.json",
+        "anaf_financials": "DEMO-05/anaf_financials.json",
+        "onrc_company": "DEMO-05/onrc.json",
+        "court_cases": "DEMO-05/court_cases.json"
+      }
+    },
+    "DEMO-06": {
+      "cui": "40118383",
+      "paths": {
+        "anaf_company": "DEMO-06/anaf_company.json",
+        "anaf_financials": "DEMO-06/anaf_financials.json",
+        "onrc_company": "DEMO-06/onrc.json",
+        "court_cases": "DEMO-06/court_cases.json"
+      }
+    },
+    "EVAL-01": {
+      "cui": "38455190",
+      "paths": {
+        "anaf_company": "EVAL-01/anaf_company.json",
+        "anaf_financials": "EVAL-01/anaf_financials.json",
+        "onrc_company": "EVAL-01/onrc.json",
+        "court_cases": "EVAL-01/court_cases.json"
+      }
+    },
+    "EVAL-02": {
+      "cui": "42884638",
+      "paths": {
+        "anaf_company": "EVAL-02/anaf_company.json",
+        "anaf_financials": "EVAL-02/anaf_financials.json",
+        "onrc_company": "EVAL-02/onrc.json",
+        "court_cases": "EVAL-02/court_cases.json"
+      }
+    },
+    "EVAL-03": {
+      "cui": "37022881",
+      "paths": {
+        "anaf_company": "EVAL-03/anaf_company.json",
+        "anaf_financials": "EVAL-03/anaf_financials.json",
+        "onrc_company": "EVAL-03/onrc.json",
+        "court_cases": "EVAL-03/court_cases.json"
+      }
+    },
+    "EVAL-04": {
+      "cui": "43957304",
+      "paths": {
+        "anaf_company": "EVAL-04/anaf_company.json",
+        "anaf_financials": "EVAL-04/anaf_financials.json",
+        "onrc_company": "EVAL-04/onrc.json",
+        "court_cases": "EVAL-04/court_cases.json"
+      }
+    }
+  }
+}

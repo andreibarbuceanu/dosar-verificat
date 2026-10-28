@@ -1,0 +1,20 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "41738200",
+  "name": "AGRO NORD TRANS SRL",
+  "reg_com": "J12/1834/2019",
+  "status": "funcțiune",
+  "address": {
+    "street": "Str. Fabricii",
+    "number": "47",
+    "city": "Cluj-Napoca",
+    "county": "Cluj",
+    "postal_code": "400632"
+  },
+  "directors": [
+    {
+      "name": "Andrei Mureșan",
+      "can_sign": true
+    }
+  ]
+}

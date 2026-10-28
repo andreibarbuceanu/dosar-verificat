@@ -1,0 +1,22 @@
+[
+  {
+    "source": "synthetic_fixture",
+    "cui": "41738200",
+    "year": 2024,
+    "currency": "RON",
+    "turnover": 8100000,
+    "total_revenue": 8240000,
+    "total_expenses": 7690000,
+    "net_profit": 462000
+  },
+  {
+    "source": "synthetic_fixture",
+    "cui": "41738200",
+    "year": 2023,
+    "currency": "RON",
+    "turnover": 7350000,
+    "total_revenue": 7420000,
+    "total_expenses": 7010000,
+    "net_profit": 344000
+  }
+]

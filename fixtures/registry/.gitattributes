@@ -1,0 +1,2 @@
+# Fixtures are byte-exact (build_fixtures.py --check): keep LF on every OS.
+*.json text eol=lf

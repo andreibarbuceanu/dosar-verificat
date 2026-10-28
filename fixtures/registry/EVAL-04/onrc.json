@@ -1,0 +1,20 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "43957304",
+  "name": "NOVA PRINT MEDIA SRL",
+  "reg_com": "J40/7712/2020",
+  "status": "funcțiune",
+  "address": {
+    "street": "Șos. Pantelimon",
+    "number": "255",
+    "city": "București",
+    "county": "București",
+    "postal_code": "021632"
+  },
+  "directors": [
+    {
+      "name": "Irina Marinescu",
+      "can_sign": true
+    }
+  ]
+}

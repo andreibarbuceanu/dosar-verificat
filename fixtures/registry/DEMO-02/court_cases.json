@@ -1,0 +1,17 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "41738200",
+  "cases": [
+    {
+      "number": "2318/117/2025",
+      "court": "Tribunalul Cluj",
+      "subject": "executare silită",
+      "category": "enforcement",
+      "party_role": "debitor",
+      "other_party": "LEASING FICTIV IFN SA",
+      "stage": "executare",
+      "status": "open",
+      "registered": "2025-05-12"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "37022881",
+  "name": "ALPIN TURISM MUNTENIA SRL",
+  "reg_com": "J03/977/2016",
+  "status": "funcțiune",
+  "address": {
+    "street": "Str. Valea Rece",
+    "number": "7",
+    "city": "Câmpulung",
+    "county": "Argeș",
+    "postal_code": "115100"
+  },
+  "directors": [
+    {
+      "name": "Bogdan Ilie",
+      "can_sign": true
+    }
+  ]
+}

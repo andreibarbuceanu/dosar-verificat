@@ -1,0 +1,20 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "36182043",
+  "name": "CODRU VERDE MOBILIER SRL",
+  "reg_com": "J33/412/2016",
+  "status": "funcțiune",
+  "address": {
+    "street": "Str. Tâmplarilor",
+    "number": "12",
+    "city": "Rădăuți",
+    "county": "Suceava",
+    "postal_code": "725400"
+  },
+  "directors": [
+    {
+      "name": "Mihai Hrițcu",
+      "can_sign": true
+    }
+  ]
+}

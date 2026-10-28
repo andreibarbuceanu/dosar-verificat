@@ -1,0 +1,20 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "45210967",
+  "name": "DELTA FRESH DISTRIBUȚIE SRL",
+  "reg_com": "J13/905/2021",
+  "status": "funcțiune",
+  "address": {
+    "street": "Str. Portului",
+    "number": "3",
+    "city": "Constanța",
+    "county": "Constanța",
+    "postal_code": "900178"
+  },
+  "directors": [
+    {
+      "name": "Victor Albu",
+      "can_sign": true
+    }
+  ]
+}

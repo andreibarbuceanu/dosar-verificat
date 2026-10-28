@@ -1,0 +1,20 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "40118383",
+  "name": "PANIFICAȚIA DOR DE CASĂ SRL",
+  "reg_com": "J35/3307/2018",
+  "status": "funcțiune",
+  "address": {
+    "street": "Calea Șagului",
+    "number": "96",
+    "city": "Timișoara",
+    "county": "Timiș",
+    "postal_code": "300516"
+  },
+  "directors": [
+    {
+      "name": "Laura Popescu",
+      "can_sign": true
+    }
+  ]
+}

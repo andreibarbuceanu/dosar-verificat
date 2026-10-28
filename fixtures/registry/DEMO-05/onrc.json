@@ -1,0 +1,20 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "33774156",
+  "name": "TERMOSTAR INSTALAȚII SRL",
+  "reg_com": "J08/1561/2015",
+  "status": "funcțiune",
+  "address": {
+    "street": "Str. Lungă",
+    "number": "210",
+    "city": "Brașov",
+    "county": "Brașov",
+    "postal_code": "500058"
+  },
+  "directors": [
+    {
+      "name": "Cristian Stoica",
+      "can_sign": true
+    }
+  ]
+}

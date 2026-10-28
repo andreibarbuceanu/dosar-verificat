@@ -1,0 +1,13 @@
+{
+  "as_of": "2026-10-20T00:00:00+00:00",
+  "cases": {
+    "DEMO-01-INCOMPLETE": {
+      "cui": "36182043",
+      "paths": {
+        "anaf_company": "DEMO-01/anaf_company.json",
+        "onrc_company": "DEMO-01/onrc.json",
+        "court_cases": "DEMO-01/court_cases.json"
+      }
+    }
+  }
+}

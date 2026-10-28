@@ -1,0 +1,20 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "38455190",
+  "name": "GRANIT CONSTRUCT VEST SRL",
+  "reg_com": "J05/1188/2017",
+  "status": "funcțiune",
+  "address": {
+    "street": "Str. Republicii",
+    "number": "61",
+    "city": "Oradea",
+    "county": "Bihor",
+    "postal_code": "410167"
+  },
+  "directors": [
+    {
+      "name": "Florin Bara",
+      "can_sign": true
+    }
+  ]
+}

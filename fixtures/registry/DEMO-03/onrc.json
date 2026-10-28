@@ -1,0 +1,20 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "39205176",
+  "name": "LUMINA SOFT CONSULTING SRL",
+  "reg_com": "J22/2290/2017",
+  "status": "funcțiune",
+  "address": {
+    "street": "Bd. Carol I",
+    "number": "8",
+    "city": "Iași",
+    "county": "Iași",
+    "postal_code": "700505"
+  },
+  "directors": [
+    {
+      "name": "Raluca Ciobanu",
+      "can_sign": true
+    }
+  ]
+}

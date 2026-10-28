@@ -1,0 +1,20 @@
+{
+  "source": "synthetic_fixture",
+  "cui": "42884638",
+  "name": "MARIS LOGISTIC SERV SRL",
+  "reg_com": "J17/640/2020",
+  "status": "funcțiune",
+  "address": {
+    "street": "Str. Brăilei",
+    "number": "150",
+    "city": "Galați",
+    "county": "Galați",
+    "postal_code": "800310"
+  },
+  "directors": [
+    {
+      "name": "Cătălin Dumitru",
+      "can_sign": true
+    }
+  ]
+}
