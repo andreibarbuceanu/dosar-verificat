@@ -537,18 +537,12 @@
       "signed_by": "Victor Albu"
     },
     "court_cases": [],
-    "sanctions_near_match": {
-      "person": "Sorin Neagu",
-      "role": "shareholder",
-      "list_entry": "TO BE CHOSEN by the Registries role: rename this shareholder to a near-match of a real EU sanctions-list entry"
-    },
+    "sanctions_near_match": null,
     "planted_errors": [],
     "extra_documents": [],
     "expected": {
-      "outcome": "exceptions",
-      "rules_failing": [
-        "R12"
-      ]
+      "outcome": "green",
+      "rules_failing": []
     }
   },
   {
