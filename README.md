@@ -4,6 +4,12 @@ Full-stack hackathon application for PDF intake, evidence-backed extraction, sim
 checks, and deterministic credit-file verification. All bundled companies and documents are
 synthetic.
 
+## Consolidated project
+
+The final branch is `final/unified-project`. It includes the history of all 17 remote
+branches audited on 2026-11-01, including the frontend, backend, both sprints, and
+data validation. See `docs/BRANCH_CONSOLIDATION.md` for the consolidation audit.
+
 ## Run the demo
 
 Backend:

@@ -101,7 +101,7 @@ function toSummary(c: ApiCase | ApiQueueItem): CaseSummary {
       ? full!.documents.map((document) => ({
           document_id: document.id,
           source: "backend" as const,
-          company_id: full.id,
+          company_id: c.id,
           file: document.file,
           doc_type: document.type as CaseSummary["documents"][number]["doc_type"],
           pages: document.pages,
