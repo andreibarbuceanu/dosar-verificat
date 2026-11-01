@@ -1,4 +1,3 @@
-import mark from "@/assets/raiffeisen-mark.png.asset.json";
 import { Link } from "@tanstack/react-router";
 
 export function AppHeader() {
@@ -6,7 +5,14 @@ export function AppHeader() {
     <header className="bg-primary text-primary-foreground">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Link to="/" className="flex items-center gap-3">
-          <img src={mark.url} alt="" aria-hidden="true" className="h-9 w-auto" />
+          <img
+            src="/raiffeisen-mark.png"
+            alt=""
+            aria-hidden="true"
+            width={36}
+            height={36}
+            className="h-9 w-9 shrink-0"
+          />
           <span
             className="flex items-center gap-3"
             style={{ fontFamily: "'Source Sans 3', sans-serif" }}
