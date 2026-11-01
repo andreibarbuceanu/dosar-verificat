@@ -155,6 +155,17 @@ results are expected for those fixtures; the harness should finish with `SELFTES
   hardening. Uploaded PDF bytes use local storage and `/run` is synchronous.
 - The independent Sprint 2 end-to-end evaluation harness planned for the project.
 
+## Team and contributors
+
+Built together by our six-person team:
+
+- [@andreibarbuceanu](https://github.com/andreibarbuceanu)
+- [@MihaiB3](https://github.com/MihaiB3)
+- [@teodoratirca13](https://github.com/teodoratirca13)
+- [@Steefyy](https://github.com/Steefyy)
+- [@rdenis03](https://github.com/rdenis03)
+- [@boxeorudoru-lab](https://github.com/boxeorudoru-lab)
+
 ## What we learned
 
 We planned too many features for 24 hours. Several were complex to implement, some remained
