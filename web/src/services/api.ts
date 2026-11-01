@@ -1,7 +1,9 @@
 // FastAPI backend connector (Sprint 2 contract) with local mock fallback.
 import { getCases as mockCases, getCase as mockCase, type CaseSummary } from "@/lib/intake";
 
-export const DEFAULT_API_URL = "http://localhost:8000";
+export const DEFAULT_API_URL = (
+  (import.meta.env["VITE_API_BASE_URL"] as string | undefined) || "http://localhost:8000"
+).replace(/\/$/, "");
 const KEY = "dv.apiUrl";
 
 export function getApiUrl(): string {
@@ -31,6 +33,19 @@ export type ApiFinding = {
   explanation: string;
   checker?: string;
 };
+export type ApiPipeline = {
+  case_id: string;
+  documents: {
+    document_id: string;
+    confidence: number;
+    classification_reason: string;
+    warnings: string[];
+    injection_suspected: unknown[];
+    error: string | null;
+  }[];
+  validation: { status: string; reason?: string; findings?: ApiFinding[] };
+};
+
 export type ApiCase = {
   id: string;
   company_name: string;
@@ -82,9 +97,7 @@ async function req<T>(path: string, init?: RequestInit, timeoutMs = 4000): Promi
  * bundled documents are only used for old seeded cases that expose no documents. */
 function toSummary(c: ApiCase | ApiQueueItem): CaseSummary {
   const full = "cui" in c ? c : undefined;
-  const mock = mockCases().find(
-    (m) => (full?.cui && m.cui === full.cui) || m.name === c.company_name,
-  );
+  const mock = c.id.startsWith("C-") ? undefined : mockCase(c.id);
   const result = full?.outcome?.result ?? c.status;
   // C-* cases are real user uploads. Seeded DEMO/EVAL API records contain
   // metadata only; their viewable PDFs live in the frontend bundle.
@@ -96,7 +109,7 @@ function toSummary(c: ApiCase | ApiQueueItem): CaseSummary {
     cui: full?.cui || mock?.cui || "",
     regCom: mock?.regCom ?? "",
     city: mock?.city ?? "",
-    status: result === "green" ? "green" : "exceptions",
+    status: result as CaseSummary["status"],
     documents: hasUploadedDocuments
       ? full!.documents.map((document) => ({
           document_id: document.id,
@@ -112,9 +125,7 @@ function toSummary(c: ApiCase | ApiQueueItem): CaseSummary {
           fields_on_unreadable_pages: {},
         }))
       : (mock?.documents ?? []),
-    findings: full?.outcome
-      ? full.outcome.findings.filter((f) => f.result === "fail")
-      : (mock?.findings ?? []),
+    findings: full?.outcome ? full.outcome.findings : [],
     // Sprint 2: backend score is "not_computed" — never shown.
     litigationScore: undefined,
   };
@@ -138,9 +149,10 @@ export const api = {
     }
   },
 
-  async getCase(id: string): Promise<WithSource<CaseSummary | undefined>> {
+  async getCase(id: string): Promise<WithSource<CaseSummary | undefined> & { raw?: ApiCase }> {
     try {
-      return { data: toSummary(await req<ApiCase>(`/cases/${id}`)), source: "backend" };
+      const raw = await req<ApiCase>(`/cases/${encodeURIComponent(id)}`);
+      return { data: toSummary(raw), raw, source: "backend" };
     } catch {
       return { data: mockCase(id), source: "mock" };
     }
@@ -148,10 +160,11 @@ export const api = {
 
   getRawCase: (id: string) => req<ApiCase>(`/cases/${id}`),
   getVerification: (id: string) => req<ApiVerification>(`/cases/${id}/verification`),
-  getPipeline: (id: string) => req<Record<string, unknown>>(`/cases/${id}/pipeline`),
+  getPipeline: (id: string) => req<ApiPipeline>(`/cases/${encodeURIComponent(id)}/pipeline`),
   getAudit: (id: string) => req<unknown[]>(`/cases/${id}/audit`),
 
   createCase(files: File[]) {
+    if (!files.length) throw new Error("Selectează cel puțin un PDF.");
     const fd = new FormData();
     files.forEach((f) => fd.append("files", f));
     return req<ApiCase>("/cases", { method: "POST", body: fd }, 30000);

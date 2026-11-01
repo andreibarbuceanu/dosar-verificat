@@ -1,8 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { api, type Source } from "@/services/api";
+import {
+  api,
+  type ApiCase,
+  type ApiPipeline,
+  type ApiVerification,
+  type Source,
+} from "@/services/api";
 import type { CaseSummary } from "@/lib/intake";
-import { AppHeader } from "@/components/AppHeader";
+import { DocumentEvidence } from "@/components/DocumentEvidence";
+import { AppHeader, StatusPill } from "@/components/AppHeader";
 import { DOC_LABELS, RULE_LABELS, getCase, pdfUrl } from "@/lib/intake";
 
 export const Route = createFileRoute("/cases/$id")({
@@ -26,13 +33,36 @@ function CasePage() {
   const [c, setC] = useState<CaseSummary | undefined | null>(null);
   const [source, setSource] = useState<Source>("mock");
   const [sel, setSel] = useState(0);
+  const [raw, setRaw] = useState<ApiCase>();
+  const [pipeline, setPipeline] = useState<ApiPipeline>();
+  const [verification, setVerification] = useState<ApiVerification>();
+  const [detailError, setDetailError] = useState(false);
   useEffect(() => {
+    let active = true;
     setC(null);
     setSel(0);
-    api.getCase(id).then((r) => {
+    setRaw(undefined);
+    setPipeline(undefined);
+    setVerification(undefined);
+    setDetailError(false);
+    void api.getCase(id).then(async (r) => {
+      if (!active) return;
       setC(r.data);
+      setRaw(r.raw);
       setSource(r.source);
+      if (!r.raw) return;
+      const [pipelineResult, verificationResult] = await Promise.allSettled([
+        api.getPipeline(id),
+        api.getVerification(id),
+      ]);
+      if (!active) return;
+      if (pipelineResult.status === "fulfilled") setPipeline(pipelineResult.value);
+      else setDetailError(true);
+      if (verificationResult.status === "fulfilled") setVerification(verificationResult.value);
     });
+    return () => {
+      active = false;
+    };
   }, [id]);
   if (!c) {
     return (
@@ -50,7 +80,7 @@ function CasePage() {
     );
   }
   const doc = c.documents[sel];
-  const fails = c.findings.filter((f) => f.result === "fail");
+  const findings = raw?.outcome?.findings ?? pipeline?.validation.findings ?? c.findings;
 
   return (
     <div className="min-h-screen">
@@ -74,6 +104,7 @@ function CasePage() {
             </p>
           </div>
           <div className="flex items-center gap-3">
+            <StatusPill status={c.status} />
             {c.litigationScore !== undefined && (
               <span className="text-sm">
                 Scor litigii <b>{c.litigationScore}</b>/100
@@ -82,9 +113,48 @@ function CasePage() {
           </div>
         </div>
 
+        {detailError && (
+          <p
+            role="status"
+            className="rounded-md border border-border bg-card px-5 py-3 text-sm text-muted-foreground"
+          >
+            Detaliile procesării nu sunt disponibile. Dosarul poate să nu fi fost procesat încă.
+          </p>
+        )}
+        {pipeline?.validation.status === "not_available" && (
+          <p
+            role="status"
+            className="rounded-md border border-warning/40 bg-warning/10 px-5 py-4 text-sm"
+          >
+            Verificarea nu este încă disponibilă. {pipeline.validation.reason}
+          </p>
+        )}
+        {verification && (
+          <section className="rounded-md border border-border bg-card px-5 py-4 text-sm">
+            <h2 className="font-semibold">Starea verificării</h2>
+            <p className="mt-1 text-muted-foreground">
+              {verification.status === "completed"
+                ? "Procesare încheiată"
+                : "Procesare incompletă sau cu erori"}{" "}
+              · Sursele registrelor sunt simulate.
+            </p>
+            {verification.errors.map((error, index) => (
+              <p key={index} className="mt-1 text-destructive">
+                {String(error)}
+              </p>
+            ))}
+            {verification.not_checked.length > 0 && (
+              <p className="mt-2 text-muted-foreground">
+                Reguli neverificate:{" "}
+                {verification.not_checked.map((finding) => finding.rule_id).join(", ")}
+              </p>
+            )}
+          </section>
+        )}
+
         <section className="rounded-md border border-border bg-card">
           <div className="border-b border-border px-5 py-3 font-semibold">Verificări</div>
-          {fails.length === 0 ? (
+          {findings.length === 0 ? (
             <p
               className={`px-5 py-4 text-sm font-medium ${c.status === "green" ? "text-success" : "text-muted-foreground"}`}
             >
@@ -94,14 +164,19 @@ function CasePage() {
             </p>
           ) : (
             <ul className="divide-y divide-border">
-              {fails.map((f) => (
+              {findings.map((f) => (
                 <li key={f.id} className="flex gap-3 px-5 py-3 text-sm">
                   <span
-                    className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${f.severity === "red" ? "bg-destructive" : "bg-warning"}`}
+                    className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${f.result === "pass" ? "bg-success" : f.result === "unknown" ? "bg-muted-foreground" : f.severity === "red" ? "bg-destructive" : "bg-warning"}`}
                   />
                   <div>
                     <div className="font-semibold">
-                      <span className="font-mono">{f.rule_id}</span> · {RULE_LABELS[f.rule_id]}
+                      <span className="font-mono">{f.rule_id}</span> · {RULE_LABELS[f.rule_id]} ·{" "}
+                      {f.result === "pass"
+                        ? "Trecut"
+                        : f.result === "fail"
+                          ? "Eșuat"
+                          : "Necunoscut"}
                     </div>
                     <div className="text-muted-foreground">{f.explanation}</div>
                   </div>
@@ -154,11 +229,19 @@ function CasePage() {
               )}
               <div className="overflow-hidden rounded-md border border-border bg-card">
                 {doc.source === "backend" && doc.document_id ? (
-                  <img
+                  <DocumentEvidence
                     key={doc.document_id}
-                    src={api.pageUrl(doc.document_id, 1)}
-                    alt={`Pagina 1 din ${doc.file}`}
-                    className="mx-auto max-h-[720px] w-auto"
+                    document={{
+                      id: doc.document_id,
+                      type: doc.doc_type,
+                      file: doc.file,
+                      pages: doc.pages,
+                      readable: doc.unreadable_pages.length === 0,
+                    }}
+                    fields={raw?.fields.filter((field) => field.doc_id === doc.document_id) ?? []}
+                    classification={pipeline?.documents.find(
+                      (document) => document.document_id === doc.document_id,
+                    )}
                   />
                 ) : (
                   <iframe

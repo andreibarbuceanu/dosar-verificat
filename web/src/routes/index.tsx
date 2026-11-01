@@ -158,6 +158,10 @@ function Index() {
             <option value="all">Toate statusurile</option>
             <option value="green">Finalizate</option>
             <option value="exceptions">În așteptare</option>
+            <option value="new">Noi</option>
+            <option value="running">În procesare</option>
+            <option value="escalated">Necesită analiză</option>
+            <option value="decided">Decizie înregistrată</option>
           </select>
           <select
             className={sel}

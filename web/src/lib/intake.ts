@@ -82,7 +82,7 @@ export type CaseSummary = {
   cui: string;
   regCom: string;
   city: string;
-  status: "green" | "exceptions";
+  status: "new" | "running" | "green" | "exceptions" | "escalated" | "decided";
   documents: TruthDoc[];
   findings: Finding[];
   litigationScore?: number | undefined;

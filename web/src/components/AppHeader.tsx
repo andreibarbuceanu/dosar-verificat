@@ -21,7 +21,24 @@ export function AppHeader() {
   );
 }
 
-export function StatusPill({ status }: { status: "green" | "exceptions" }) {
+export function StatusPill({
+  status,
+}: {
+  status: "new" | "running" | "green" | "exceptions" | "escalated" | "decided";
+}) {
+  if (status !== "green" && status !== "exceptions") {
+    const labels = {
+      new: "Nou",
+      running: "În procesare",
+      escalated: "Necesită analiză",
+      decided: "Decizie înregistrată",
+    };
+    return (
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-muted px-2.5 py-0.5 text-xs font-semibold text-muted-foreground">
+        {labels[status]}
+      </span>
+    );
+  }
   return status === "green" ? (
     <span className="inline-flex items-center gap-1.5 rounded-full bg-success/15 px-2.5 py-0.5 text-xs font-semibold text-success">
       <span className="h-1.5 w-1.5 rounded-full bg-success" /> Finalizat

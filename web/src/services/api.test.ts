@@ -87,3 +87,57 @@ describe("api fallback", () => {
     expect(r.data.find((c) => c.id === "DEMO-02")?.cui).toBe("41738200");
   });
 });
+
+describe("backend case integrity", () => {
+  it("does not borrow planted findings or identity from a bundled company", async () => {
+    const raw = {
+      id: "C-real",
+      company_name: "AGRO NORD TRANS SRL",
+      cui: "",
+      status: "running",
+      documents: [],
+      fields: [],
+      tool_results: [],
+      outcome: null,
+    };
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue(new Response(JSON.stringify(raw), { status: 200 })),
+    );
+    const result = await api.getCase(raw.id);
+    expect(result.data?.findings).toEqual([]);
+    expect(result.data?.cui).toBe("");
+    expect(result.data?.documents).toEqual([]);
+    expect(result.data?.status).toBe("running");
+    expect(result.raw).toEqual(raw);
+  });
+  it("preserves pass, fail and unknown backend results", async () => {
+    const findings = ["pass", "fail", "unknown"].map((result, index) => ({
+      id: `f${index}`,
+      rule_id: "R03",
+      severity: "red",
+      result,
+      evidence: [],
+      explanation: result,
+    }));
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue(
+        new Response(
+          JSON.stringify({
+            id: "C-results",
+            company_name: "Nou",
+            cui: "",
+            status: "exceptions",
+            documents: [],
+            fields: [],
+            tool_results: [],
+            outcome: { result: "exceptions", litigation_score: 0, findings },
+          }),
+          { status: 200 },
+        ),
+      ),
+    );
+    expect((await api.getCase("C-results")).data?.findings).toEqual(findings);
+  });
+});
