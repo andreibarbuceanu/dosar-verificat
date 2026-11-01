@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { api, type ApiCase, type ApiPipeline } from "@/services/api";
 import { formatValue } from "@/lib/intake";
 
@@ -52,11 +52,17 @@ export function DocumentEvidence({
   fields: ApiCase["fields"];
   classification?: ApiPipeline["documents"][number] | undefined;
 }) {
+  const viewer = useRef<HTMLElement>(null);
   const [page, setPage] = useState(1);
   const [unavailable, setUnavailable] = useState(false);
   function showPage(next: number) {
     setPage(next);
     setUnavailable(false);
+  }
+  function showEvidence(next: number) {
+    showPage(next);
+    viewer.current?.focus({ preventScroll: true });
+    viewer.current?.scrollIntoView?.({ behavior: "auto", block: "start" });
   }
   return (
     <div className="space-y-4">
@@ -106,7 +112,7 @@ export function DocumentEvidence({
                   <button
                     className="mt-2 text-xs font-semibold text-foreground underline"
                     disabled={field.page < 1 || field.page > document.pages}
-                    onClick={() => showPage(field.page)}
+                    onClick={() => showEvidence(field.page)}
                   >
                     Vezi dovada
                   </button>
@@ -116,7 +122,12 @@ export function DocumentEvidence({
           </dl>
         )}
       </section>
-      <section className="overflow-hidden rounded-md border border-border bg-card">
+      <section
+        ref={viewer}
+        tabIndex={-1}
+        aria-label="Previzualizare dovadă PDF"
+        className="scroll-mt-4 overflow-hidden rounded-md border border-border bg-card focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+      >
         <div className="flex items-center justify-between border-b border-border px-4 py-2 text-sm">
           <span>
             Pagina {page} din {document.pages}
